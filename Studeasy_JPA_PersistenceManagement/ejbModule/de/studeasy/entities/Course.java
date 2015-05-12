@@ -1,13 +1,22 @@
 package de.studeasy.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Course {
+import javax.persistence.*;
+
+@Entity
+public class Course implements Serializable {
+	
+	@Id @GeneratedValue
 	private int courseID;
 	private int grade;
 	//e.g. 5'B'
 	private char descriptor;
+	@OneToOne
+	@JoinColumn(name="classTeacher_FK")
 	private Teacher classTeacher;
+	
 	private ArrayList<Pupil> pupils;
 	private ArrayList<Lesson> lessons;
 	
