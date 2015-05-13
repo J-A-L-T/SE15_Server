@@ -1,6 +1,11 @@
 package de.studeasy.entities;
 
-public class Homework {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Homework implements Serializable{
 
 	private int homeworkID;
 	private String description;

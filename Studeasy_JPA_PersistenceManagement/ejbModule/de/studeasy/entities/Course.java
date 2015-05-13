@@ -10,14 +10,21 @@ public class Course implements Serializable {
 	
 	@Id @GeneratedValue
 	private int courseID;
+	
 	private int grade;
 	//e.g. 5'B'
 	private char descriptor;
-	@OneToOne
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="classTeacher_FK")
 	private Teacher classTeacher;
 	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="course_FK")
 	private ArrayList<Pupil> pupils;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="course_FK")
 	private ArrayList<Lesson> lessons;
 	
 	public int getCourseID() {

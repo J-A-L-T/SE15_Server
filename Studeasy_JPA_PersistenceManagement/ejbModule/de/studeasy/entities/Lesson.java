@@ -1,16 +1,33 @@
 package de.studeasy.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Lesson {
+import javax.persistence.*;
+
+@Entity
+public class Lesson implements Serializable {
 	
 	private int lessonID;
 	private int lessonHour;
 	private Date date;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="teacher_FK")
 	private Teacher teacher;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="subject_FK")
 	private Subject subject;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="room_FK")
 	private Room room;
-	private Homework homework;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinColumn(name="lesson_FK")
+	private ArrayList<Homework> homework;
 	
 	public int getLessonID() {
 		return lessonID;
@@ -48,10 +65,10 @@ public class Lesson {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-	public Homework getHomework() {
+	public ArrayList<Homework> getHomework() {
 		return homework;
 	}
-	public void setHomework(Homework homework) {
+	public void setHomework(ArrayList<Homework> homework) {
 		this.homework = homework;
-	}	
+	}
 }

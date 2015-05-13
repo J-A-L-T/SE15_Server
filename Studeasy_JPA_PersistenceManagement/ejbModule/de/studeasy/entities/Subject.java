@@ -1,6 +1,11 @@
 package de.studeasy.entities;
 
-public class Subject {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Subject implements Serializable {
 
 	private int subjectID;
 	private String description;

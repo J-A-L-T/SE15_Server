@@ -1,6 +1,11 @@
 package de.studeasy.entities;
 
-public class Room {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Room implements Serializable{
 
 	private String roomID;
 
