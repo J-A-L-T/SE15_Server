@@ -9,20 +9,26 @@ import javax.persistence.*;
 @Entity
 public class Lesson implements Serializable {
 	
+	private static final long serialVersionUID = -7694338591615228808L;
+	
+	@Id
+	@GeneratedValue
 	private int lessonID;
 	private int lessonHour;
 	private Date date;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="teacher_FK")
+	@OneToMany(cascade=CascadeType.PERSIST)
+	private Course course;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private Teacher teacher;
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="subject_FK")
+	@JoinColumn(name="subject_FK",
+				unique=false)
 	private Subject subject;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="room_FK")
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private Room room;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
@@ -70,5 +76,11 @@ public class Lesson implements Serializable {
 	}
 	public void setHomework(ArrayList<Homework> homework) {
 		this.homework = homework;
+	}
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 }

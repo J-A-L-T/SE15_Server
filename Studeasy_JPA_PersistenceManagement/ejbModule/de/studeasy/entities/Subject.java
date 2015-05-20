@@ -2,11 +2,16 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+
 
 @Entity
 public class Subject implements Serializable {
 
+	private static final long serialVersionUID = -1512930899828828250L;
+	
+	@Id 
+	@GeneratedValue
 	private int subjectID;
 	private String description;
 	
