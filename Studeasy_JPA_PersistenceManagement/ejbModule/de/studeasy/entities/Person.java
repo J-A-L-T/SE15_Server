@@ -1,9 +1,21 @@
 package de.studeasy.entities;
 
-public abstract class Person {
+import java.io.Serializable;
+
+import javax.persistence.*;
+
+@Entity
+@Inheritance( strategy = InheritanceType.JOINED)
+public abstract class Person implements Serializable {
+	
+	private static final long serialVersionUID = 849222223534910538L;
+	
+	@Id
+	@GeneratedValue
 	private int personID;
 	private String name;
 	private String firstname;
+	private String password;
 	//'m'=man 'w'=woman
 	private char gender;
 
@@ -31,6 +43,14 @@ public abstract class Person {
 		this.firstname = firstname;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public char getGender() {
 		return gender;
 	}

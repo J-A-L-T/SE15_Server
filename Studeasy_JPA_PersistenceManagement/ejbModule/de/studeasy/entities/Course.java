@@ -1,14 +1,35 @@
 package de.studeasy.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Course {
+import javax.persistence.*;
+
+@Entity
+public class Course implements Serializable {
+	
+	private static final long serialVersionUID = -3906372330041256764L;
+
+	@Id @GeneratedValue
 	private int courseID;
+	
 	private int grade;
 	//e.g. 5'B'
 	private char descriptor;
+	
+	@OneToOne(cascade=CascadeType.PERSIST,
+			  mappedBy="course")
+	@JoinColumn(name="classTeacher_FK")
 	private Teacher classTeacher;
+	
+	@OneToMany(cascade=CascadeType.PERSIST,
+			   mappedBy="course")
+	@JoinColumn(name="course_FK")
 	private ArrayList<Pupil> pupils;
+	
+	@OneToMany(cascade=CascadeType.PERSIST,
+			   mappedBy="course")
+	@JoinColumn(name="course_FK")
 	private ArrayList<Lesson> lessons;
 	
 	public int getCourseID() {

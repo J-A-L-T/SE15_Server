@@ -1,17 +1,26 @@
 package de.studeasy.entities;
 
+import javax.persistence.*;
+
+@Entity
+@PrimaryKeyJoinColumn(referencedColumnName="personID")
 public class Pupil extends Person {
-	private String password;
+	
+	
+	private static final long serialVersionUID = 3461606884540372275L;
+	
+	@OneToMany(cascade=CascadeType.PERSIST)
+	private Course course;
 	
 	public Pupil() {
 		super();
 	}
 
-	public String getPassword() {
-		return password;
+	public Course getCourse() {
+		return course;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 }
