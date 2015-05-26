@@ -1,10 +1,10 @@
 package de.studeasy.common;
 
 import java.rmi.Remote;
+
 import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Dieses Interface definiert die Schnittstelle zwischen der Java app und dem Server.

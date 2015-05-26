@@ -12,4 +12,6 @@ public interface Person extends Serializable {
 	public void setFirstname(String firstname);
 	public char getGender();
 	public void setGender(char gender);
+	public String getPassword();
+	public void setPassword(String password);
 }
