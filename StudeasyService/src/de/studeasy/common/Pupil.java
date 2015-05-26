@@ -1,5 +1,8 @@
 package de.studeasy.common;
 
-public interface Pupil extends Person {
+import de.studeasy.entities.Course;
 
+public interface Pupil extends Person {
+	public Course getCourse();
+	public void setCourse(Course course);
 }

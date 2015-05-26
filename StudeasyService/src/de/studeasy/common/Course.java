@@ -13,6 +13,8 @@ public interface Course extends Serializable {
 	
 	public void setCourseID(int courseID);
 	
+	public int getGrade();
+	
 	public void setGrade(int grade);
 	
 	public char getDescriptor();
