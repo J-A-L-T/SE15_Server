@@ -26,11 +26,6 @@ public interface StudeasyService extends Remote {
 	 */
 	public String login(int personID, String password) throws RemoteException;
 	
-	/**
-	 * Operation zum Ausloggen. Schliesst die Session des Nutzers.
-	 * @param sessionID
-	 * @throws RemoteException
-	 */
 	public void logout(int personID) throws RemoteException;
 	
 	public boolean createHomework(int lessonID, String description)throws RemoteException;
