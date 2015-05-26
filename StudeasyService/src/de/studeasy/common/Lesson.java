@@ -3,6 +3,7 @@ package de.studeasy.common;
 import java.io.Serializable;
 import java.util.Date;
 
+import de.studeasy.entities.Course;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.Room;
 import de.studeasy.entities.Subject;
@@ -24,5 +25,6 @@ public interface Lesson extends Serializable {
 	public void setRoom(Room room);
 	public Homework getHomework();
 	public void setHomework(Homework homework);
-
+	public Course getCourse();
+	public void setCourse(Course course);
 }
