@@ -1,10 +1,11 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 import javax.persistence.*;
+
+import de.studeasy.registries.CourseRegistry;
 
 @Entity
 public class Course implements Serializable, de.studeasy.common.Course {
@@ -32,6 +33,10 @@ public class Course implements Serializable, de.studeasy.common.Course {
 			   mappedBy="course")
 	@JoinColumn(name="course_FK")
 	private ArrayList<Lesson> lessons;
+	
+	public Course() {
+		CourseRegistry.getInstance().addCourse(this);
+	}
 	
 	public int getCourseID() {
 		return courseID;

@@ -1,10 +1,11 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 
 import javax.persistence.*;
+
+import de.studeasy.registries.RoomRegistry;
 
 @Entity
 public class Room implements Serializable, de.studeasy.common.Room {
@@ -20,6 +21,10 @@ public class Room implements Serializable, de.studeasy.common.Room {
 	@JoinColumn(name="room_FK")
 	private ArrayList<Lesson> lessons;
 
+	public Room() {
+		RoomRegistry.getInstance().addRoom(this);
+	}
+	
 	public String getRoomID() {
 		return roomID;
 	}

@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import de.studeasy.registries.LessonRegistry;
+
 @Entity
 public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	
@@ -34,6 +36,10 @@ public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="lesson_FK")
 	private ArrayList<Homework> homework;
+	
+	public Lesson() {
+		LessonRegistry.getInstance().addLesson(this);
+	}
 	
 	public int getLessonID() {
 		return lessonID;

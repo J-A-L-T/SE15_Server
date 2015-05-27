@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.persistence.*;
 
+import de.studeasy.registries.TeacherRegistry;
+
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName="personID")
 public class Teacher extends Person implements de.studeasy.common.Teacher {
@@ -20,6 +22,7 @@ public class Teacher extends Person implements de.studeasy.common.Teacher {
 	
 	public Teacher() {
 		super();
+		TeacherRegistry.getInstance().addTeacher(this);
 	}
 	
 	public Course getCourse() {

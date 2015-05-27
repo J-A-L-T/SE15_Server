@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import de.studeasy.registries.HomeworkRegistry;
+
 @Entity
 public class Homework implements Serializable, de.studeasy.common.Homework {
 
@@ -16,6 +18,10 @@ public class Homework implements Serializable, de.studeasy.common.Homework {
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
 	private Lesson lesson;
+	
+	public Homework() {
+		HomeworkRegistry.getInstance().addHomework(this);
+	}
 	
 	public int getHomeworkID() {
 		return homeworkID;

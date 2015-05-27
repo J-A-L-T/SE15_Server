@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import de.studeasy.registries.SubjectRegistry;
+
 
 @Entity
 public class Subject implements Serializable, de.studeasy.common.Subject {
@@ -14,6 +16,10 @@ public class Subject implements Serializable, de.studeasy.common.Subject {
 	@GeneratedValue
 	private int subjectID;
 	private String description;
+	
+	public Subject() {
+		SubjectRegistry.getInstance().addSubject(this);
+	}
 	
 	public int getSubjectID() {
 		return subjectID;
