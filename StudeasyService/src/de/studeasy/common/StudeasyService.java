@@ -30,7 +30,7 @@ public interface StudeasyService extends Remote {
 	
 	public boolean createHomework(int lessonID, String description)throws RemoteException;
 	
-	public List<Lesson> getgetLessonsByDate(int personID, Date date)throws RemoteException;
+	public List<Lesson> getLessonsByDate(int personID, Date date)throws RemoteException;
 	
 	public Lesson findLessonById(int lessonID)throws RemoteException;
 	
