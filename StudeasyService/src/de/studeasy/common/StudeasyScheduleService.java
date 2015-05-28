@@ -13,7 +13,7 @@ import java.util.List;
  * @author Prischep  
  */
 
-public interface StudeasyService extends Remote {
+public interface StudeasyScheduleService extends Remote {
 
 	public static final String Interface_ID = "StudeasyService";
 	
