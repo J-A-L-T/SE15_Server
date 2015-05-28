@@ -1,6 +1,7 @@
 package de.studeasy.schedulemanager;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
@@ -73,10 +74,31 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 		}
 	}
 
+	/**
+	 * Gibt eine Liste der Unterrichtsstunden an einem bestimmten Tag
+	 * für eine bestimmte Person zurück.
+	 * Die Liste ist leer, wenn an dem Tag kein für die Person kein Unterricht ist.
+	 * Wenn null zurückgeben wird, waren die Parameter falsch.
+	 */
 	@Override
 	public List<Lesson> getLessonsByDate(int personID, Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Lesson> dateLessons = new ArrayList<Lesson>();
+		ArrayList<Lesson> lessons = null;
+		Person person = PersonRegistry.getInstance().findPersonById(personID);
+		if(person instanceof Pupil) {
+			Pupil pupil = (Pupil) person;
+			lessons = pupil.getCourse().getLessons();
+			for(int i = 0; i < lessons.size(); i++) {
+				if(lessons.get(i).getDate().equals(date))
+					dateLessons.add(lessons.get(i));
+			}
+			return dateLessons;
+		}
+		else if(person instanceof Teacher) {
+			//TODO
+		}
+		else
+			return null;
 	}
 
 	@Override
