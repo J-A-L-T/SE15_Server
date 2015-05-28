@@ -2,7 +2,8 @@ package de.studeasy.entities;
 
 import javax.persistence.*;
 
-import de.studeasy.registries.PupilRegistry;
+
+import de.studeasy.registries.PersonRegistry;
 
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName="personID")
@@ -16,7 +17,7 @@ public class Pupil extends Person implements de.studeasy.common.Pupil {
 	
 	public Pupil() {
 		super();
-		PupilRegistry.getInstance().addPupil(this);
+		PersonRegistry.getInstance().addPerson(this);
 	}
 
 	public Course getCourse() {
