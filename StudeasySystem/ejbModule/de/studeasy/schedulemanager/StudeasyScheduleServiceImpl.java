@@ -74,16 +74,14 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	}
 
 	@Override
-	public List<Lesson> getLessonsByDate(int personID, Date date)
-			  {
+	public List<Lesson> getLessonsByDate(int personID, Date date) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Lesson findLessonById(int lessonID)   {
-		
-		return null;
+		return LessonRegistry.getInstance().findLessonById(lessonID);
 	}
 
 	@Override
