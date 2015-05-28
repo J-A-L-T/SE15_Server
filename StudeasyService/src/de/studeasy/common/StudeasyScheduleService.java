@@ -21,12 +21,12 @@ public interface StudeasyScheduleService extends Remote {
 	 * Operation zum Einloggen mit Username und Password.
 	 * @param personID
 	 * @param password
-	 * @return
+	 * @return sessionID
 	 * @throws RemoteException
 	 */
 	public String login(int personID, String password) throws RemoteException;
 	
-	public void logout(int personID) throws RemoteException;
+	public void logout(String sessionID) throws RemoteException;
 	
 	public boolean createHomework(int lessonID, String description)throws RemoteException;
 	

@@ -11,6 +11,7 @@ import de.studeasy.common.Person;
 import de.studeasy.common.StudeasyScheduleService;
 import de.studeasy.registries.PersonRegistry;
 import de.studeasy.session.UserSession;
+import de.studeasy.session.SessionRegistry;
 
 
 public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
@@ -33,9 +34,15 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	}
 
 	@Override
-	public void logout(int personID) throws RemoteException {
-		// TODO Auto-generated method stub
-
+	public void logout(String sessionID) throws RemoteException {
+		UserSession session = SessionRegistry.getInstance().findSession(sessionID);
+		if (session != null) {
+			SessionRegistry.getInstance().removeSession(session);
+			jlog.log(Level.FINE, session + " Logout erfolgreich.");
+		}
+		else {
+			jlog.log(Level.INFO, session + " Logout fehlgeschlagen, da Session "+sessionID+" unbekannt.");
+		}
 	}
 
 	@Override
