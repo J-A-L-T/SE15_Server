@@ -24,8 +24,10 @@ public interface Lesson extends Serializable {
 	public void setSubject(Subject subject);
 	public Room getRoom();
 	public void setRoom(Room room);
-	public ArrayList<Homework> getHomework();
-	public void setHomework(ArrayList<Homework> homework);
+	public ArrayList<Homework> getHomeworks();
+	public void setHomeworks(ArrayList<Homework> homework);
 	public Course getCourse();
 	public void setCourse(Course course);
+	public void addHomework(Homework homework);
+	public boolean removeHomework(int homeworkID);
 }

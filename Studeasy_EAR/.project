@@ -3,7 +3,6 @@
 	<name>Studeasy_EAR</name>
 	<comment></comment>
 	<projects>
-		<project>Studeasy_JPA_PersistenceManagement</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

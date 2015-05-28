@@ -5,10 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 
-import de.studeasy.common.Homework;
-import de.studeasy.common.Lesson;
-import de.studeasy.common.Person;
+import de.studeasy.entities.*;
 import de.studeasy.common.StudeasyScheduleService;
+import de.studeasy.registries.HomeworkRegistry;
+import de.studeasy.registries.LessonRegistry;
 import de.studeasy.registries.PersonRegistry;
 import de.studeasy.session.UserSession;
 import de.studeasy.session.SessionRegistry;
@@ -19,7 +19,7 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	private static Logger jlog = Logger.getLogger(StudeasyScheduleServiceImpl.class.getPackage().getName());
 	
 	@Override
-	public String login(int personID, String password) throws RemoteException {
+	public String login(int personID, String password)   {
 		String sessionID = null;
 		Person person = PersonRegistry.getInstance().findPersonById(personID);
 		if (person != null && person.getPassword().equals(password)) {
@@ -34,7 +34,7 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	}
 
 	@Override
-	public void logout(String sessionID) throws RemoteException {
+	public void logout(String sessionID)   {
 		UserSession session = SessionRegistry.getInstance().findSession(sessionID);
 		if (session != null) {
 			SessionRegistry.getInstance().removeSession(session);
@@ -46,35 +46,56 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	}
 
 	@Override
-	public boolean createHomework(int lessonID, String description)
-			throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createHomework(int lessonID, String description) {
+		try {
+			Lesson lesson = LessonRegistry.getInstance().findLessonById(lessonID);
+			
+			Homework homework = new Homework();
+			//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
+			homework.setHomeworkID(1);
+			homework.setDescription(description);
+			lesson.addHomework(homework);
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean removeHomework(int homeworkID) {
+		try {
+			HomeworkRegistry.getInstance().removeHomeworkById(homeworkID);
+			return true;
+		}
+		catch(Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public List<Lesson> getLessonsByDate(int personID, Date date)
-			throws RemoteException {
+			  {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Lesson findLessonById(int lessonID) throws RemoteException {
-		// TODO Auto-generated method stub
+	public Lesson findLessonById(int lessonID)   {
+		
 		return null;
 	}
 
 	@Override
 	public List<Lesson> getLessonsBySubject(int subjectID, int courseID,
-			Date startDate, Date endDate) throws RemoteException {
+			Date startDate, Date endDate)   {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Homework> getHomeworksForPupil(int personID, Date startDate,
-			Date endDate) throws RemoteException {
+			Date endDate)   {
 		// TODO Auto-generated method stub
 		return null;
 	}

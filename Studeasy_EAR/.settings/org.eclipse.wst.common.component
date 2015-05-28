@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="Studeasy_EAR">
         <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
-        <dependent-module archiveName="Studeasy_JPA_PersistenceManagement.jar" deploy-path="/" handle="module:/resource/Studeasy_JPA_PersistenceManagement/Studeasy_JPA_PersistenceManagement">
-            <dependent-object/>
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
     </wb-module>
 </project-modules>

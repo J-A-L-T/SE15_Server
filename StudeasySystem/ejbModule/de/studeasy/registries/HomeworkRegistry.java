@@ -25,4 +25,10 @@ public class HomeworkRegistry {
 	public void addHomework(Homework newHomework) {
 		this.homeworks.put(newHomework.getHomeworkID(), newHomework);
 	}
+	
+	public void removeHomeworkById(int id) {
+		//Die Referenz auf das Homework-Objekt muss auch in der ArrayList in Lesson gelöscht werden
+		this.homeworks.get(id).getLesson().removeHomework(id);
+		this.homeworks.remove(id);
+	}
 }

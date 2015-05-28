@@ -35,7 +35,7 @@ public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="lesson_FK")
-	private ArrayList<Homework> homework;
+	private ArrayList<Homework> homeworks;
 	
 	public Lesson() {
 		LessonRegistry.getInstance().addLesson(this);
@@ -77,16 +77,32 @@ public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-	public ArrayList<Homework> getHomework() {
-		return homework;
+	public ArrayList<Homework> getHomeworks() {
+		return homeworks;
 	}
-	public void setHomework(ArrayList<Homework> homework) {
-		this.homework = homework;
+	public void setHomeworks(ArrayList<Homework> homeworks) {
+		this.homeworks = homeworks;
 	}
 	public Course getCourse() {
 		return course;
 	}
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+	public void addHomework(Homework homework) {
+		homework.setLesson(this);
+		this.homeworks.add(homework);
+	}
+	/**
+	 * @return true=successful
+	 */
+	public boolean removeHomework(int homeworkID) {
+		for(int i = 0; i < homeworks.size(); i++) {
+			if(homeworks.get(i).getHomeworkID() == homeworkID) {
+				homeworks.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 }
