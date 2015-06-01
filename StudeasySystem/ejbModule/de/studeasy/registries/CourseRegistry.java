@@ -2,13 +2,14 @@ package de.studeasy.registries;
 
 import java.util.HashMap;
 
-import de.studeasy.entities.Course;
+
+import de.studeasy.common.ICourse;
 
 public class CourseRegistry {
 	
 	private static CourseRegistry singleInstance = new CourseRegistry();
 	
-	private HashMap<Integer,Course> courses;
+	private HashMap<Integer,ICourse> courses;
 	
 	private CourseRegistry() {
 		courses = new HashMap<>();
@@ -18,11 +19,11 @@ public class CourseRegistry {
 		return singleInstance;
 	}
 	
-	public Course findCourseById(int id) {
+	public ICourse findCourseById(int id) {
 		return this.courses.get(id);
 	}
 	
-	public void addCourse(Course newCourse) {
+	public void addCourse(ICourse newCourse) {
 		this.courses.put(newCourse.getCourseID(), newCourse);
 	}
 }

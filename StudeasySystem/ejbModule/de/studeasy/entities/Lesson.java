@@ -1,13 +1,16 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+
 import de.studeasy.common.*;
+
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.*;
 
 import de.studeasy.registries.LessonRegistry;
+import de.studeasy.schedulemanager.Homework;
 
 @Entity
 public class Lesson implements Serializable, ILesson {
@@ -90,7 +93,11 @@ public class Lesson implements Serializable, ILesson {
 	public void setCourse(ICourse course) {
 		this.course = course;
 	}
-	public void addHomework(IHomework homework) {
+	public void addHomework(String description) {
+		IHomework homework = new Homework();
+		//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
+		homework.setHomeworkID(1);
+		homework.setDescription(description);
 		homework.setLesson(this);
 		this.homeworks.add(homework);
 	}

@@ -2,13 +2,14 @@ package de.studeasy.registries;
 
 import java.util.HashMap;
 
-import de.studeasy.entities.Room;
+
+import de.studeasy.common.IRoom;
 
 public class RoomRegistry {
 
 	private static RoomRegistry singleInstance = new RoomRegistry();
 	
-	private HashMap<String,Room> rooms;
+	private HashMap<String,IRoom> rooms;
 	
 	private RoomRegistry() {
 		rooms = new HashMap<>();
@@ -18,11 +19,11 @@ public class RoomRegistry {
 		return singleInstance;
 	}
 	
-	public Room findRoomById(String id) {
+	public IRoom findRoomById(String id) {
 		return this.rooms.get(id);
 	}
 	
-	public void addRoom(Room newRoom) {
+	public void addRoom(IRoom newRoom) {
 		this.rooms.put(newRoom.getRoomID(), newRoom);
 	}
 }

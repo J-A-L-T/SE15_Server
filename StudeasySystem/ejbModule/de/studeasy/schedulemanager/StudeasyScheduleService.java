@@ -1,14 +1,13 @@
 package de.studeasy.schedulemanager;
 
 import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 
-import de.studeasy.common.ILesson;
-import de.studeasy.common.IStudeasyScheduleService;
-import de.studeasy.entities.*;
+import de.studeasy.common.*;
 import de.studeasy.registries.HomeworkRegistry;
 import de.studeasy.registries.LessonRegistry;
 import de.studeasy.registries.PersonRegistry;
@@ -16,14 +15,14 @@ import de.studeasy.session.UserSession;
 import de.studeasy.session.SessionRegistry;
 
 
-public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
+public class StudeasyScheduleService implements IStudeasyScheduleService {
 
-	private static Logger jlog = Logger.getLogger(StudeasyScheduleServiceImpl.class.getPackage().getName());
+	private static Logger jlog = Logger.getLogger(StudeasyScheduleService.class.getPackage().getName());
 	
 	@Override
 	public String login(int personID, String password)   {
 		String sessionID = null;
-		Person person = PersonRegistry.getInstance().findPersonById(personID);
+		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
 		if (person != null && person.getPassword().equals(password)) {
 			UserSession newSession = new UserSession(person);
 			sessionID = newSession.getSessionID();
@@ -50,13 +49,8 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 	@Override
 	public boolean createHomework(int lessonID, String description) {
 		try {
-			Lesson lesson = LessonRegistry.getInstance().findLessonById(lessonID);
-			
-			Homework homework = new Homework();
-			//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
-			homework.setHomeworkID(1);
-			homework.setDescription(description);
-			lesson.addHomework(homework);
+			ILesson lesson = LessonRegistry.getInstance().findLessonById(lessonID);
+			lesson.addHomework(description);
 			return true;
 		}
 		catch(Exception e) {
@@ -85,13 +79,13 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 	public List<de.studeasy.common.ILesson> getLessonsByDate(int personID, Date date) {
 		ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
 		ArrayList<ILesson> lessons = null;
-		Person person = PersonRegistry.getInstance().findPersonById(personID);
-		if(person instanceof Pupil) {
-			Pupil pupil = (Pupil) person;
+		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
+		if(person instanceof IPupil) {
+			IPupil pupil = (IPupil) person;
 			lessons = pupil.getCourse().getLessons();	
 		}
-		else if(person instanceof Teacher) {
-			Teacher teacher = (Teacher) person;
+		else if(person instanceof ITeacher) {
+			ITeacher teacher = (ITeacher) person;
 			lessons = teacher.getLessons();
 		}
 		
@@ -108,19 +102,19 @@ public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 	}
 
 	@Override
-	public Lesson findLessonById(int lessonID)   {
+	public ILesson findLessonById(int lessonID)   {
 		return LessonRegistry.getInstance().findLessonById(lessonID);
 	}
 
 	@Override
-	public List<Lesson> getLessonsBySubject(int subjectID, int courseID,
+	public List<ILesson> getLessonsBySubject(int subjectID, int courseID,
 			Date startDate, Date endDate)   {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Homework> getHomeworksForPupil(int personID, Date startDate,
+	public List<IHomework> getHomeworksForPupil(int personID, Date startDate,
 			Date endDate)   {
 		// TODO Auto-generated method stub
 		return null;
