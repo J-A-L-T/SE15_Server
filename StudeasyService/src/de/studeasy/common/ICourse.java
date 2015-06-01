@@ -7,7 +7,7 @@ import de.studeasy.entities.Lesson;
 import de.studeasy.entities.Pupil;
 import de.studeasy.entities.Teacher;
 
-public interface Course extends Serializable {
+public interface ICourse extends Serializable {
 	
 	public int getCourseID();
 	
@@ -21,16 +21,16 @@ public interface Course extends Serializable {
 	
 	public void setDescriptor(char descriptor);
 	
-	public Teacher getClassTeacher();
+	public ITeacher getClassTeacher();
 	
-	public void setClassTeacher(Teacher classTeacher);
+	public void setClassTeacher(ITeacher classTeacher);
 	
-	public ArrayList<Pupil> getPupils();
+	public ArrayList<IPupil> getPupils();
 	
-	public void setPupils(ArrayList<Pupil> pupils);
+	public void setPupils(ArrayList<IPupil> pupils);
 	
-	public ArrayList<Lesson> getLessons();
+	public ArrayList<ILesson> getLessons();
 	
-	public void setLessons(ArrayList<Lesson> lessons);
+	public void setLessons(ArrayList<ILesson> lessons);
 
 }

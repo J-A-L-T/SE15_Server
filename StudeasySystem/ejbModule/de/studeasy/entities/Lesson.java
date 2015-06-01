@@ -1,6 +1,7 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+import de.studeasy.common.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import de.studeasy.registries.LessonRegistry;
 
 @Entity
-public class Lesson implements Serializable, de.studeasy.common.Lesson {
+public class Lesson implements Serializable, ILesson {
 	
 	private static final long serialVersionUID = -7694338591615228808L;
 	
@@ -20,22 +21,22 @@ public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	private Date date;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
-	private Course course;
+	private ICourse course;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
-	private Teacher teacher;
+	private ITeacher teacher;
 	
 	@OneToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="subject_FK",
 				unique=false)
-	private Subject subject;
+	private ISubject subject;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
-	private Room room;
+	private IRoom room;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="lesson_FK")
-	private ArrayList<Homework> homeworks;
+	private ArrayList<IHomework> homeworks;
 	
 	public Lesson() {
 		LessonRegistry.getInstance().addLesson(this);
@@ -59,37 +60,37 @@ public class Lesson implements Serializable, de.studeasy.common.Lesson {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Teacher getTeacher() {
+	public ITeacher getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(Teacher teacher) {
+	public void setTeacher(ITeacher teacher) {
 		this.teacher = teacher;
 	}
-	public Subject getSubject() {
+	public ISubject getSubject() {
 		return subject;
 	}
-	public void setSubject(Subject subject) {
+	public void setSubject(ISubject subject) {
 		this.subject = subject;
 	}
-	public Room getRoom() {
+	public IRoom getRoom() {
 		return room;
 	}
-	public void setRoom(Room room) {
+	public void setRoom(IRoom room) {
 		this.room = room;
 	}
-	public ArrayList<Homework> getHomeworks() {
+	public ArrayList<IHomework> getHomeworks() {
 		return homeworks;
 	}
-	public void setHomeworks(ArrayList<Homework> homeworks) {
+	public void setHomeworks(ArrayList<IHomework> homeworks) {
 		this.homeworks = homeworks;
 	}
-	public Course getCourse() {
+	public ICourse getCourse() {
 		return course;
 	}
-	public void setCourse(Course course) {
+	public void setCourse(ICourse course) {
 		this.course = course;
 	}
-	public void addHomework(Homework homework) {
+	public void addHomework(IHomework homework) {
 		homework.setLesson(this);
 		this.homeworks.add(homework);
 	}

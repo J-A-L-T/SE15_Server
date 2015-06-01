@@ -1,6 +1,8 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+
+import de.studeasy.common.*;
 import java.util.ArrayList;
 
 import javax.persistence.*;
@@ -8,7 +10,7 @@ import javax.persistence.*;
 import de.studeasy.registries.RoomRegistry;
 
 @Entity
-public class Room implements Serializable, de.studeasy.common.Room {
+public class Room implements Serializable, IRoom {
 
 	private static final long serialVersionUID = 2206874152902693717L;
 
@@ -19,7 +21,7 @@ public class Room implements Serializable, de.studeasy.common.Room {
 	@OneToMany(cascade=CascadeType.PERSIST,
 			   mappedBy="room")
 	@JoinColumn(name="room_FK")
-	private ArrayList<Lesson> lessons;
+	private ArrayList<ILesson> lessons;
 
 	public Room() {
 		RoomRegistry.getInstance().addRoom(this);
@@ -33,11 +35,11 @@ public class Room implements Serializable, de.studeasy.common.Room {
 		this.roomID = roomID;
 	}
 
-	public ArrayList<Lesson> getLessons() {
+	public ArrayList<ILesson> getLessons() {
 		return lessons;
 	}
 
-	public void setLessons(ArrayList<Lesson> lessons) {
+	public void setLessons(ArrayList<ILesson> lessons) {
 		this.lessons = lessons;
 	}
 }

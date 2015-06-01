@@ -2,7 +2,6 @@ package de.studeasy.common;
 
 import java.rmi.Remote;
 
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Prischep  
  */
 
-public interface StudeasyScheduleService extends Remote {
+public interface IStudeasyScheduleService extends Remote {
 
 	public static final String Interface_ID = "StudeasyService";
 	
@@ -31,12 +30,12 @@ public interface StudeasyScheduleService extends Remote {
 	
 	public boolean removeHomework(int homeworkID) ;
 	
-	public List<Lesson> getLessonsByDate(int personID, Date date);
+	public List<ILesson> getLessonsByDate(int personID, Date date);
 	
-	public Lesson findLessonById(int lessonID);
+	public ILesson findLessonById(int lessonID);
 	
-	public List<Lesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate);
+	public List<ILesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate);
 	
-	public List<Homework> getHomeworksForPupil(int personID, Date startDate, Date endDate);	
+	public List<IHomework> getHomeworksForPupil(int personID, Date startDate, Date endDate);	
 	
 }

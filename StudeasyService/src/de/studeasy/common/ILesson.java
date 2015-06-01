@@ -10,7 +10,7 @@ import de.studeasy.entities.Room;
 import de.studeasy.entities.Subject;
 import de.studeasy.entities.Teacher;
 
-public interface Lesson extends Serializable {
+public interface ILesson extends Serializable {
 	
 	public int getLessonID();
 	public void setLessonID(int lessonID);
@@ -18,16 +18,16 @@ public interface Lesson extends Serializable {
 	public void setLessonHour(int lessonHour);
 	public Date getDate();
 	public void setDate(Date date);
-	public Teacher getTeacher();
-	public void setTeacher(Teacher teacher);
-	public Subject getSubject();
-	public void setSubject(Subject subject);
-	public Room getRoom();
-	public void setRoom(Room room);
-	public ArrayList<Homework> getHomeworks();
-	public void setHomeworks(ArrayList<Homework> homework);
-	public Course getCourse();
-	public void setCourse(Course course);
-	public void addHomework(Homework homework);
+	public ITeacher getTeacher();
+	public void setTeacher(ITeacher teacher);
+	public ISubject getSubject();
+	public void setSubject(ISubject subject);
+	public IRoom getRoom();
+	public void setRoom(IRoom room);
+	public ArrayList<IHomework> getHomeworks();
+	public void setHomeworks(ArrayList<IHomework> homework);
+	public ICourse getCourse();
+	public void setCourse(ICourse course);
+	public void addHomework(IHomework homework);
 	public boolean removeHomework(int homeworkID);
 }

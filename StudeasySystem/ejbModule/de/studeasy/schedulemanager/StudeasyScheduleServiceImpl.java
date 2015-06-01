@@ -6,8 +6,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 
+import de.studeasy.common.ILesson;
+import de.studeasy.common.IStudeasyScheduleService;
 import de.studeasy.entities.*;
-import de.studeasy.common.StudeasyScheduleService;
 import de.studeasy.registries.HomeworkRegistry;
 import de.studeasy.registries.LessonRegistry;
 import de.studeasy.registries.PersonRegistry;
@@ -15,7 +16,7 @@ import de.studeasy.session.UserSession;
 import de.studeasy.session.SessionRegistry;
 
 
-public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
+public class StudeasyScheduleServiceImpl implements IStudeasyScheduleService {
 
 	private static Logger jlog = Logger.getLogger(StudeasyScheduleServiceImpl.class.getPackage().getName());
 	
@@ -81,24 +82,29 @@ public class StudeasyScheduleServiceImpl implements StudeasyScheduleService {
 	 * Wenn null zurückgeben wird, waren die Parameter falsch.
 	 */
 	@Override
-	public List<Lesson> getLessonsByDate(int personID, Date date) {
-		ArrayList<Lesson> dateLessons = new ArrayList<Lesson>();
-		ArrayList<Lesson> lessons = null;
+	public List<de.studeasy.common.ILesson> getLessonsByDate(int personID, Date date) {
+		ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
+		ArrayList<ILesson> lessons = null;
 		Person person = PersonRegistry.getInstance().findPersonById(personID);
 		if(person instanceof Pupil) {
 			Pupil pupil = (Pupil) person;
-			lessons = pupil.getCourse().getLessons();
+			lessons = pupil.getCourse().getLessons();	
+		}
+		else if(person instanceof Teacher) {
+			Teacher teacher = (Teacher) person;
+			lessons = teacher.getLessons();
+		}
+		
+		if(lessons!=null) {
 			for(int i = 0; i < lessons.size(); i++) {
 				if(lessons.get(i).getDate().equals(date))
 					dateLessons.add(lessons.get(i));
 			}
-			return dateLessons;
 		}
-		else if(person instanceof Teacher) {
-			//TODO
-		}
-		else
-			return null;
+		else 
+			dateLessons=null;
+			
+		return dateLessons;
 	}
 
 	@Override

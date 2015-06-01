@@ -2,12 +2,14 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+
 import javax.persistence.*;
 
+import de.studeasy.common.*;
 import de.studeasy.registries.HomeworkRegistry;
 
 @Entity
-public class Homework implements Serializable, de.studeasy.common.Homework {
+public class Homework implements Serializable, IHomework {
 
 	private static final long serialVersionUID = 9153525651671974891L;
 	
@@ -17,7 +19,7 @@ public class Homework implements Serializable, de.studeasy.common.Homework {
 	private String description;
 	
 	@OneToMany(cascade=CascadeType.PERSIST)
-	private Lesson lesson;
+	private ILesson lesson;
 	
 	public Homework() {
 		HomeworkRegistry.getInstance().addHomework(this);
@@ -35,10 +37,10 @@ public class Homework implements Serializable, de.studeasy.common.Homework {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Lesson getLesson() {
+	public ILesson getLesson() {
 		return lesson;
 	}
-	public void setLesson(Lesson lesson) {
+	public void setLesson(ILesson lesson) {
 		this.lesson = lesson;
 	}
 }

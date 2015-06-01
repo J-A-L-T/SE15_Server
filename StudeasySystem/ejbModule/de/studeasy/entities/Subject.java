@@ -2,13 +2,14 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+import de.studeasy.common.*;
 import javax.persistence.*;
 
 import de.studeasy.registries.SubjectRegistry;
 
 
 @Entity
-public class Subject implements Serializable, de.studeasy.common.Subject {
+public class Subject implements Serializable, ISubject {
 
 	private static final long serialVersionUID = -1512930899828828250L;
 	

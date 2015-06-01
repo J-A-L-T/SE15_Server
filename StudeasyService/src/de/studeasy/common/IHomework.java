@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import de.studeasy.entities.Lesson;
 
-public interface Homework extends Serializable {
+public interface IHomework extends Serializable {
 	
 	public int getHomeworkID();
 	
@@ -14,7 +14,7 @@ public interface Homework extends Serializable {
 	
 	public void setDescription(String description);
 	
-	public Lesson getLesson();
+	public ILesson getLesson();
 	
-	public void setLesson(Lesson lesson);
+	public void setLesson(ILesson lesson);
 }

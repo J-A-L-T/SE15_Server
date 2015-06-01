@@ -2,7 +2,7 @@ package de.studeasy.common;
 
 import java.io.Serializable;
 
-public interface Person extends Serializable {
+public interface IPerson extends Serializable {
 	
 	public int getPersonID();
 	public void setPersonID(int personID);

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import de.studeasy.entities.Lesson;
 
-public interface Room extends Serializable {
+public interface IRoom extends Serializable {
 	
 	public String getRoomID();
 	public void setRoomID(String roomID);
-	public ArrayList<Lesson> getLessons();
-	public void setLessons(ArrayList<Lesson> lessons);
+	public ArrayList<ILesson> getLessons();
+	public void setLessons(ArrayList<ILesson> lessons);
 }

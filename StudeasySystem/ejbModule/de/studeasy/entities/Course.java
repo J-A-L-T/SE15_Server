@@ -1,14 +1,16 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 
 import javax.persistence.*;
 
+import de.studeasy.common.*;
 import de.studeasy.registries.CourseRegistry;
 
 @Entity
-public class Course implements Serializable, de.studeasy.common.Course {
+public class Course implements Serializable, ICourse {
 	
 	private static final long serialVersionUID = -3906372330041256764L;
 
@@ -22,17 +24,17 @@ public class Course implements Serializable, de.studeasy.common.Course {
 	@OneToOne(cascade=CascadeType.PERSIST,
 			  mappedBy="course")
 	@JoinColumn(name="classTeacher_FK")
-	private Teacher classTeacher;
+	private ITeacher classTeacher;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
 			   mappedBy="course")
 	@JoinColumn(name="course_FK")
-	private ArrayList<Pupil> pupils;
+	private ArrayList<IPupil> pupils;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
 			   mappedBy="course")
 	@JoinColumn(name="course_FK")
-	private ArrayList<Lesson> lessons;
+	private ArrayList<ILesson> lessons;
 	
 	public Course() {
 		CourseRegistry.getInstance().addCourse(this);
@@ -56,22 +58,22 @@ public class Course implements Serializable, de.studeasy.common.Course {
 	public void setDescriptor(char descriptor) {
 		this.descriptor = descriptor;
 	}
-	public Teacher getClassTeacher() {
+	public ITeacher getClassTeacher() {
 		return classTeacher;
 	}
-	public void setClassTeacher(Teacher classTeacher) {
+	public void setClassTeacher(ITeacher classTeacher) {
 		this.classTeacher = classTeacher;
 	}
-	public ArrayList<Pupil> getPupils() {
+	public ArrayList<IPupil> getPupils() {
 		return pupils;
 	}
-	public void setPupils(ArrayList<Pupil> pupils) {
+	public void setPupils(ArrayList<IPupil> pupils) {
 		this.pupils = pupils;
 	}
-	public ArrayList<Lesson> getLessons() {
+	public ArrayList<ILesson> getLessons() {
 		return lessons;
 	}
-	public void setLessons(ArrayList<Lesson> lessons) {
+	public void setLessons(ArrayList<ILesson> lessons) {
 		this.lessons = lessons;
 	}
 }

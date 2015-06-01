@@ -2,11 +2,12 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+import de.studeasy.common.*;
 import javax.persistence.*;
 
 @Entity
 @Inheritance( strategy = InheritanceType.JOINED)
-public abstract class Person implements Serializable, de.studeasy.common.Person {
+public abstract class Person implements Serializable, IPerson {
 	
 	private static final long serialVersionUID = 849222223534910538L;
 	

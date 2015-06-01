@@ -1,14 +1,14 @@
 package de.studeasy.session;
 
-import de.studeasy.common.Person;
+import de.studeasy.common.IPerson;
 import de.studeasy.util.IdGenerator;
 
 public class UserSession {
 	
 	private final String sessionID;
-	private final Person user;
+	private final IPerson user;
 	
-	public UserSession(Person user) {
+	public UserSession(IPerson user) {
 		this.sessionID = String.valueOf(IdGenerator.getFreeID());
 		this.user = user;
 		SessionRegistry.getInstance().addSession(this);
@@ -18,7 +18,7 @@ public class UserSession {
 		return sessionID;
 	}
 
-	public Person getUser() {
+	public IPerson getUser() {
 		return user;
 	}
 	
