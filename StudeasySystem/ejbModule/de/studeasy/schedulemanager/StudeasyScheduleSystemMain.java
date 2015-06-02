@@ -91,7 +91,7 @@ public class StudeasyScheduleSystemMain {
 		max.setFirstname("Max");
 		max.setGender('m');
 		max.setName("Mustermann");
-		max.setPassword("Max1");
+		max.setPassword("max1");
 		max.setPersonID(2);
 		moriz.setCourse(klasse);
 		moriz.setFirstname("moriz");
