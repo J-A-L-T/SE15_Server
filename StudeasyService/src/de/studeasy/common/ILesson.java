@@ -1,14 +1,9 @@
 package de.studeasy.common;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Date;
-
-import de.studeasy.entities.Course;
-import de.studeasy.entities.Homework;
-import de.studeasy.entities.Room;
-import de.studeasy.entities.Subject;
-import de.studeasy.entities.Teacher;
 
 public interface ILesson extends Serializable {
 	

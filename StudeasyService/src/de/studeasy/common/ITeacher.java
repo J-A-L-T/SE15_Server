@@ -2,9 +2,6 @@ package de.studeasy.common;
 
 import java.util.ArrayList;
 
-import de.studeasy.entities.Course;
-import de.studeasy.entities.Lesson;
-
 public interface ITeacher extends IPerson {
 
 	public ICourse getCourse();

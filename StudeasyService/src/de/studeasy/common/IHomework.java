@@ -2,8 +2,6 @@ package de.studeasy.common;
 
 import java.io.Serializable;
 
-import de.studeasy.entities.Lesson;
-
 public interface IHomework extends Serializable {
 	
 	public int getHomeworkID();

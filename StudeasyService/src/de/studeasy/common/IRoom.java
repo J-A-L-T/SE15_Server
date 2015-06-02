@@ -1,9 +1,8 @@
 package de.studeasy.common;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import de.studeasy.entities.Lesson;
+import java.util.ArrayList;
 
 public interface IRoom extends Serializable {
 	

@@ -1,11 +1,8 @@
 package de.studeasy.common;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import de.studeasy.entities.Lesson;
-import de.studeasy.entities.Pupil;
-import de.studeasy.entities.Teacher;
+import java.util.ArrayList;
 
 public interface ICourse extends Serializable {
 	

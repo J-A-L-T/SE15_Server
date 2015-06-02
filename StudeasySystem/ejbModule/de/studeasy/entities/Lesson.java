@@ -2,6 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+
 import de.studeasy.common.*;
 
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Date;
 import javax.persistence.*;
 
 import de.studeasy.registries.LessonRegistry;
-import de.studeasy.schedulemanager.Homework;
 
 @Entity
 public class Lesson implements Serializable, ILesson {
