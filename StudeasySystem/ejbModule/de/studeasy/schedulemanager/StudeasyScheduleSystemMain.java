@@ -1,6 +1,7 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.logging.Logger;
 import java.rmi.RMISecurityManager;
@@ -49,12 +50,12 @@ public class StudeasyScheduleSystemMain {
 		
 		
 		
-		ArrayList<Pupil> pupils = new ArrayList<Pupil>();
+		ArrayList<IPupil> pupils = new ArrayList<IPupil>();
 		
 		pupils.add(max);
 		pupils.add(moriz);
 		
-		ArrayList<Lesson> lessons = new ArrayList<Lesson>();	
+		ArrayList<ILesson> lessons = new ArrayList<ILesson>();	
 		
 		lessons.add(lesson1);
 		

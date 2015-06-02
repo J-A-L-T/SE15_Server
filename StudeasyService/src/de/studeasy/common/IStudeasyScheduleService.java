@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface IStudeasyScheduleService extends Remote {
 
-	public static final String Interface_ID = "StudeasyScheduleService";
+	public static final String INTERFACE_ID = "IStudeasyScheduleService";
 	
 	/**
 	 * Operation zum Einloggen mit Username und Password.
