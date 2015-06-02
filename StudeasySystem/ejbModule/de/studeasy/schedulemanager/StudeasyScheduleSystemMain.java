@@ -3,6 +3,7 @@ package de.studeasy.schedulemanager;
 import java.util.ArrayList;
 
 
+
 import java.util.Date;
 import java.util.logging.Logger;
 import java.rmi.RMISecurityManager;
@@ -35,8 +36,10 @@ public class StudeasyScheduleSystemMain {
 		//erzeuge ein paar Beispieldaten zu Teacher und Pupil die verwendeten Konstruktoren registrieren die 
 		//erzeugten Objekte in zentralen Registries, sodass sie bei spaeteren Client-Requests wiedergefunden 
 		//werden koennen.
-		
+		jlog.log(Level.FINE, "Starte SecurityManager... ");
 		System.setSecurityManager(new RMISecurityManager());
+		
+		jlog.log(Level.FINE, "SecurityManager gestartet: ");
 		
 		
 		
@@ -128,7 +131,7 @@ public class StudeasyScheduleSystemMain {
 	    	jlog.log(Level.FINE, "Registry gestartet: "+ registry);
 	    	
 	    	//lass Java zum Remote-Objekt StudeasyScheduleServiceImpl die fuer die Netzwerkkommunikation erforderlichen Stub und Skeleton generieren:
-	    	StudeasyScheduleService studeasyServiceStub = (StudeasyScheduleService) UnicastRemoteObject.exportObject(new StudeasyScheduleService(),0);
+	    	IStudeasyScheduleService studeasyServiceStub = (IStudeasyScheduleService) UnicastRemoteObject.exportObject(new StudeasyScheduleService(),0);
 		
 	    	//veroeffentliche das vorbereitete Remote-Objekt und einer eindeutigen ID in der Registry:
 	    	registry.rebind(StudeasyScheduleService.INTERFACE_ID, studeasyServiceStub);

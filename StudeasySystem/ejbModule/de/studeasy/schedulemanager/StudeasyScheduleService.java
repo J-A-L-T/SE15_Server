@@ -1,5 +1,6 @@
 package de.studeasy.schedulemanager;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,7 +25,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	private static Logger jlog = Logger.getLogger(StudeasyScheduleService.class.getPackage().getName());
 	
 	@Override
-	public String login(int personID, String password)   {
+	public String login(int personID, String password) throws RemoteException   {
 		String sessionID = null;
 		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
 		if (person != null && person.getPassword().equals(password)) {
@@ -39,7 +40,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 
 	@Override
-	public void logout(String sessionID)   {
+	public void logout(String sessionID) throws RemoteException {
 		UserSession session = SessionRegistry.getInstance().findSession(sessionID);
 		if (session != null) {
 			SessionRegistry.getInstance().removeSession(session);
@@ -51,7 +52,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 
 	@Override
-	public boolean createHomework(int lessonID, String description) {
+	public boolean createHomework(int lessonID, String description) throws RemoteException {
 		try {
 			ILesson lesson = LessonRegistry.getInstance().findLessonById(lessonID);
 			lesson.addHomework(description);
@@ -63,7 +64,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 	
 	@Override
-	public boolean removeHomework(int homeworkID) {
+	public boolean removeHomework(int homeworkID) throws RemoteException {
 		try {
 			HomeworkRegistry.getInstance().removeHomeworkById(homeworkID);
 			return true;
@@ -80,7 +81,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * Wenn null zurückgeben wird, waren die Parameter falsch.
 	 */
 	@Override
-	public List<de.studeasy.common.ILesson> getLessonsByDate(int personID, Date date) {
+	public List<de.studeasy.common.ILesson> getLessonsByDate(int personID, Date date) throws RemoteException {
 		ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
 		ArrayList<ILesson> lessons = null;
 		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
@@ -106,7 +107,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 
 	@Override
-	public ILesson findLessonById(int lessonID)   {
+	public ILesson findLessonById(int lessonID) throws RemoteException  {
 		return LessonRegistry.getInstance().findLessonById(lessonID);
 	}
 
@@ -120,7 +121,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 */
 	@Override
 	public List<ILesson> getLessonsBySubject(int subjectID, int courseID,
-			Date startDate, Date endDate)   {
+			Date startDate, Date endDate)  throws RemoteException {
 		ICourse course = CourseRegistry.getInstance().findCourseById(courseID);
 		if(course!=null) {
 			
@@ -155,7 +156,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 */
 	@Override
 	public List<IHomework> getHomeworksForPupil(int personID, Date startDate,
-			Date endDate)   {
+			Date endDate)  throws RemoteException {
 		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
 		
 		if(person instanceof IPupil) {

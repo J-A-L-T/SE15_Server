@@ -1,7 +1,7 @@
 package de.studeasy.common;
 
 import java.rmi.Remote;
-
+import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -22,20 +22,20 @@ public interface IStudeasyScheduleService extends Remote {
 	 * @param password
 	 * @return sessionID
 	 */
-	public String login(int personID, String password) ;
+	public String login(int personID, String password) throws RemoteException;
 	
-	public void logout(String sessionID) ;
+	public void logout(String sessionID) throws RemoteException ;
 	
-	public boolean createHomework(int lessonID, String description);
+	public boolean createHomework(int lessonID, String description) throws RemoteException ;
 	
-	public boolean removeHomework(int homeworkID) ;
+	public boolean removeHomework(int homeworkID) throws RemoteException ;
 	
-	public List<ILesson> getLessonsByDate(int personID, Date date);
+	public List<ILesson> getLessonsByDate(int personID, Date date) throws RemoteException;
 	
-	public ILesson findLessonById(int lessonID);
+	public ILesson findLessonById(int lessonID) throws RemoteException;
 	
-	public List<ILesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate);
+	public List<ILesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) throws RemoteException;
 	
-	public List<IHomework> getHomeworksForPupil(int personID, Date startDate, Date endDate);	
+	public List<IHomework> getHomeworksForPupil(int personID, Date startDate, Date endDate) throws RemoteException;	
 	
 }
