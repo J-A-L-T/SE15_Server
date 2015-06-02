@@ -47,13 +47,24 @@ public class StudeasyScheduleSystemMain {
 		Subject mathe = new Subject();
 		Teacher anna = new Teacher();
 		
-		//Course
+		
+		
+		ArrayList<Pupil> pupils = new ArrayList<Pupil>();
+		
+		pupils.add(max);
+		pupils.add(moriz);
+		
+		ArrayList<Lesson> lessons = new ArrayList<Lesson>();	
+		
+		lessons.add(lesson1);
+		
+		//Course "Klasse"
 		klasse.setClassTeacher(anna);
 		klasse.setCourseID(1);
 		klasse.setGrade(7);        //Grade + Descriptor ergeben die KLassenbezeichnung
 		klasse.setDescriptor('a');
-		//klasse.setLessons(lessons);
-		//klasse.setPupils(pupils);
+		klasse.setLessons(lessons);
+		klasse.setPupils(pupils);
 		
 		
 		//Homework
@@ -90,7 +101,7 @@ public class StudeasyScheduleSystemMain {
 		
 		//Room
 		room1.setRoomID("D101");
-		//room1.setLessons(lessons);
+		room1.setLessons(lessons);
 		
 		
 		//Subject das Fach
@@ -104,7 +115,7 @@ public class StudeasyScheduleSystemMain {
 		anna.setFirstname("Anna");
 		anna.setGender('w');
 		anna.setCourse(klasse);
-		//anna.setLessons(); muss noch
+		anna.setLessons(lessons);
 		anna.setPassword("test");
 		anna.setPersonID(1);
 		
