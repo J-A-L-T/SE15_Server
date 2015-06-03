@@ -31,7 +31,7 @@ public class SimpleStudeasyClient {
 		       System.out.println("Registry geladen: "+ registry);
 		    	
 			   //Frage die Registry nach einem Remote-Objekt fuer die Schnittstelle 'OnlineBankingSystem'
-	 	       //remoteSystem = (XbankOnlineService)registry.lookup(XbankOnlineService.INTERFACE_ID);
+	 	       remoteSystem = (IStudeasyScheduleService)registry.lookup(IStudeasyScheduleService.INTERFACE_ID);
 	 	       
 	 	       //Zeige, welche Referenz auf das Server-Objekt der Client erhalten hast:
 	 	       System.out.println("Client hat folgendes Server-Objekt von der RMI-Registry erhalten:");

@@ -40,14 +40,14 @@ public class StudeasyScheduleSystemMain {
 		
 		
 		
-		Course klasse = new Course();
-		Homework homework1 = new Homework();
-		Lesson lesson1 = new Lesson();
-		Pupil max = new Pupil();
-		Pupil moriz = new Pupil();
-		Room room1 = new Room();
-		Subject mathe = new Subject();
-		Teacher anna = new Teacher();
+		ICourse klasse = new Course();
+		IHomework homework1 = new Homework();
+		ILesson lesson1 = new Lesson();
+		IPupil max = new Pupil();
+		IPupil moriz = new Pupil();
+		IRoom room1 = new Room();
+		ISubject mathe = new Subject();
+		ITeacher anna = new Teacher();
 		
 		
 		
@@ -128,10 +128,10 @@ public class StudeasyScheduleSystemMain {
 	    	jlog.log(Level.FINE, "Registry gestartet: "+ registry);
 	    	
 	    	//lass Java zum Remote-Objekt StudeasyScheduleServiceImpl die fuer die Netzwerkkommunikation erforderlichen Stub und Skeleton generieren:
-	    	StudeasyScheduleService studeasyServiceStub = (StudeasyScheduleService) UnicastRemoteObject.exportObject(new StudeasyScheduleService(),0);
+	    	IStudeasyScheduleService studeasyServiceStub = (IStudeasyScheduleService) UnicastRemoteObject.exportObject(new StudeasyScheduleService(),0);
 		
 	    	//veroeffentliche das vorbereitete Remote-Objekt und einer eindeutigen ID in der Registry:
-	    	registry.rebind(StudeasyScheduleService.INTERFACE_ID, studeasyServiceStub);
+	    	registry.rebind(IStudeasyScheduleService.INTERFACE_ID, studeasyServiceStub);
 	    	jlog.log(Level.FINE, "Interface in Registry angemeldet. Warte auf Requests...");
 		}
 	catch (RemoteException ex) {
