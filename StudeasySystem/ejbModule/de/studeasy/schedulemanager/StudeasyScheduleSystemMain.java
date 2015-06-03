@@ -36,10 +36,7 @@ public class StudeasyScheduleSystemMain {
 		//erzeuge ein paar Beispieldaten zu Teacher und Pupil die verwendeten Konstruktoren registrieren die 
 		//erzeugten Objekte in zentralen Registries, sodass sie bei spaeteren Client-Requests wiedergefunden 
 		//werden koennen.
-		jlog.log(Level.FINE, "Starte SecurityManager... ");
 		System.setSecurityManager(new RMISecurityManager());
-		
-		jlog.log(Level.FINE, "SecurityManager gestartet: ");
 		
 		
 		
