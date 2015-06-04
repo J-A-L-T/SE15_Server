@@ -20,9 +20,9 @@ public interface IStudeasyScheduleService {
 	 * @param password
 	 * @return sessionID
 	 */
-	public String login(int personID, String password) ;
+	public boolean login(int personID, String password) ;
 	
-	public void logout(String sessionID)  ;
+	public void logout() throws NoSessionException  ;
 	
 	public boolean createHomework(int lessonID, String description)  ;
 	

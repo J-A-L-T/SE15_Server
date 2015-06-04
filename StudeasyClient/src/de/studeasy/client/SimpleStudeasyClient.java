@@ -21,8 +21,8 @@ public class SimpleStudeasyClient {
 		try {
 			Context context = new InitialContext();
 		       
-		    //Lookup-String für eine EJB besteht aus: Name_EA/Name_EJB-Modul/Name_EJB-Klasse!Name_RemoteInterface
-		    String lookupString = "ejb:StudeasyEAR/StudeasySystem/StudeasyScheduleService!de.studeasy.common.IStudeasyScheduleService";
+		    //Lookup-String für eine EJB besteht aus: Name_EA/Name_EJB-Modul/Name_EJB-Klasse!Name_RemoteInterfaceß
+		    String lookupString = "ejb:StudeasyEAR/StudeasySystem/StudeasyScheduleService!de.studeasy.common.IStudeasyScheduleService?stateful";
 		    remoteSystem = (IStudeasyScheduleService) context.lookup(lookupString);
 	 	       
 	 	    //Zeige, welche Referenz auf das Server-Objekt der Client erhalten hast:
@@ -49,20 +49,21 @@ public class SimpleStudeasyClient {
 	private static void szenarioMax() {
 		try {
 		   System.out.println("============================================================");			
-	       String sessionID = remoteSystem.login(2, "max1");
-		   System.out.println("max hat sich angelemdet um seinen Stundenplan zu sehen");
-		   
-		   
-		   List<ILesson> stunden = remoteSystem.getLessonsByDate(2,new Date(2011,05,28));
-		   
-		   int i =0;
-		   while (i<stunden.size())
-		   {
-			   System.out.println(stunden.get(i));
-			   i++;
-		   }
-		   remoteSystem.logout(sessionID);
-		   System.out.println("Max hat sich abgemeldet.");
+	       boolean loginSuccessful = remoteSystem.login(2, "max1");
+	       if(loginSuccessful) {
+	    	   System.out.println("max hat sich angelemdet um seinen Stundenplan zu sehen");
+	          
+			   List<ILesson> stunden = remoteSystem.getLessonsByDate(2,new Date(2011,05,28));
+			   
+			   int i =0;
+			   while (i<stunden.size())
+			   {
+				   System.out.println(stunden.get(i));
+				   i++;
+			   }
+			   remoteSystem.logout();
+			   System.out.println("Max hat sich abgemeldet.");
+	       }
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.logging.*;
 
 import javax.ejb.Remote;
-import javax.ejb.Stateless;
+import javax.ejb.Remove;
+import javax.ejb.Stateful;
 
 import de.studeasy.common.*;
 import de.studeasy.registries.CourseRegistry;
@@ -14,45 +15,42 @@ import de.studeasy.registries.HomeworkRegistry;
 import de.studeasy.registries.LessonRegistry;
 import de.studeasy.registries.PersonRegistry;
 import de.studeasy.registries.SubjectRegistry;
-import de.studeasy.session.UserSession;
-import de.studeasy.session.SessionRegistry;
 
 /**
  * 
  * @author Tobias Riegel
  *
  */
-@Stateless
+@Stateful
 @Remote(IStudeasyScheduleService.class)
 public class StudeasyScheduleService implements IStudeasyScheduleService {
 
 	private static Logger jlog = Logger.getLogger(StudeasyScheduleService.class.getPackage().getName());
+	private IPerson user;
 	
 	@Override
-	public String login(int personID, String password)    {
-		String sessionID = null;
-		IPerson person = PersonRegistry.getInstance().findPersonById(personID);
-		if (person != null && person.getPassword().equals(password)) {
-			UserSession newSession = new UserSession(person);
-			sessionID = newSession.getSessionID();
-			jlog.log(Level.FINE, newSession + " Login erfolgreich.");
+	public boolean login(int personID, String password)    {
+		boolean success = false;
+		this.user = PersonRegistry.getInstance().findPersonById(personID);
+		if (user != null && user.getPassword().equals(password)) {
+			success = true;
+			jlog.log(Level.FINE, "Login erfolgreich.");
 		}
 		else {
 			jlog.log(Level.INFO, "Login fehlgeschlagen, da Person unbekannt oder Passwort falsch. personID="+personID);
 		}
-		return sessionID;
+		return success;
 	}
 
 	@Override
-	public void logout(String sessionID)  {
-		UserSession session = SessionRegistry.getInstance().findSession(sessionID);
-		if (session != null) {
-			SessionRegistry.getInstance().removeSession(session);
-			jlog.log(Level.FINE, session + " Logout erfolgreich.");
-		}
-		else {
-			jlog.log(Level.INFO, session + " Logout fehlgeschlagen, da Session "+sessionID+" unbekannt.");
-		}
+	@Remove
+	public void logout() throws NoSessionException {
+		validateLogin();
+		jlog.log(Level.FINE, "Logout erfolgreich.");
+	}
+	
+	private void validateLogin() throws NoSessionException {
+		if (this.user==null) throw new NoSessionException("Bitte zuächst ein Login durchführen.");
 	}
 
 	@Override
