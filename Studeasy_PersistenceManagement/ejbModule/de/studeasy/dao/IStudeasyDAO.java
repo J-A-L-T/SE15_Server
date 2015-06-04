@@ -1,7 +1,9 @@
 package de.studeasy.dao;
 
 import javax.ejb.Local;
+
 import de.studeasy.common.*;
+import de.studeasy.entities.StudeasySession;
 
 @Local
 public interface IStudeasyDAO {
@@ -10,6 +12,8 @@ public interface IStudeasyDAO {
 	
 	public IHomework findCHomeworkByID(int id);
 	
+	public boolean removeHomeworkByID(int homeworkID);
+	
 	public ILesson findLessonByID(int id);
 	
 	public IPerson findPersonByID(int id);
@@ -17,4 +21,10 @@ public interface IStudeasyDAO {
 	public IRoom findRoomByID(String id);
 	
 	public ISubject findSubjectByID(int id);
+	
+	public StudeasySession findSessionByID(int id);
+	
+	public int createSession(IPerson user);
+	
+	public void closeSession(int id);
 }

@@ -19,21 +19,22 @@ public interface IStudeasyScheduleService {
 	 * @param personID
 	 * @param password
 	 * @return boolean successful 
+	 * @throws InvalidLoginException 
 	 */
-	public boolean login(int personID, String password) ;
+	public int login(int personID, String password) throws InvalidLoginException ;
 	
-	public void logout() throws NoSessionException  ;
+	public void logout(int sessionId) throws NoSessionException  ;
 	
-	public boolean createHomework(int lessonID, String description)  ;
+	public boolean createHomework(int sessionID, int lessonID, String description)  ;
 	
-	public boolean removeHomework(int homeworkID)  ;
+	public boolean removeHomework(int sessionID, int homeworkID)  ;
 	
-	public List<ILesson> getLessonsByDate(int personID, Date date) ;
+	public List<ILesson> getLessonsByDate(int sessionID, Date date) ;
 	
 	public ILesson findLessonById(int lessonID) ;
 	
 	public List<ILesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
 	
-	public List<IHomework> getHomeworksForPupil(int personID, Date startDate, Date endDate) ;	
+	public List<IHomework> getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
 	
 }
