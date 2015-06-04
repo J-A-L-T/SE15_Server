@@ -18,7 +18,7 @@ public interface IStudeasyScheduleService {
 	 * Operation zum Einloggen mit Username und Password.
 	 * @param personID
 	 * @param password
-	 * @return sessionID
+	 * @return boolean successful 
 	 */
 	public boolean login(int personID, String password) ;
 	

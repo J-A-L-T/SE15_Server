@@ -29,7 +29,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	private IPerson user;
 	
 	@Override
-	public boolean login(int personID, String password)    {
+	public boolean login(int personID, String password) {
 		boolean success = false;
 		this.user = PersonRegistry.getInstance().findPersonById(personID);
 		if (user != null && user.getPassword().equals(password)) {
