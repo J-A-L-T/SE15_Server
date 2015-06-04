@@ -23,6 +23,4 @@ public interface ILesson extends Serializable {
 	public void setHomeworks(ArrayList<IHomework> homework);
 	public ICourse getCourse();
 	public void setCourse(ICourse course);
-	public void addHomework(String description);
-	public boolean removeHomework(int homeworkID);
 }
