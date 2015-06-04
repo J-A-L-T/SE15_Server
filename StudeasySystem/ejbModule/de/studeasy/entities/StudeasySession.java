@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import de.studeasy.common.IPerson;
+
 
 @Entity
 public class StudeasySession {
@@ -15,7 +17,7 @@ public class StudeasySession {
 	private int username;
 	private Date creationTime;
 	
-	public StudeasySession(Person user) {
+	public StudeasySession(IPerson user) {
 		this.username = user.getPersonID();
 		this.creationTime = new Date();
 	}
