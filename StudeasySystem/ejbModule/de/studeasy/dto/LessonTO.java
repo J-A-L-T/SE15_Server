@@ -2,8 +2,8 @@ package de.studeasy.dto;
 
 import java.io.Serializable;
 
-
 import de.studeasy.common.*;
+import de.studeasy.entities.Homework;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,5 +76,25 @@ public class LessonTO implements Serializable, ILesson {
 	}
 	public void setCourse(ICourse course) {
 		this.course = course;
+	}
+	public void addHomework(String description) {
+		IHomework homework = new Homework();
+		//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
+		homework.setHomeworkID(1);
+		homework.setDescription(description);
+		homework.setLesson(this);
+		this.homeworks.add(homework);
+	}
+	/**
+	 * @return true=successful
+	 */
+	public boolean removeHomework(int homeworkID) {
+		for(int i = 0; i < homeworks.size(); i++) {
+			if(homeworks.get(i).getHomeworkID() == homeworkID) {
+				homeworks.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 }

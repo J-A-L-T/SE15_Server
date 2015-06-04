@@ -14,11 +14,11 @@ public class StudeasySession {
 
 	@Id @GeneratedValue
 	private int id;
-	private int username;
+	private int userID;
 	private Date creationTime;
 	
 	public StudeasySession(IPerson user) {
-		this.username = user.getPersonID();
+		this.userID = user.getPersonID();
 		this.creationTime = new Date();
 	}
 	
@@ -34,12 +34,12 @@ public class StudeasySession {
 		this.id = id;
 	}
 
-	public int getUsername() {
-		return this.username;
+	public int getUserID() {
+		return this.userID;
 	}
 
-	public void setUsername(int username) {
-		this.username = username;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	public Date getCreationTime() {
