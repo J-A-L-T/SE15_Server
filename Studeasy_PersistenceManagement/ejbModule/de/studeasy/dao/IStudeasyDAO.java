@@ -10,7 +10,7 @@ public interface IStudeasyDAO {
 	
 	public ICourse findCourseByID(int id);
 	
-	public IHomework findCHomeworkByID(int id);
+	public IHomework findHomeworkByID(int id);
 	
 	public boolean removeHomeworkByID(int homeworkID);
 	
