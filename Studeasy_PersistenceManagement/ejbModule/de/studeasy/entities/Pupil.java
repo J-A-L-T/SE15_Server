@@ -2,7 +2,6 @@ package de.studeasy.entities;
 
 import javax.persistence.*;
 
-
 import de.studeasy.common.*;
 
 @Entity
@@ -17,6 +16,12 @@ public class Pupil extends Person implements IPupil {
 	
 	public Pupil() {
 		super();
+	}
+
+	public Pupil(ICourse course) {
+		super();
+		this.course = course;
+		this.course.addNewPupil(this);
 	}
 
 	public ICourse getCourse() {

@@ -10,4 +10,5 @@ public interface IRoom extends Serializable {
 	public void setRoomID(String roomID);
 	public ArrayList<ILesson> getLessons();
 	public void setLessons(ArrayList<ILesson> lessons);
+	public void addNewLesson(ILesson newLesson);
 }

@@ -38,6 +38,30 @@ public class Lesson implements Serializable, ILesson {
 	@JoinColumn(name="lesson_FK")
 	private ArrayList<IHomework> homeworks;
 	
+	public Lesson() {
+		super();
+	}
+		
+	public Lesson(int lessonHour, Date date, ICourse course, ITeacher teacher,
+			ISubject subject, IRoom room) {
+		super();
+		this.lessonHour = lessonHour;
+		this.date = date;
+		
+		this.course = course;
+		this.course.addNewLesson(this);
+		
+		this.teacher = teacher;
+		this.teacher.addNewLesson(this);
+		
+		this.subject = subject;
+		
+		this.room = room;
+		this.room.addNewLesson(this);
+		
+		this.homeworks = new ArrayList<IHomework>();
+	}
+
 	public int getLessonID() {
 		return lessonID;
 	}
@@ -86,17 +110,10 @@ public class Lesson implements Serializable, ILesson {
 	public void setCourse(ICourse course) {
 		this.course = course;
 	}
-	public void addHomework(String description) {
-		IHomework homework = new Homework();
-		//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
-		homework.setHomeworkID(1);
-		homework.setDescription(description);
-		homework.setLesson(this);
+	public void addNewHomework(IHomework homework) {
 		this.homeworks.add(homework);
 	}
 	/**
-	 * @return true=successful
-	 */
 	public boolean removeHomework(int homeworkID) {
 		for(int i = 0; i < homeworks.size(); i++) {
 			if(homeworks.get(i).getHomeworkID() == homeworkID) {
@@ -105,5 +122,5 @@ public class Lesson implements Serializable, ILesson {
 			}
 		}
 		return false;
-	}
+	}**/
 }

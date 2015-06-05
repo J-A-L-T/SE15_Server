@@ -3,6 +3,7 @@ package de.studeasy.entities;
 import java.util.ArrayList;
 
 import de.studeasy.common.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +24,13 @@ public class Teacher extends Person implements ITeacher {
 		super();
 	}
 	
+	public Teacher(ICourse course) {
+		super();
+		this.course = course;
+		this.course.setClassTeacher(this);
+		this.lessons = new ArrayList<ILesson>();
+	}
+
 	public ICourse getCourse() {
 		return course;
 	}
@@ -37,5 +45,10 @@ public class Teacher extends Person implements ITeacher {
 
 	public void setLessons(ArrayList<ILesson> lessons) {
 		this.lessons = lessons;
+	}
+
+	@Override
+	public void addNewLesson(ILesson newLesson) {
+		this.lessons.add(newLesson);
 	}
 }

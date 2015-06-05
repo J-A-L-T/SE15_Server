@@ -1,8 +1,6 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
-
-
 import java.util.ArrayList;
 
 import javax.persistence.*;
@@ -36,6 +34,22 @@ public class Course implements Serializable, ICourse {
 	@JoinColumn(name="course_FK")
 	private ArrayList<ILesson> lessons;
 	
+	public Course() {
+		super();
+	}
+	
+	
+	public Course(int grade, char descriptor, ITeacher classTeacher) {
+		super();
+		this.grade = grade;
+		this.descriptor = descriptor;
+		this.classTeacher = classTeacher;
+		this.classTeacher.setCourse(this);
+		this.pupils = new ArrayList<IPupil>();
+		this.lessons = new ArrayList<ILesson>();
+	}
+
+
 	public int getCourseID() {
 		return courseID;
 	}
@@ -71,5 +85,17 @@ public class Course implements Serializable, ICourse {
 	}
 	public void setLessons(ArrayList<ILesson> lessons) {
 		this.lessons = lessons;
+	}
+
+
+	@Override
+	public void addNewPupil(IPupil newPupil) {
+		this.pupils.add(newPupil);
+	}
+
+
+	@Override
+	public void addNewLesson(ILesson newLesson) {
+		this.lessons.add(newLesson);
 	}
 }

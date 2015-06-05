@@ -19,6 +19,17 @@ public class Homework implements Serializable, IHomework {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	private ILesson lesson;
 	
+	public Homework() {
+		super();
+	}
+	
+	public Homework(String description, ILesson lesson) {
+		super();
+		this.description = description;
+		this.lesson = lesson;
+		this.lesson.addNewHomework(this);
+	}
+	
 	public int getHomeworkID() {
 		return homeworkID;
 	}

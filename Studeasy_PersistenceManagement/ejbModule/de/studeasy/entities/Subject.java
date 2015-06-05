@@ -3,6 +3,7 @@ package de.studeasy.entities;
 import java.io.Serializable;
 
 import de.studeasy.common.*;
+
 import javax.persistence.*;
 
 
@@ -16,6 +17,15 @@ public class Subject implements Serializable, ISubject {
 	private int subjectID;
 	private String description;
 		
+	public Subject() {
+		super();
+	}
+
+	public Subject(String description) {
+		super();
+		this.description = description;
+	}
+	
 	public int getSubjectID() {
 		return subjectID;
 	}

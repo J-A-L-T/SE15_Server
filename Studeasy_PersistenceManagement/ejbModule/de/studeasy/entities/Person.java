@@ -3,6 +3,7 @@ package de.studeasy.entities;
 import java.io.Serializable;
 
 import de.studeasy.common.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +20,18 @@ public abstract class Person implements Serializable, IPerson {
 	private String password;
 	//'m'=man 'w'=woman
 	private char gender;
+
+	public Person() {
+		super();
+	}
+	
+	public Person(String name, String firstname, String password, char gender) {
+		super();
+		this.name = name;
+		this.firstname = firstname;
+		this.password = password;
+		this.gender = gender;
+	}
 
 	public int getPersonID() {
 		return personID;

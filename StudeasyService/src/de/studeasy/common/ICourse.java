@@ -26,8 +26,12 @@ public interface ICourse extends Serializable {
 	
 	public void setPupils(ArrayList<IPupil> pupils);
 	
+	public void addNewPupil(IPupil newPupil);
+	
 	public ArrayList<ILesson> getLessons();
 	
 	public void setLessons(ArrayList<ILesson> lessons);
+	
+	public void addNewLesson(ILesson newLesson);
 
 }
