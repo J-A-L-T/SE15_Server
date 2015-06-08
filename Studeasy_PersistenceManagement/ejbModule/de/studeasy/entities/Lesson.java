@@ -6,6 +6,7 @@ import de.studeasy.common.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,23 +21,27 @@ public class Lesson implements Serializable, ILesson {
 	private int lessonHour;
 	private Date date;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@JoinColumn(name="course_FK")
 	private ICourse course;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Teacher.class)
+	@JoinColumn(name="teacher_FK")
 	private ITeacher teacher;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Subject.class)
 	@JoinColumn(name="subject_FK",
 				unique=false)
 	private ISubject subject;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Room.class)
+	@JoinColumn(name="room_FK")
 	private IRoom room;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="lesson_FK")
-	private ArrayList<IHomework> homeworks;
+	@OneToMany(cascade=CascadeType.PERSIST, 
+			   targetEntity=Homework.class,
+			   mappedBy="lesson")
+	private List<IHomework> homeworks;
 	
 	public Lesson() {
 		super();
@@ -98,7 +103,7 @@ public class Lesson implements Serializable, ILesson {
 	public void setRoom(IRoom room) {
 		this.room = room;
 	}
-	public ArrayList<IHomework> getHomeworks() {
+	public List<IHomework> getHomeworks() {
 		return homeworks;
 	}
 	public void setHomeworks(ArrayList<IHomework> homeworks) {

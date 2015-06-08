@@ -1,6 +1,7 @@
 package de.studeasy.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.studeasy.common.*;
 
@@ -12,13 +13,14 @@ public class Teacher extends Person implements ITeacher {
 	
 	private static final long serialVersionUID = 2405076137604996925L;
 
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@JoinColumn(name="classTeacher_FK")
 	private ICourse course;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
-			   mappedBy="teacher")
-	@JoinColumn(name="teacher_FK")
-	private ArrayList<ILesson> lessons;
+			   mappedBy="teacher",
+			   targetEntity=Lesson.class)
+	private List<ILesson> lessons;
 	
 	public Teacher() {
 		super();
@@ -39,7 +41,7 @@ public class Teacher extends Person implements ITeacher {
 		this.course = course;
 	}
 
-	public ArrayList<ILesson> getLessons() {
+	public List<ILesson> getLessons() {
 		return lessons;
 	}
 

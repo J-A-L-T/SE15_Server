@@ -2,6 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,19 +21,19 @@ public class Course implements Serializable, ICourse {
 	private char descriptor;
 	
 	@OneToOne(cascade=CascadeType.PERSIST,
-			  mappedBy="course")
-	@JoinColumn(name="classTeacher_FK")
+			  mappedBy="course",
+			  targetEntity=Teacher.class)
 	private ITeacher classTeacher;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
-			   mappedBy="course")
-	@JoinColumn(name="course_FK")
-	private ArrayList<IPupil> pupils;
+			   mappedBy="course",
+			   targetEntity=Pupil.class)
+	private List<IPupil> pupils;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
-			   mappedBy="course")
-	@JoinColumn(name="course_FK")
-	private ArrayList<ILesson> lessons;
+			   mappedBy="course",
+			   targetEntity=Lesson.class)
+	private List<ILesson> lessons;
 	
 	public Course() {
 		super();
@@ -74,13 +75,13 @@ public class Course implements Serializable, ICourse {
 	public void setClassTeacher(ITeacher classTeacher) {
 		this.classTeacher = classTeacher;
 	}
-	public ArrayList<IPupil> getPupils() {
+	public List<IPupil> getPupils() {
 		return pupils;
 	}
 	public void setPupils(ArrayList<IPupil> pupils) {
 		this.pupils = pupils;
 	}
-	public ArrayList<ILesson> getLessons() {
+	public List<ILesson> getLessons() {
 		return lessons;
 	}
 	public void setLessons(ArrayList<ILesson> lessons) {

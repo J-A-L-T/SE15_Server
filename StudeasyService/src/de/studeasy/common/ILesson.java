@@ -3,6 +3,7 @@ package de.studeasy.common;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public interface ILesson extends Serializable {
 	
@@ -18,7 +19,7 @@ public interface ILesson extends Serializable {
 	public void setSubject(ISubject subject);
 	public IRoom getRoom();
 	public void setRoom(IRoom room);
-	public ArrayList<IHomework> getHomeworks();
+	public List<IHomework> getHomeworks();
 	public void setHomeworks(ArrayList<IHomework> homework);
 	public ICourse getCourse();
 	public void setCourse(ICourse course);

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import de.studeasy.common.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -17,9 +18,9 @@ public class Room implements Serializable, IRoom {
 	private String roomID;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
-			   mappedBy="room")
-	@JoinColumn(name="room_FK")
-	private ArrayList<ILesson> lessons;
+			   mappedBy="room",
+			   targetEntity=Lesson.class)
+	private List<ILesson> lessons;
 	
 	public Room() {
 		super();
@@ -41,7 +42,7 @@ public class Room implements Serializable, IRoom {
 		this.roomID = roomID;
 	}
 
-	public ArrayList<ILesson> getLessons() {
+	public List<ILesson> getLessons() {
 		return lessons;
 	}
 
