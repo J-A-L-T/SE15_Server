@@ -38,11 +38,11 @@ public class DataBuilder {
 	
 	@PostConstruct
 	private void init() {
-		ICourse course = em.find(Course.class, CourseID);
-		if(course==null) {
+		ICourse klasse = em.find(Course.class, CourseID);
+		if(klasse==null) {
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher anna = new Teacher("Musterfrau", "Anna", "test", 'w', null);
-			ICourse klasse = new Course(7, 'a', anna);
+			ITeacher anna = new Teacher("Musterfrau", "Anna", "test", 'w', new Course());
+			klasse = new Course(7, 'a', anna);
 			this.CourseID = klasse.getCourseID();
 			anna.setCourse(klasse);			
 			
@@ -63,8 +63,8 @@ public class DataBuilder {
 			IHomework homework1 = new Homework("Arbeitsheft S.30 Aufgabe 4,5,6", lesson1);
 			lesson1.addNewHomework(homework1);
 			
-			em.persist(course);
-			logger.info("Neu angelegt" + course);
+			em.persist(klasse);
+			logger.info("Neu angelegt" + klasse);
 			em.persist(anna);
 			logger.info("Neu angelegt" + anna);
 			em.persist(klasse);
