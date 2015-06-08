@@ -6,6 +6,7 @@ import de.studeasy.common.*;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,24 +21,52 @@ public class Lesson implements Serializable, ILesson {
 	private int lessonHour;
 	private Date date;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@JoinColumn(name="course_FK")
 	private ICourse course;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Teacher.class)
+	@JoinColumn(name="teacher_FK")
 	private ITeacher teacher;
 	
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Subject.class)
 	@JoinColumn(name="subject_FK",
 				unique=false)
 	private ISubject subject;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Room.class)
+	@JoinColumn(name="room_FK")
 	private IRoom room;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
-	@JoinColumn(name="lesson_FK")
-	private ArrayList<IHomework> homeworks;
+	@OneToMany(cascade=CascadeType.PERSIST, 
+			   targetEntity=Homework.class,
+			   mappedBy="lesson")
+	private List<IHomework> homeworks;
 	
+	public Lesson() {
+		super();
+	}
+		
+	public Lesson(int lessonHour, Date date, ICourse course, ITeacher teacher,
+			ISubject subject, IRoom room) {
+		super();
+		this.lessonHour = lessonHour;
+		this.date = date;
+		
+		this.course = course;
+		this.course.addNewLesson(this);
+		
+		this.teacher = teacher;
+		this.teacher.addNewLesson(this);
+		
+		this.subject = subject;
+		
+		this.room = room;
+		this.room.addNewLesson(this);
+		
+		this.homeworks = new ArrayList<IHomework>();
+	}
+
 	public int getLessonID() {
 		return lessonID;
 	}
@@ -74,7 +103,7 @@ public class Lesson implements Serializable, ILesson {
 	public void setRoom(IRoom room) {
 		this.room = room;
 	}
-	public ArrayList<IHomework> getHomeworks() {
+	public List<IHomework> getHomeworks() {
 		return homeworks;
 	}
 	public void setHomeworks(ArrayList<IHomework> homeworks) {
@@ -86,17 +115,10 @@ public class Lesson implements Serializable, ILesson {
 	public void setCourse(ICourse course) {
 		this.course = course;
 	}
-	public void addHomework(String description) {
-		IHomework homework = new Homework();
-		//bisher ist ID noch standardmäßig 1 (nacher GeneratedValue)
-		homework.setHomeworkID(1);
-		homework.setDescription(description);
-		homework.setLesson(this);
+	public void addNewHomework(IHomework homework) {
 		this.homeworks.add(homework);
 	}
 	/**
-	 * @return true=successful
-	 */
 	public boolean removeHomework(int homeworkID) {
 		for(int i = 0; i < homeworks.size(); i++) {
 			if(homeworks.get(i).getHomeworkID() == homeworkID) {
@@ -105,5 +127,5 @@ public class Lesson implements Serializable, ILesson {
 			}
 		}
 		return false;
-	}
+	}**/
 }

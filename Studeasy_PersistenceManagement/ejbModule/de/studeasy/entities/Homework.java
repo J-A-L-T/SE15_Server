@@ -16,8 +16,20 @@ public class Homework implements Serializable, IHomework {
 	private int homeworkID;
 	private String description;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Lesson.class)
+	@JoinColumn(name="lesson_FK")
 	private ILesson lesson;
+	
+	public Homework() {
+		super();
+	}
+	
+	public Homework(String description, ILesson lesson) {
+		super();
+		this.description = description;
+		this.lesson = lesson;
+		this.lesson.addNewHomework(this);
+	}
 	
 	public int getHomeworkID() {
 		return homeworkID;
