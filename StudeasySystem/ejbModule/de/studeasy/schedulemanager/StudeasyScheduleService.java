@@ -2,29 +2,45 @@ package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
+
+import org.jboss.logging.Logger;
+import org.jboss.ws.api.annotation.WebContext;
 
 import de.studeasy.common.*;
 import de.studeasy.dao.IStudeasyDAO;
+import de.studeasy.dto.BooleanResponse;
+import de.studeasy.dto.HomeworkListResponse;
+import de.studeasy.dto.LessonByIDResponse;
+import de.studeasy.dto.LessonListResponse;
+import de.studeasy.dto.ReturncodeResponse;
+import de.studeasy.dto.UserLoginResponse;
 import de.studeasy.entities.StudeasySession;
+import de.studeasy.util.DtoAssembler;
 
 /**
  * 
- * @author Tobias Riegel
+ * @author Tobias Riegel & Andreas Prischep
  *
  */
-@Stateless
-public class StudeasyScheduleService implements IStudeasyScheduleService {
 
-	private static Logger jlog = Logger.getLogger(StudeasyScheduleService.class.getPackage().getName());
+@Stateless
+@WebService
+@WebContext(contextRoot="/studeasy")  //Proprietaere Annotation um in der URL für den Webservice den Namen des EJB-Moduls loszuwerden.
+public class StudeasyScheduleService implements IStudeasyScheduleService {
 	
+	private static final Logger logger = Logger.getLogger(StudeasyScheduleService.class);
+
+		
 	@EJB(beanName = "StudeasyDAO", beanInterface = de.studeasy.dao.IStudeasyDAO.class)
 	private IStudeasyDAO dao;
+	
+	@EJB
+	private DtoAssembler dto;
 	
 	private StudeasySession getSession(int sessionID) throws NoSessionException {
 		StudeasySession session = dao.findSessionByID(sessionID);
@@ -33,63 +49,87 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		else
 			return session;
 	}
-	
+//-----------------------------------------------Login-------------------------------------------------	
 	@Override
-	public int login(int personID, String password) throws InvalidLoginException {
-		IPerson user = this.dao.findPersonByID(personID);
-		int sessionId;
-		if (user != null && user.getPassword().equals(password)) {
-			sessionId = dao.createSession(user);
-			jlog.log(Level.FINE, "Login erfolgreich. Session=" + sessionId);
+	public IUserLoginResponse login(int personID, String password){
+		
+		
+			IUserLoginResponse response = new UserLoginResponse();
+		
+		try{
+			IPerson user = this.dao.findPersonByID(personID);
+			int sessionID;
+			if (user != null && user.getPassword().equals(password)) {
+				sessionID = dao.createSession(user);
+				logger.info("Login erfolgreich. Session=" + sessionID);
+				response.setSessionID(sessionID);
+			}
+			else {
+				logger.info("Login fehlgeschlagen, da Person unbekannt oder Passwort falsch. personID="+personID);
+				throw new InvalidLoginException("Login fehlgeschlagen, da Kunde unbekannt oder Passwort falsch.");
+			}
 		}
-		else {
-			jlog.log(Level.INFO, "Login fehlgeschlagen, da Person unbekannt oder Passwort falsch. personID="+personID);
-			throw new InvalidLoginException("Login fehlgeschlagen, da Kunde unbekannt oder Passwort falsch.");
+		catch(StudeasyException e) {
+			response.setReturnCode(e.getErrorCode());
+			response.setMessage(e.getMessage());	
 		}
-		return sessionId;
-	}
+		return response;
+}	
 
+//--------------------------------------------LogOut------------------------------------------------
 	@Override
 	@Remove
-	public void logout(int sessionId) throws NoSessionException {
-		dao.closeSession(sessionId);
-		jlog.log(Level.FINE, "Logout erfolgreich.");
+	public IReturncodeResponse logout(int sessionID){
+		dao.closeSession(sessionID);
+		IReturncodeResponse response = new ReturncodeResponse();
+		logger.info("Logout erfolgreich.");
+		return response;
 	}
 
+	
+	
+	//---------------------------CREATE HOMEWORK------------------------------------------------------------
+	//TODO Muss noch richtig implementiert werden.
 	@Override
-	public boolean createHomework(int sessionID, int lessonID, String description)  {
-		//mit sessionID noch auf Berechtigung prüfen
-		try {
+	public IBooleanResponse createHomework(int sessionID, int lessonID, String description)  {
+		
+		IBooleanResponse response = new BooleanResponse();
+		
+	//TODO mit sessionID noch auf Berechtigung prüfen
 			ILesson lesson = dao.findLessonByID(lessonID);
 			lesson.addHomework(description);
-			return true;
-		}
-		catch(Exception e) {
-			return false;
-		}
+			response.setSuccessfull(true);
+		return response;
+	}
+	//---------------------------REMOVE HOMEWORK------------------------------------------------------------
+	@Override
+	public IBooleanResponse removeHomework(int sessionID, int homeworkID)  {
+		
+			boolean successfull = dao.removeHomeworkByID(homeworkID);
+			
+			IBooleanResponse response = new BooleanResponse();
+			
+			response.setSuccessfull(successfull);
+		
+		return response;
 	}
 	
-	@Override
-	public boolean removeHomework(int sessionID, int homeworkID)  {
-		try {
-			boolean successfull = dao.removeHomeworkByID(homeworkID);
-			return successfull;
-		}
-		catch(Exception e) {
-			return false;
-		}
-	}
-
+//-----------------------------------------------LESSON BY DATE----------------------------------------
 	/**
 	 * Gibt eine Liste der Unterrichtsstunden an einem bestimmten Tag
 	 * für eine bestimmte Person zurück.
 	 * Die Liste ist leer, wenn an dem Tag kein für die Person kein Unterricht ist.
 	 * Wenn null zurückgeben wird, waren die Parameter falsch.
 	 */
+	
 	@Override
-	public List<ILesson> getLessonsByDate(int sessionID, Date date)  {
+	public ILessonListResponse getLessonsByDate(int sessionID, Date date)  {
+		
+		LessonListResponse response = new LessonListResponse();	
+		
 		ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
 		ArrayList<ILesson> lessons = null;
+
 		try {
 			StudeasySession session = getSession(sessionID);
 			IPerson person = dao.findPersonByID(session.getUserID());
@@ -111,18 +151,33 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			else 
 				dateLessons=null;
 				
-			return dateLessons;
 		}
-		catch(StudeasyException e) {
-			return null;
+		catch (StudeasyException e) {
+			response.setReturnCode(e.getErrorCode());
+			response.setMessage(e.getMessage());
 		}
+		response.setLessonList(dto.makeDTO(dateLessons));
+		return response;
 	}
-
+	
+	
+	
+//-----------------------------------Lesson By ID --------------------------------------------------
+	
 	@Override
-	public ILesson findLessonById(int lessonID)   {
-		return dao.findLessonByID(lessonID);
+	public ILessonByIDResponse findLessonById(int lessonID){
+		
+		ILessonByIDResponse response = new LessonByIDResponse(); 
+	
+		response.setLesson(dto.makeDTO(dao.findLessonByID(lessonID)));
+
+		return response;
 	}
 
+	
+	
+//---------------------------------GET LESSON BYSUBJECT---------------------------------------------	
+	
 	/** 
 	 * Gibt eine Liste der Unterrichtsstunden in einem bestimmten Zeitraum
 	 * für eine bestimmte Schulklasse in einem bestimmten Fach zurück.
@@ -132,8 +187,11 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * start- oder endDate stattfinden befinden sich in der zurückgegebenen Liste.
 	 */
 	@Override
-	public List<ILesson> getLessonsBySubject(int subjectID, int courseID,
+	public LessonListResponse getLessonsBySubject(int subjectID, int courseID,
 			Date startDate, Date endDate)   {
+		
+			LessonListResponse response = new LessonListResponse();	
+		
 			ICourse course = dao.findCourseByID(courseID);
 			if(course!=null) {
 				
@@ -152,23 +210,32 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 							dateLessons.add(lessons.get(i));
 						}
 					}
-					return dateLessons;
+					response.setLessonList(dto.makeDTO(dateLessons));
+					
 				}
 				else
-					return null;
+					response.setLessonList(null);
 			}
 			else
-				return null;
+				response.setLessonList(null);
+			
+			return response;
+		
 	}
+	
 
+	
+//------------------------------------------GET HOMEWORK FOR PUPIL------------------------------------------
 	/**
 	 * Gibt eine Liste von Hausaufgaben für einen bestimmten Schüler zu einem bestimmten Zeitraum zurück.
 	 * Die Liste ist leer, wenn dieser Schüler zu diesem Zeitraum keine Hausaufgaben hat.
 	 * Es wird null zurückgegeben, wenn die personID nicht zu einem Schüler gehört.
 	 */
 	@Override
-	public List<IHomework> getHomeworksForPupil(int sessionID, Date startDate,
+	public IHomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
 			Date endDate)   {
+		
+		HomeworkListResponse response = new HomeworkListResponse();
 		try {
 			StudeasySession session = getSession(sessionID);
 			IPerson person = dao.findPersonByID(session.getUserID());
@@ -187,16 +254,23 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 						}
 					}
 				}
-				return homeworks;
-			}
+				
+				response.setHomeworkList(dto.makeHomeworkDTO(homeworks));
+				}
 			else
-				return null;
+				response.setHomeworkList( null);
+			
+			
 		}
 		catch (StudeasyException e) {
-			return null;
+			response.setHomeworkList( null);
+			response.setReturnCode(e.getErrorCode());
+			response.setMessage(e.getMessage());
 		}
+		return response;
 	}
 	
+//---------------------------------IS DATE BETWEEN-----------------------------------------------------
 	private boolean isDateBetween(Date when, Date startDate, Date endDate) {
 		if( !(when.before(startDate)) && !(when.after(endDate)) ) {
 			return true;

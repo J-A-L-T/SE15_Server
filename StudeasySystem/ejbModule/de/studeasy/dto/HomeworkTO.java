@@ -7,9 +7,10 @@ import de.studeasy.common.*;
 
 public class HomeworkTO implements Serializable, IHomework {
 
-	private static final long serialVersionUID = 9153525651671974891L;
 	
 
+	private static final long serialVersionUID = -2470062635073768944L;
+	
 	private int homeworkID;
 	private String description;
 	

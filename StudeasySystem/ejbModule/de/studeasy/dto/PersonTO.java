@@ -3,11 +3,12 @@ package de.studeasy.dto;
 import java.io.Serializable;
 
 import de.studeasy.common.*;
+import javax.persistence.*;
 
 
-public abstract class PersonTO implements Serializable, IPerson {
+public abstract class PersonTO implements Serializable, IPersonTO {
 	
-	private static final long serialVersionUID = 849222223534910538L;
+	private static final long serialVersionUID = -3379697478831033483L;
 	
 	private int personID;
 	private String name;
