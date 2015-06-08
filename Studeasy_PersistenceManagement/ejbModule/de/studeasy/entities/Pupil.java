@@ -18,8 +18,8 @@ public class Pupil extends Person implements IPupil {
 		super();
 	}
 
-	public Pupil(ICourse course) {
-		super();
+	public Pupil(String name, String firstname, String password, char gender, ICourse course) {
+		super(name, firstname, password, gender);
 		this.course = course;
 		this.course.addNewPupil(this);
 	}

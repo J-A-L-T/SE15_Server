@@ -24,8 +24,8 @@ public class Teacher extends Person implements ITeacher {
 		super();
 	}
 	
-	public Teacher(ICourse course) {
-		super();
+	public Teacher(String name, String firstname, String password, char gender, ICourse course) {
+		super(name, firstname, password, gender);
 		this.course = course;
 		this.course.setClassTeacher(this);
 		this.lessons = new ArrayList<ILesson>();
