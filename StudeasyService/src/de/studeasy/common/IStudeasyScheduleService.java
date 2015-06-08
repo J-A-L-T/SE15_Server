@@ -1,7 +1,8 @@
 package de.studeasy.common;
 
 import java.util.Date;
-import java.util.List;
+
+
 
 /**
  * Dieses Interface definiert die Schnittstelle zwischen der Java app und dem Server.
@@ -21,20 +22,20 @@ public interface IStudeasyScheduleService {
 	 * @return boolean successful 
 	 * @throws InvalidLoginException 
 	 */
-	public int login(int personID, String password) throws InvalidLoginException ;
+	public IUserLoginResponse login(int personID, String password) ;
 	
-	public void logout(int sessionId) throws NoSessionException  ;
+	public IReturncodeResponse logout(int sessionId);
 	
-	public boolean createHomework(int sessionID, int lessonID, String description)  ;
+	public IReturncodeResponse createHomework(int sessionID, int lessonID, String description)  ;
 	
-	public boolean removeHomework(int sessionID, int homeworkID)  ;
+	public IBooleanResponse removeHomework(int sessionID, int homeworkID)  ;// auch ReturncodeResonse
 	
-	public List<ILesson> getLessonsByDate(int sessionID, Date date) ;
+	public ILessonListResponse getLessonsByDate(int sessionID, Date date);
 	
-	public ILesson findLessonById(int lessonID) ;
+	public ILessonByIDResponse findLessonById(int lessonID);
 	
-	public List<ILesson> getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
+	public ILessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
 	
-	public List<IHomework> getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
+	public IHomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
 	
 }
