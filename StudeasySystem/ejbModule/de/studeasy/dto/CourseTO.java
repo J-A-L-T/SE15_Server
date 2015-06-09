@@ -2,10 +2,11 @@ package de.studeasy.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 import de.studeasy.common.*;
 
 
-public class CourseTO implements Serializable, ICourse {
+public class CourseTO implements Serializable, ICourseTO {
 	
 	private static final long serialVersionUID = -3906372330041256764L;
 

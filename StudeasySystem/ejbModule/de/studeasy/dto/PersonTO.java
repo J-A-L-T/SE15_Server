@@ -1,9 +1,7 @@
 package de.studeasy.dto;
 
 import java.io.Serializable;
-
 import de.studeasy.common.*;
-import javax.persistence.*;
 
 
 public abstract class PersonTO implements Serializable, IPersonTO {

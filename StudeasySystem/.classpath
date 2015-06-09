@@ -14,6 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/StudeasyService"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Studeasy_PersistenceManagement"/>
-	<classpathentry kind="lib" path="/home/andy/WildFly/modules/system/layers/base/org/jboss/ws/api/main/jbossws-api-1.0.2.Final.jar"/>
+	<classpathentry kind="lib" path="/home/user/Programme/wildfly-8.2.0.Final/bin/client/jboss-client.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

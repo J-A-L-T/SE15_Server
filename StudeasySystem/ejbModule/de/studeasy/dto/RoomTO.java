@@ -5,7 +5,7 @@ import java.io.Serializable;
 import de.studeasy.common.*;
 import java.util.ArrayList;
 
-public class RoomTO implements Serializable, IRoom {
+public class RoomTO implements Serializable, IRoomTO {
 
 	private static final long serialVersionUID = 2206874152902693717L;
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import de.studeasy.common.*;
 
 
-public class SubjectTO implements Serializable, ISubject {
+public class SubjectTO implements Serializable, ISubjectTO {
 
 	private static final long serialVersionUID = -1512930899828828250L;
 	

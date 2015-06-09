@@ -2,6 +2,7 @@ package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Remove;
@@ -19,6 +20,7 @@ import de.studeasy.dto.LessonByIDResponse;
 import de.studeasy.dto.LessonListResponse;
 import de.studeasy.dto.ReturncodeResponse;
 import de.studeasy.dto.UserLoginResponse;
+import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
 import de.studeasy.util.DtoAssembler;
 
@@ -97,7 +99,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		
 	//TODO mit sessionID noch auf Berechtigung prüfen
 			ILesson lesson = dao.findLessonByID(lessonID);
-			lesson.addHomework(description);
+			IHomework homework = new Homework(description, lesson);
+			lesson.addNewHomework(homework);
 			response.setSuccessfull(true);
 		return response;
 	}
@@ -127,8 +130,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		
 		LessonListResponse response = new LessonListResponse();	
 		
-		ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
-		ArrayList<ILesson> lessons = null;
+		List<ILesson> dateLessons = new ArrayList<ILesson>();
+		List<ILesson> lessons = null;
 
 		try {
 			StudeasySession session = getSession(sessionID);
@@ -195,8 +198,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			ICourse course = dao.findCourseByID(courseID);
 			if(course!=null) {
 				
-				ArrayList<ILesson> lessons = course.getLessons();
-				ArrayList<ILesson> dateLessons = new ArrayList<ILesson>();
+				List<ILesson> lessons = course.getLessons();
+				List<ILesson> dateLessons = new ArrayList<ILesson>();
 							
 				ISubject subject = dao.findSubjectByID(subjectID);
 				
@@ -243,8 +246,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			if(person instanceof IPupil) {
 				IPupil pupil = (IPupil) person;
 				
-				ArrayList<ILesson> lessons = pupil.getCourse().getLessons();
-				ArrayList<IHomework> homeworks = new ArrayList<IHomework>();
+				List<ILesson> lessons = pupil.getCourse().getLessons();
+				List<IHomework> homeworks = new ArrayList<IHomework>();
 				
 				for(int i = 0; i < lessons.size(); i++) {
 					if(isDateBetween(lessons.get(i).getDate(), startDate, endDate)) {

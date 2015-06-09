@@ -2,8 +2,8 @@ package de.studeasy.dto;
 
 import java.io.Serializable;
 
+
 import de.studeasy.common.*;
-import de.studeasy.entities.Homework;
 
 import java.util.ArrayList;
 import java.util.Date;

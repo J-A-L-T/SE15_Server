@@ -5,7 +5,7 @@ import de.studeasy.common.*;
 
 
 
-public class HomeworkTO implements Serializable, IHomework {
+public class HomeworkTO implements Serializable, IHomeworkTO {
 
 	
 
