@@ -1,6 +1,7 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -159,7 +160,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}
-		response.setLessonList(dto.makeDTO(dateLessons));
+		response.setLessonList(dto.makeLessonDTO(dateLessons));
 		return response;
 	}
 	
@@ -172,7 +173,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		
 		ILessonByIDResponse response = new LessonByIDResponse(); 
 	
-		response.setLesson(dto.makeDTO(dao.findLessonByID(lessonID)));
+		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
 
 		return response;
 	}
@@ -213,7 +214,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 							dateLessons.add(lessons.get(i));
 						}
 					}
-					response.setLessonList(dto.makeDTO(dateLessons));
+					response.setLessonList(dto.makeLessonDTO(dateLessons));
 					
 				}
 				else
