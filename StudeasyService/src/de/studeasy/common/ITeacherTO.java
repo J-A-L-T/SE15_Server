@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface ITeacherTO extends IPerson {
 
-	public ICourse getCourse();
-	public void setCourse(ICourse course);
-	public List<ILesson> getLessons();
-	public void setLessons(ArrayList<ILesson> lessons);
+	public ICourseTO getCourse();
+	public void setCourse(ICourseTO course);
+	public List<ILessonTO> getLessons();
+	public void setLessons(ArrayList<ILessonTO> lessons);
 }

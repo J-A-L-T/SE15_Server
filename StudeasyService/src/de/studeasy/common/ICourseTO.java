@@ -18,16 +18,16 @@ public interface ICourseTO extends Serializable {
 	
 	public void setDescriptor(char descriptor);
 	
-	public ITeacher getClassTeacher();
+	public ITeacherTO getClassTeacher();
 	
-	public void setClassTeacher(ITeacher classTeacher);
+	public void setClassTeacher(ITeacherTO classTeacher);
 	
-	public List<IPupil> getPupils();
+	public List<IPupilTO> getPupils();
 	
-	public void setPupils(ArrayList<IPupil> pupils);
+	public void setPupils(ArrayList<IPupilTO> pupils);
 	
-	public List<ILesson> getLessons();
+	public List<ILessonTO> getLessons();
 	
-	public void setLessons(ArrayList<ILesson> lessons);
+	public void setLessons(ArrayList<ILessonTO> lessons);
 
 }

@@ -15,7 +15,7 @@ public class HomeworkTO implements Serializable, IHomeworkTO {
 	private String description;
 	
 	
-	private ILesson lesson;
+	private ILessonTO lesson;
 	
 	
 	public int getHomeworkID() {
@@ -30,10 +30,10 @@ public class HomeworkTO implements Serializable, IHomeworkTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public ILesson getLesson() {
+	public ILessonTO getLesson() {
 		return lesson;
 	}
-	public void setLesson(ILesson lesson) {
+	public void setLesson(ILessonTO lesson) {
 		this.lesson = lesson;
 	}
 }

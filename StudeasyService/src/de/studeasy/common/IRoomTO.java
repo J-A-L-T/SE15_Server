@@ -8,6 +8,6 @@ public interface IRoomTO extends Serializable {
 	
 	public String getRoomID();
 	public void setRoomID(String roomID);
-	public List<ILesson> getLessons();
-	public void setLessons(ArrayList<ILesson> lessons);
+	public List<ILessonTO> getLessons();
+	public void setLessons(ArrayList<ILessonTO> lessons);
 }

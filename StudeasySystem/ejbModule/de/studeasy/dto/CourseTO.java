@@ -17,11 +17,11 @@ public class CourseTO implements Serializable, ICourseTO {
 	//e.g. 5'B'
 	private char descriptor;
 	
-	private ITeacher classTeacher;
+	private ITeacherTO classTeacher;
 	
-	private ArrayList<IPupil> pupils;
+	private ArrayList<IPupilTO> pupils;
 	
-	private ArrayList<ILesson> lessons;
+	private ArrayList<ILessonTO> lessons;
 	
 	
 	public int getCourseID() {
@@ -42,22 +42,22 @@ public class CourseTO implements Serializable, ICourseTO {
 	public void setDescriptor(char descriptor) {
 		this.descriptor = descriptor;
 	}
-	public ITeacher getClassTeacher() {
+	public ITeacherTO getClassTeacher() {
 		return classTeacher;
 	}
-	public void setClassTeacher(ITeacher classTeacher) {
+	public void setClassTeacher(ITeacherTO classTeacher) {
 		this.classTeacher = classTeacher;
 	}
-	public ArrayList<IPupil> getPupils() {
+	public ArrayList<IPupilTO> getPupils() {
 		return pupils;
 	}
-	public void setPupils(ArrayList<IPupil> pupils) {
+	public void setPupils(ArrayList<IPupilTO> pupils) {
 		this.pupils = pupils;
 	}
-	public ArrayList<ILesson> getLessons() {
+	public ArrayList<ILessonTO> getLessons() {
 		return lessons;
 	}
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(ArrayList<ILessonTO> lessons) {
 		this.lessons = lessons;
 	}
 }
