@@ -24,10 +24,10 @@ public interface ICourseTO extends Serializable {
 	
 	public List<IPupilTO> getPupils();
 	
-	public void setPupils(ArrayList<IPupilTO> pupils);
+	public void setPupils(List<IPupilTO> pupils);
 	
 	public List<ILessonTO> getLessons();
 	
-	public void setLessons(ArrayList<ILessonTO> lessons);
+	public void setLessons(List<ILessonTO> list);
 
 }

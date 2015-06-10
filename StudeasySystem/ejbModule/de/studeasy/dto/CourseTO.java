@@ -1,7 +1,8 @@
 package de.studeasy.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+
+import java.util.List;
 
 import de.studeasy.common.*;
 
@@ -19,9 +20,9 @@ public class CourseTO implements Serializable, ICourseTO {
 	
 	private ITeacherTO classTeacher;
 	
-	private ArrayList<IPupilTO> pupils;
+	private List<IPupilTO> pupils;
 	
-	private ArrayList<ILessonTO> lessons;
+	private List<ILessonTO> lessons;
 	
 	
 	public int getCourseID() {
@@ -48,16 +49,16 @@ public class CourseTO implements Serializable, ICourseTO {
 	public void setClassTeacher(ITeacherTO classTeacher) {
 		this.classTeacher = classTeacher;
 	}
-	public ArrayList<IPupilTO> getPupils() {
+	public List<IPupilTO> getPupils() {
 		return pupils;
 	}
-	public void setPupils(ArrayList<IPupilTO> pupils) {
+	public void setPupils(List<IPupilTO> pupils) {
 		this.pupils = pupils;
 	}
-	public ArrayList<ILessonTO> getLessons() {
+	public List<ILessonTO> getLessons() {
 		return lessons;
 	}
-	public void setLessons(ArrayList<ILessonTO> lessons) {
+	public void setLessons(List<ILessonTO> lessons) {
 		this.lessons = lessons;
 	}
 }

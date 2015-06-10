@@ -1,6 +1,6 @@
 package de.studeasy.dto;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import de.studeasy.common.*;
 
@@ -9,25 +9,29 @@ public class TeacherTO extends PersonTO implements ITeacherTO {
 	private static final long serialVersionUID = 2405076137604996925L;
 
 	
-	private ICourse course;
+	private ICourseTO course;
 	
 	
-	private ArrayList<ILesson> lessons;
-	
-	
-	public ICourse getCourse() {
+	private List<ILessonTO> lessons;
+
+
+	public ICourseTO getCourse() {
 		return course;
 	}
 
-	public void setCourse(ICourse course) {
+
+	public void setCourse(ICourseTO course) {
 		this.course = course;
 	}
 
-	public ArrayList<ILesson> getLessons() {
+
+	public List<ILessonTO> getLessons() {
 		return lessons;
 	}
 
-	public void setLessons(ArrayList<ILesson> lessons) {
+
+	public void setLessons(List<ILessonTO> lessons) {
 		this.lessons = lessons;
 	}
+	
 }

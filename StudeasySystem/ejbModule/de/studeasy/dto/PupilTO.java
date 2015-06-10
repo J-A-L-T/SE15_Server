@@ -8,13 +8,13 @@ public class PupilTO extends PersonTO implements IPupilTO {
 	
 	private static final long serialVersionUID = 3461606884540372275L;
 	
-	private ICourse course;
+	private ICourseTO course;
 	
-	public ICourse getCourse() {
+	public ICourseTO getCourse() {
 		return course;
 	}
 
-	public void setCourse(ICourse course) {
+	public void setCourse(ICourseTO course) {
 		this.course = course;
 	}
 }
