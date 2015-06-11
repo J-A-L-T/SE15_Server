@@ -8,5 +8,9 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="Studeasy_PersistenceManagement.jar" deploy-path="/" handle="module:/resource/Studeasy_PersistenceManagement/Studeasy_PersistenceManagement">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>

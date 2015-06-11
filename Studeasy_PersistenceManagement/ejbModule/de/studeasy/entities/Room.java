@@ -2,7 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.IRoom;
 

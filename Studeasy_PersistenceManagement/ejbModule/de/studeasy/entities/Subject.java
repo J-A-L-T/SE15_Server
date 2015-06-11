@@ -2,7 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ISubject;
 
 import javax.persistence.*;

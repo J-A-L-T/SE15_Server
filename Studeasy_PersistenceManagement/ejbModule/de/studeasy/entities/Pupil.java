@@ -2,7 +2,7 @@ package de.studeasy.entities;
 
 import javax.persistence.*;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IPupil;
 
