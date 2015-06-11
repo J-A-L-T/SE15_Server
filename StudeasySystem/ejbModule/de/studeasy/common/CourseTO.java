@@ -6,6 +6,13 @@ import java.io.Serializable;
 import java.util.List;
 
 
+/**
+ * Curse-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
+
+
 public class CourseTO implements Serializable {
 	
 	private static final long serialVersionUID = -3906372330041256764L;

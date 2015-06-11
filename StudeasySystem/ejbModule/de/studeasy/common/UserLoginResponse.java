@@ -1,5 +1,11 @@
 package de.studeasy.common;
 
+/**
+ * 
+ * UserLoginResponse wird vom message system benutzt um sessionsIDs zurückzugeben
+ * @author Andreas Prischep
+ *
+ */
 
 public class UserLoginResponse extends ReturncodeResponse {
 	

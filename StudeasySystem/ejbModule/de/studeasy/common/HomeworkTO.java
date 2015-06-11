@@ -2,6 +2,11 @@ package de.studeasy.common;
 
 import java.io.Serializable;
 
+/**
+ * Homework-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
 
 public class HomeworkTO implements Serializable {
 

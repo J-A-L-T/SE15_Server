@@ -1,5 +1,12 @@
 package de.studeasy.common;
 
+/**
+ * 
+ * LessonByIDResponse wird vom message system benutzt um lessons zurückzugeben
+ * @author Andreas Prischep
+ *
+ */
+
 
 public class LessonByIDResponse extends ReturncodeResponse {
 

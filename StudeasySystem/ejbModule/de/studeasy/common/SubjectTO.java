@@ -2,6 +2,13 @@ package de.studeasy.common;
 
 import java.io.Serializable;
 
+/**
+ * Room-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
+
+
 public class SubjectTO implements Serializable {
 
 	private static final long serialVersionUID = -1512930899828828250L;

@@ -1,5 +1,12 @@
 package de.studeasy.common;
 
+
+/**
+ * ReturncodeResponse ist die Oberklassen der Responses und bietet die returncode Logik
+ * @author Andreas Prischep
+ *
+ */
+
 import java.io.Serializable;
 
 public class ReturncodeResponse implements Serializable {

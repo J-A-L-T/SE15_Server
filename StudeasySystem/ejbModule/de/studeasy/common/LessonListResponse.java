@@ -2,6 +2,13 @@ package de.studeasy.common;
 
 import java.util.List;
 
+/**
+ * 
+ * LessonListResponse wird vom message system benutzt um eine liste von lessons zurückzugeben
+ * @author Andreas Prischep
+ *
+ */
+
 
 public class LessonListResponse extends ReturncodeResponse {
 	

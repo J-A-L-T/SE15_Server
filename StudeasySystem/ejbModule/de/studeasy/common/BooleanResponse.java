@@ -1,6 +1,11 @@
 package de.studeasy.common;
 
-
+/**
+ * 
+ * BooleanResponse wird vom message system benutzt um booleans zurückzugeben
+ * @author Andreas Prischep
+ *
+ */
 
 public class BooleanResponse extends ReturncodeResponse {
 

@@ -2,6 +2,11 @@ package de.studeasy.common;
 
 import java.io.Serializable;
 
+/**
+ * Person-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
 public abstract class PersonTO implements Serializable {
 	
 	private static final long serialVersionUID = -3379697478831033483L;

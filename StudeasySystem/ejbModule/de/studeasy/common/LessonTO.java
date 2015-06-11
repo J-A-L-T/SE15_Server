@@ -5,6 +5,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Lesson-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * @author Andreas Prischep
+ *
+ */
 public class LessonTO implements Serializable {
 	
 	private static final long serialVersionUID = -7694338591615228808L;

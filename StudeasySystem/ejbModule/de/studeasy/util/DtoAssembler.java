@@ -14,8 +14,11 @@ import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 import de.studeasy.systeminterfaces.ITeacher;
 
-
-
+/**
+ * DTOAssembler wird zum füllt die TO Objekte jeweils mit den notwendigen Daten.
+ * @author Andreas Prischep
+ *
+ */
 @Stateless
 public class DtoAssembler {
 	

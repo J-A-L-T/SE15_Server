@@ -2,6 +2,13 @@ package de.studeasy.common;
 
 import java.util.List;
 
+/**
+ * Teacher-Transferobjekt für die Kommunikation mit der Client-Applikation 
+ * Dieses Transferobjekt erbt von PersonTO
+ * @author Andreas Prischep
+ *
+ */
+
 public class TeacherTO extends PersonTO {
 	
 	private static final long serialVersionUID = 2405076137604996925L;

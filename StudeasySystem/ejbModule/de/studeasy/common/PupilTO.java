@@ -1,5 +1,11 @@
 package de.studeasy.common;
 
+/**
+ * Pupil-Transferobjekt für die Kommunikation mit der Client-Applikation.
+ * Dieses Transferobjekt erbt von PersonTO
+ * @author Andreas Prischep
+ *
+ */
 
 public class PupilTO extends PersonTO {
 	
