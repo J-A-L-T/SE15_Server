@@ -9,6 +9,11 @@ import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 
+/**
+ * Interface für das StudeasyDAO
+ * @author Tobias Riegel
+ *
+ */
 @Local
 public interface IStudeasyDAO {
 	

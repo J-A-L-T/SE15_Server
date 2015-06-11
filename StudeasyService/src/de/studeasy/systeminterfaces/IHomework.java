@@ -2,6 +2,11 @@ package de.studeasy.systeminterfaces;
 
 import java.io.Serializable;
 
+/**
+ * Interface für die Homework-Entity
+ * @author Andreas Prischep
+ *
+ */
 public interface IHomework extends Serializable {
 	
 	public int getHomeworkID();

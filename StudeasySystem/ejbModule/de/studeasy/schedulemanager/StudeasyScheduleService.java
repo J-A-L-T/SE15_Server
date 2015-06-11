@@ -30,7 +30,11 @@ import de.studeasy.systeminterfaces.StudeasyException;
 import de.studeasy.util.DtoAssembler;
 
 /**
- * 
+ * Der StudeasyScheduleService stellt eine Statless Session Bean dar,
+ * die den eigentlichen Kern des Server-Systems darstellt.
+ * Hier ist die Hauptlogik implementiert und somit greift der Client
+ * auf die Methoden dieses Services zu, um an seine gewünschten Daten zu kommen.
+ * TODO
  * @author Tobias Riegel & Andreas Prischep
  *
  */

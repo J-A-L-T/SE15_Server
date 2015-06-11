@@ -10,6 +10,11 @@ import de.studeasy.systeminterfaces.ITeacher;
 
 import javax.persistence.*;
 
+/**
+ * Teacher-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName="personID")
 public class Teacher extends Person implements ITeacher {
@@ -48,7 +53,7 @@ public class Teacher extends Person implements ITeacher {
 		return lessons;
 	}
 
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(List<ILesson> lessons) {
 		this.lessons = lessons;
 	}
 

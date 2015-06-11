@@ -7,6 +7,11 @@ import de.studeasy.systeminterfaces.IPerson;
 
 import javax.persistence.*;
 
+/**
+ * Person-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 @Inheritance( strategy = InheritanceType.JOINED)
 public abstract class Person implements Serializable, IPerson {

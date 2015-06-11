@@ -25,6 +25,12 @@ import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 import de.studeasy.systeminterfaces.ITeacher;
 
+/**
+ * Der DataBuilder ist eine Singelton Session Bean und wird bei dem Start des Servers aufgerufen,
+ * um Testdaten zu erzeugen.
+ * @author Tobias Riegel
+ *
+ */
 @Startup
 @Singleton
 public class DataBuilder {

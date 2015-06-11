@@ -12,6 +12,12 @@ import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 
+/**
+ * Das StudeasyDAO ist eine Stateless Session Bean, die
+ * sich um den Zugriff auf die Datenbank kümmert.
+ * @author Tobias Riegel
+ *
+ */
 @Stateless
 public class StudeasyDAO implements IStudeasyDAO {
 

@@ -11,6 +11,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * Room-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 public class Room implements Serializable, IRoom {
 
@@ -48,7 +53,7 @@ public class Room implements Serializable, IRoom {
 		return lessons;
 	}
 
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(List<ILesson> lessons) {
 		this.lessons = lessons;
 	}
 
