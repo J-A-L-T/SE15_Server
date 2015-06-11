@@ -1,8 +1,6 @@
 package de.studeasy.dao;
 
 import javax.ejb.Local;
-
-import de.studeasy.common.*;
 import de.studeasy.entities.StudeasySession;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;

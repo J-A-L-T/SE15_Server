@@ -1,12 +1,11 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
-
-import de.studeasy.common.*;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.IPupil;

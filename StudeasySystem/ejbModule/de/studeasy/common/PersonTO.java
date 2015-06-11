@@ -1,38 +1,17 @@
-package de.studeasy.entities;
+package de.studeasy.common;
 
 import java.io.Serializable;
 
-
-import de.studeasy.systeminterfaces.IPerson;
-
-import javax.persistence.*;
-
-@Entity
-@Inheritance( strategy = InheritanceType.JOINED)
-public abstract class Person implements Serializable, IPerson {
+public abstract class PersonTO implements Serializable {
 	
-	private static final long serialVersionUID = 849222223534910538L;
+	private static final long serialVersionUID = -3379697478831033483L;
 	
-	@Id
-	@GeneratedValue
 	private int personID;
 	private String name;
 	private String firstname;
 	private String password;
 	//'m'=man 'w'=woman
 	private char gender;
-
-	public Person() {
-		super();
-	}
-	
-	public Person(String name, String firstname, String password, char gender) {
-		super();
-		this.name = name;
-		this.firstname = firstname;
-		this.password = password;
-		this.gender = gender;
-	}
 
 	public int getPersonID() {
 		return personID;

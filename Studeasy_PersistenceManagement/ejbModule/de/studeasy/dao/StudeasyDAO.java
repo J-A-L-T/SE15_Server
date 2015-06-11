@@ -1,5 +1,6 @@
 package de.studeasy.dao;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,6 +12,7 @@ import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 
+@Stateless
 public class StudeasyDAO implements IStudeasyDAO {
 
 	@PersistenceContext

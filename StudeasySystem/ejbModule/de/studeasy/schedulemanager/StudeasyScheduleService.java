@@ -1,6 +1,7 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +15,6 @@ import org.jboss.ws.api.annotation.WebContext;
 
 import de.studeasy.common.*;
 import de.studeasy.dao.IStudeasyDAO;
-import de.studeasy.dto.BooleanResponse;
-import de.studeasy.dto.HomeworkListResponse;
-import de.studeasy.dto.LessonByIDResponse;
-import de.studeasy.dto.LessonListResponse;
-import de.studeasy.dto.ReturncodeResponse;
-import de.studeasy.dto.UserLoginResponse;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
 import de.studeasy.systeminterfaces.ICourse;
@@ -63,10 +58,10 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 //-----------------------------------------------Login-------------------------------------------------	
 	@Override
-	public IUserLoginResponse login(int personID, String password){
+	public UserLoginResponse login(int personID, String password){
 		
 		
-			IUserLoginResponse response = new UserLoginResponse();
+			UserLoginResponse response = new UserLoginResponse();
 		
 		try{
 			IPerson user = this.dao.findPersonByID(personID);
@@ -91,9 +86,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 //--------------------------------------------LogOut------------------------------------------------
 	@Override
 	@Remove
-	public IReturncodeResponse logout(int sessionID){
+	public ReturncodeResponse logout(int sessionID){
 		dao.closeSession(sessionID);
-		IReturncodeResponse response = new ReturncodeResponse();
+		ReturncodeResponse response = new ReturncodeResponse();
 		logger.info("Logout erfolgreich.");
 		return response;
 	}
@@ -103,9 +98,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	//---------------------------CREATE HOMEWORK------------------------------------------------------------
 	//TODO Muss noch richtig implementiert werden.
 	@Override
-	public IBooleanResponse createHomework(int sessionID, int lessonID, String description)  {
+	public BooleanResponse createHomework(int sessionID, int lessonID, String description)  {
 		
-		IBooleanResponse response = new BooleanResponse();
+		BooleanResponse response = new BooleanResponse();
 		
 	//TODO mit sessionID noch auf Berechtigung prüfen
 			ILesson lesson = dao.findLessonByID(lessonID);
@@ -116,11 +111,11 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 	//---------------------------REMOVE HOMEWORK------------------------------------------------------------
 	@Override
-	public IBooleanResponse removeHomework(int sessionID, int homeworkID)  {
+	public BooleanResponse removeHomework(int sessionID, int homeworkID)  {
 		
 			boolean successfull = dao.removeHomeworkByID(homeworkID);
 			
-			IBooleanResponse response = new BooleanResponse();
+			BooleanResponse response = new BooleanResponse();
 			
 			response.setSuccessfull(successfull);
 		
@@ -136,7 +131,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 */
 	
 	@Override
-	public ILessonListResponse getLessonsByDate(int sessionID, Date date)  {
+	public LessonListResponse getLessonsByDate(int sessionID, Date date)  {
 		
 		LessonListResponse response = new LessonListResponse();	
 		
@@ -178,9 +173,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 //-----------------------------------Lesson By ID --------------------------------------------------
 	
 	@Override
-	public ILessonByIDResponse findLessonById(int lessonID){
+	public LessonByIDResponse findLessonById(int lessonID){
 		
-		ILessonByIDResponse response = new LessonByIDResponse(); 
+		LessonByIDResponse response = new LessonByIDResponse(); 
 	
 		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
 
@@ -245,7 +240,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * Es wird null zurückgegeben, wenn die personID nicht zu einem Schüler gehört.
 	 */
 	@Override
-	public IHomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
+	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
 			Date endDate)   {
 		
 		HomeworkListResponse response = new HomeworkListResponse();

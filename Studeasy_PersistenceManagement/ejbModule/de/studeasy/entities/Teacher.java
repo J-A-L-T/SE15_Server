@@ -1,9 +1,9 @@
 package de.studeasy.entities;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
-import de.studeasy.common.*;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.ITeacher;
