@@ -22,6 +22,16 @@ import de.studeasy.dto.ReturncodeResponse;
 import de.studeasy.dto.UserLoginResponse;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPerson;
+import de.studeasy.systeminterfaces.IPupil;
+import de.studeasy.systeminterfaces.ISubject;
+import de.studeasy.systeminterfaces.ITeacher;
+import de.studeasy.systeminterfaces.InvalidLoginException;
+import de.studeasy.systeminterfaces.NoSessionException;
+import de.studeasy.systeminterfaces.StudeasyException;
 import de.studeasy.util.DtoAssembler;
 
 /**
@@ -159,7 +169,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}
-		response.setLessonList(dto.makeDTO(dateLessons));
+		response.setLessonList(dto.makeLessonDTO(dateLessons));
 		return response;
 	}
 	
@@ -172,7 +182,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		
 		ILessonByIDResponse response = new LessonByIDResponse(); 
 	
-		response.setLesson(dto.makeDTO(dao.findLessonByID(lessonID)));
+		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
 
 		return response;
 	}
@@ -213,7 +223,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 							dateLessons.add(lessons.get(i));
 						}
 					}
-					response.setLessonList(dto.makeDTO(dateLessons));
+					response.setLessonList(dto.makeLessonDTO(dateLessons));
 					
 				}
 				else

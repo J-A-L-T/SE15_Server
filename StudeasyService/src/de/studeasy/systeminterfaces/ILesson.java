@@ -1,4 +1,4 @@
-package de.studeasy.common;
+package de.studeasy.systeminterfaces;
 
 import java.io.Serializable;
 import java.util.ArrayList;

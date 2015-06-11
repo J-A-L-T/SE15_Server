@@ -2,8 +2,9 @@ package de.studeasy.dto;
 
 import java.io.Serializable;
 
+
 import de.studeasy.common.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class RoomTO implements Serializable, IRoomTO {
 
@@ -13,7 +14,7 @@ public class RoomTO implements Serializable, IRoomTO {
 	private String roomID;
 	
 
-	private ArrayList<ILesson> lessons;
+	private List<ILessonTO> lessons;
 
 	
 	public String getRoomID() {
@@ -24,11 +25,11 @@ public class RoomTO implements Serializable, IRoomTO {
 		this.roomID = roomID;
 	}
 
-	public ArrayList<ILesson> getLessons() {
+	public List<ILessonTO> getLessons() {
 		return lessons;
 	}
 
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(List<ILessonTO> lessons) {
 		this.lessons = lessons;
 	}
 }

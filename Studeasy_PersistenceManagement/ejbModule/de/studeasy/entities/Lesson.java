@@ -3,6 +3,12 @@ package de.studeasy.entities;
 import java.io.Serializable;
 
 import de.studeasy.common.*;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IRoom;
+import de.studeasy.systeminterfaces.ISubject;
+import de.studeasy.systeminterfaces.ITeacher;
 
 import java.util.ArrayList;
 import java.util.Date;

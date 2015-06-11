@@ -6,7 +6,7 @@ public interface IHomeworkTO {
 	public void setHomeworkID(int homeworkID);
 	public String getDescription();
 	public void setDescription(String description);
-	public ILesson getLesson();
-	public void setLesson(ILesson lesson);
+	public ILessonTO getLesson();
+	public void setLesson(ILessonTO lesson);
 
 }

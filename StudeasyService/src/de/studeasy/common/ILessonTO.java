@@ -1,7 +1,7 @@
 package de.studeasy.common;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public interface ILessonTO {
 
@@ -11,15 +11,15 @@ public interface ILessonTO {
 	public void setLessonHour(int lessonHour);
 	public Date getDate();
 	public void setDate(Date date);
-	public ITeacher getTeacher();
-	public void setTeacher(ITeacher teacher);
-	public ISubject getSubject();
-	public void setSubject(ISubject subject);
-	public IRoom getRoom();
-	public void setRoom(IRoom room);
-	public ArrayList<IHomework> getHomeworks();
-	public void setHomeworks(ArrayList<IHomework> homeworks);
-	public ICourse getCourse();
-	public void setCourse(ICourse course);
+	public ITeacherTO getTeacher();
+	public void setTeacher(ITeacherTO teacher);
+	public ISubjectTO getSubject();
+	public void setSubject(ISubjectTO subject);
+	public IRoomTO getRoom();
+	public void setRoom(IRoomTO room);
+	public List<IHomeworkTO> getHomeworks();
+	public void setHomeworks(List<IHomeworkTO> list);
+	public ICourseTO getCourse();
+	public void setCourse(ICourseTO course);
 	
 }
