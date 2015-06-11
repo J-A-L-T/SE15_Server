@@ -1,31 +1,13 @@
-package de.studeasy.entities;
+package de.studeasy.common;
 
 import java.io.Serializable;
 
-
-import de.studeasy.systeminterfaces.ISubject;
-
-import javax.persistence.*;
-
-
-@Entity
-public class Subject implements Serializable, ISubject {
+public class SubjectTO implements Serializable {
 
 	private static final long serialVersionUID = -1512930899828828250L;
 	
-	@Id 
-	@GeneratedValue
 	private int subjectID;
 	private String description;
-		
-	public Subject() {
-		super();
-	}
-
-	public Subject(String description) {
-		super();
-		this.description = description;
-	}
 	
 	public int getSubjectID() {
 		return subjectID;

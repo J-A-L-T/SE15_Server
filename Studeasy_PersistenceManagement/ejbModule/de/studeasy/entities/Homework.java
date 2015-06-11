@@ -2,9 +2,9 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+
 import javax.persistence.*;
 
-import de.studeasy.common.*;
 import de.studeasy.systeminterfaces.IHomework;
 import de.studeasy.systeminterfaces.ILesson;
 
