@@ -10,13 +10,6 @@ import javax.persistence.PersistenceContext;
 
 import org.jboss.logging.Logger;
 
-import de.studeasy.common.ICourse;
-import de.studeasy.common.IHomework;
-import de.studeasy.common.ILesson;
-import de.studeasy.common.IPupil;
-import de.studeasy.common.IRoom;
-import de.studeasy.common.ISubject;
-import de.studeasy.common.ITeacher;
 import de.studeasy.entities.Course;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.Lesson;
@@ -24,6 +17,13 @@ import de.studeasy.entities.Pupil;
 import de.studeasy.entities.Room;
 import de.studeasy.entities.Subject;
 import de.studeasy.entities.Teacher;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPupil;
+import de.studeasy.systeminterfaces.IRoom;
+import de.studeasy.systeminterfaces.ISubject;
+import de.studeasy.systeminterfaces.ITeacher;
 
 @Startup
 @Singleton

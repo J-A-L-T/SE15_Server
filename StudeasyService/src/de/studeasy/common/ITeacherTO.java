@@ -2,7 +2,7 @@ package de.studeasy.common;
 
 import java.util.List;
 
-public interface ITeacherTO extends IPerson {
+public interface ITeacherTO extends IPersonTO {
 
 	public ICourseTO getCourse();
 	public void setCourse(ICourseTO course);

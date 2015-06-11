@@ -2,6 +2,8 @@ package de.studeasy.common;
 
 import java.util.Date;
 
+import de.studeasy.systeminterfaces.InvalidLoginException;
+
 
 
 /**

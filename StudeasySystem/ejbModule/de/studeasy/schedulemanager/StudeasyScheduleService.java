@@ -1,7 +1,6 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +22,16 @@ import de.studeasy.dto.ReturncodeResponse;
 import de.studeasy.dto.UserLoginResponse;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPerson;
+import de.studeasy.systeminterfaces.IPupil;
+import de.studeasy.systeminterfaces.ISubject;
+import de.studeasy.systeminterfaces.ITeacher;
+import de.studeasy.systeminterfaces.InvalidLoginException;
+import de.studeasy.systeminterfaces.NoSessionException;
+import de.studeasy.systeminterfaces.StudeasyException;
 import de.studeasy.util.DtoAssembler;
 
 /**

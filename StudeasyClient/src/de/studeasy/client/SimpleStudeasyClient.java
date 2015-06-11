@@ -6,8 +6,8 @@ import java.util.Date;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import de.studeasy.common.ILesson;
 import de.studeasy.common.IStudeasyScheduleService;
+import de.studeasy.systeminterfaces.ILesson;
 
 
 

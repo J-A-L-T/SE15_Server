@@ -7,6 +7,10 @@ import java.util.List;
 import javax.persistence.*;
 
 import de.studeasy.common.*;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPupil;
+import de.studeasy.systeminterfaces.ITeacher;
 
 @Entity
 public class Course implements Serializable, ICourse {

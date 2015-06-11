@@ -7,6 +7,13 @@ import javax.ejb.Stateless;
 
 import de.studeasy.common.*;
 import de.studeasy.dto.*;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPupil;
+import de.studeasy.systeminterfaces.IRoom;
+import de.studeasy.systeminterfaces.ISubject;
+import de.studeasy.systeminterfaces.ITeacher;
 
 
 

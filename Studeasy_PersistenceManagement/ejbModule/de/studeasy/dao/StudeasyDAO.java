@@ -1,17 +1,15 @@
 package de.studeasy.dao;
 
 import javax.persistence.EntityManager;
-
 import javax.persistence.PersistenceContext;
 
-import de.studeasy.common.ICourse;
-import de.studeasy.common.IHomework;
-import de.studeasy.common.ILesson;
-import de.studeasy.common.IPerson;
-import de.studeasy.common.IRoom;
-import de.studeasy.common.ISubject;
 import de.studeasy.entities.*;
-import de.studeasy.entities.StudeasySession;
+import de.studeasy.systeminterfaces.ICourse;
+import de.studeasy.systeminterfaces.IHomework;
+import de.studeasy.systeminterfaces.ILesson;
+import de.studeasy.systeminterfaces.IPerson;
+import de.studeasy.systeminterfaces.IRoom;
+import de.studeasy.systeminterfaces.ISubject;
 
 public class StudeasyDAO implements IStudeasyDAO {
 

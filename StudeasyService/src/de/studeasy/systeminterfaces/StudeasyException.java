@@ -1,4 +1,4 @@
-package de.studeasy.common;
+package de.studeasy.systeminterfaces;
 
 public class StudeasyException extends Exception {
 
