@@ -1,8 +1,8 @@
 package de.studeasy.common;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ICourse extends Serializable {
 	
@@ -22,12 +22,16 @@ public interface ICourse extends Serializable {
 	
 	public void setClassTeacher(ITeacher classTeacher);
 	
-	public ArrayList<IPupil> getPupils();
+	public List<IPupil> getPupils();
 	
 	public void setPupils(ArrayList<IPupil> pupils);
 	
-	public ArrayList<ILesson> getLessons();
+	public void addNewPupil(IPupil newPupil);
+	
+	public List<ILesson> getLessons();
 	
 	public void setLessons(ArrayList<ILesson> lessons);
+	
+	public void addNewLesson(ILesson newLesson);
 
 }
