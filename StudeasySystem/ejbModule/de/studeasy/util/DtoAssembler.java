@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import de.studeasy.common.*;
-import de.studeasy.dto.*;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;
 import de.studeasy.systeminterfaces.ILesson;
@@ -22,8 +21,8 @@ public class DtoAssembler {
 	
 	// Methoden für das übergeben
 	
-	public ILessonTO makeLessonDTO(ILesson lesson) {
-			ILessonTO dto = new LessonTO();
+	public LessonTO makeLessonDTO(ILesson lesson) {
+			LessonTO dto = new LessonTO();
 			
 			dto.setLessonID(lesson.getLessonID());
 			dto.setLessonHour(lesson.getLessonHour());
@@ -37,8 +36,8 @@ public class DtoAssembler {
 		  return dto;
 	  }
 	
-	public IHomeworkTO makeHomeworkDTO(IHomework homework) {
-		IHomeworkTO dto = new HomeworkTO();
+	public HomeworkTO makeHomeworkDTO(IHomework homework) {
+		HomeworkTO dto = new HomeworkTO();
 		
 		dto.setDescription(homework.getDescription());
 		dto.setHomeworkID(homework.getHomeworkID());
@@ -48,8 +47,8 @@ public class DtoAssembler {
 		
 	}
 	
-	public ITeacherTO makeTeacherDTO(ITeacher teacher) {
-		ITeacherTO dto = new TeacherTO();
+	public TeacherTO makeTeacherDTO(ITeacher teacher) {
+		TeacherTO dto = new TeacherTO();
 		
 		dto.setCourse(makeCourseDTO(teacher.getCourse()));
 		dto.setFirstname(teacher.getFirstname());
@@ -62,8 +61,8 @@ public class DtoAssembler {
 		return dto;
 	}
 	
-	public ISubjectTO makeSubjectDTO(ISubject subject) {
-		ISubjectTO dto = new SubjectTO();
+	public SubjectTO makeSubjectDTO(ISubject subject) {
+		SubjectTO dto = new SubjectTO();
 		
 		dto.setDescription(subject.getDescription());
 		dto.setSubjectID(subject.getSubjectID());
@@ -71,8 +70,8 @@ public class DtoAssembler {
 		return dto;
 	}
 	
-	public IRoomTO makeRoomDTO(IRoom room) {
-		IRoomTO dto = new RoomTO();
+	public RoomTO makeRoomDTO(IRoom room) {
+		RoomTO dto = new RoomTO();
 		
 		dto.setLessons(makeLessonDTO(room.getLessons()));
 		dto.setRoomID(room.getRoomID());
@@ -80,8 +79,8 @@ public class DtoAssembler {
 		return dto;
 	}
 	
-	public ICourseTO makeCourseDTO(ICourse course) {
-		ICourseTO dto = new CourseTO();
+	public CourseTO makeCourseDTO(ICourse course) {
+		CourseTO dto = new CourseTO();
 		
 		dto.setClassTeacher(makeTeacherDTO(course.getClassTeacher()));
 		dto.setCourseID(course.getCourseID());
@@ -93,8 +92,8 @@ public class DtoAssembler {
 		return dto;
 	}
 	
-	public IPupilTO makePupilDTO(IPupil pupil) {
-		IPupilTO dto = new PupilTO();
+	public PupilTO makePupilDTO(IPupil pupil) {
+		PupilTO dto = new PupilTO();
 		
 		dto.setCourse(makeCourseDTO(pupil.getCourse()));
 		dto.setFirstname(pupil.getFirstname());
@@ -106,8 +105,8 @@ public class DtoAssembler {
 		return dto;
 	}
 	
-	public List<IPupilTO> makePupilDTO(List<IPupil> pupils) {
-		List<IPupilTO> dtoList = new ArrayList<IPupilTO>();
+	public List<PupilTO> makePupilDTO(List<IPupil> pupils) {
+		List<PupilTO> dtoList = new ArrayList<PupilTO>();
 		  for (IPupil a : pupils) {
 			  dtoList.add(makePupilDTO(a));
 		  }
@@ -117,18 +116,18 @@ public class DtoAssembler {
 	/**
 	 * Macht aus einer ILesson Liste eien LessonTO Liste
 	 */
- 	public List<ILessonTO> makeLessonDTO(List<ILesson> lessons) {
-		  List<ILessonTO> dtoList = new ArrayList<ILessonTO>();
+ 	public List<LessonTO> makeLessonDTO(List<ILesson> lessons) {
+		  List<LessonTO> dtoList = new ArrayList<LessonTO>();
 		  for (ILesson a : lessons) {
 			  dtoList.add(makeLessonDTO(a));
 		  }
 		  return dtoList;
  	}
  	
- 	public List<IHomeworkTO> makeHomeworkDTO(List<IHomework> homeworks) {
-		  List<IHomeworkTO> dtoList = new ArrayList<IHomeworkTO>();
+ 	public List<HomeworkTO> makeHomeworkDTO(List<IHomework> homeworks) {
+		  List<HomeworkTO> dtoList = new ArrayList<HomeworkTO>();
 		  for (IHomework h : homeworks) {
-			  dtoList.add((IHomeworkTO) makeHomeworkDTO(h));
+			  dtoList.add(makeHomeworkDTO(h));
 		  }
 		  return dtoList;
 	}
