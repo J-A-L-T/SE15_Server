@@ -8,7 +8,13 @@ import javax.persistence.Id;
 
 import de.studeasy.systeminterfaces.IPerson;
 
-
+/**
+ * StudeasySession-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * Aufgrunde der Verwendung eines Webservices ist der StudeasyScheduleService Stateless.
+ * Somit wird eine extra Session-Klasse benötigt, um Sessions abspeichern zu können. 
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 public class StudeasySession {
 
