@@ -100,6 +100,11 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	
 	
 	//---------------------------CREATE HOMEWORK------------------------------------------------------------
+	/**
+	 * Legt eine neue Hausaufgabe für eine bestimmtest Fach an.
+	 * Mit der sessionID wird auf Berechtigung geprüft.
+	 * Wenn der User kein Lehrer ist, wird keine Hausaufgabe erzeugt und im BooleanResponse der Error-Code 30 gesetzt.
+	 */
 	@Override
 	public BooleanResponse createHomework(int sessionID, int lessonID, String description)  {
 		
@@ -115,12 +120,16 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		else {
 			response.setSuccessfull(false);
 			response.setMessage("Der angemeldete User ist keine Lehrer und darf somit keine Hausaufgaben anlegen.");
-			//TODO Neuen Fehlercode definieren?
-			//response.setReturnCode(returnCode);
+			response.setReturnCode(30);
 		}
 		return response;
 	}
 	//---------------------------REMOVE HOMEWORK------------------------------------------------------------
+	/**
+	 * Löscht eine Hausaufgabe.
+	 * Mit der sessionID wird auf Berechtigung geprüft.
+	 * Wenn der User kein Lehrer ist, wird die Hausaufgabe nicht gelöscht und im BooleanResponse der Error-Code 30 gesetzt.
+	 */
 	@Override
 	public BooleanResponse removeHomework(int sessionID, int homeworkID)  {
 		BooleanResponse response = new BooleanResponse();
@@ -132,8 +141,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		}
 		else {
 			response.setMessage("Der angemeldete User ist keine Lehrer und darf somit keine Hausaufgaben anlegen.");
-			//TODO Neuen Fehlercode definieren?
-			//response.setReturnCode(returnCode);
+			response.setReturnCode(30);
 		}
 			
 		response.setSuccessfull(successfull);
@@ -254,7 +262,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	/**
 	 * Gibt eine Liste von Hausaufgaben für einen bestimmten Schüler zu einem bestimmten Zeitraum zurück.
 	 * Die Liste ist leer, wenn dieser Schüler zu diesem Zeitraum keine Hausaufgaben hat.
-	 * Es Liste ist null, wenn die personID nicht zu einem Schüler gehört.
+	 * Wenn der angemeldete User kein Schüler ist wird im HomeworkListResponse der Error-Code auf 30 gesetzt.
 	 */
 	@Override
 	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
@@ -285,8 +293,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			else {
 				response.setHomeworkList(null);
 				response.setMessage("Der angemeldete User ist keine Schüler.");
-				//TODO Neuen Fehlercode definieren?
-				//response.setReturnCode(returnCode);
+				response.setReturnCode(30);
 			}
 			
 		}
