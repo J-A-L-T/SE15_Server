@@ -1,9 +1,13 @@
 package de.studeasy.systeminterfaces;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Interface für die Course-Entity
+ * @author Andreas Prischep
+ *
+ */
 public interface ICourse extends Serializable {
 	
 	public int getCourseID();
@@ -24,13 +28,13 @@ public interface ICourse extends Serializable {
 	
 	public List<IPupil> getPupils();
 	
-	public void setPupils(ArrayList<IPupil> pupils);
+	public void setPupils(List<IPupil> pupils);
 	
 	public void addNewPupil(IPupil newPupil);
 	
 	public List<ILesson> getLessons();
 	
-	public void setLessons(ArrayList<ILesson> lessons);
+	public void setLessons(List<ILesson> lessons);
 	
 	public void addNewLesson(ILesson newLesson);
 

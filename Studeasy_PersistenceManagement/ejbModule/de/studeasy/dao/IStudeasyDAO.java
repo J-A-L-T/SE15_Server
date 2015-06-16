@@ -1,8 +1,6 @@
 package de.studeasy.dao;
 
 import javax.ejb.Local;
-
-import de.studeasy.common.*;
 import de.studeasy.entities.StudeasySession;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;
@@ -11,6 +9,11 @@ import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.IRoom;
 import de.studeasy.systeminterfaces.ISubject;
 
+/**
+ * Interface für das StudeasyDAO
+ * @author Tobias Riegel
+ *
+ */
 @Local
 public interface IStudeasyDAO {
 	

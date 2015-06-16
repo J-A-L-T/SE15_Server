@@ -5,6 +5,7 @@
 	<projects>
 		<project>StudeasyService</project>
 		<project>StudeasySystem</project>
+		<project>Studeasy_PersistenceManagement</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

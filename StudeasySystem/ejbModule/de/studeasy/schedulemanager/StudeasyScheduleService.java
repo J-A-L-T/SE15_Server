@@ -1,6 +1,7 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,12 +15,6 @@ import org.jboss.ws.api.annotation.WebContext;
 
 import de.studeasy.common.*;
 import de.studeasy.dao.IStudeasyDAO;
-import de.studeasy.dto.BooleanResponse;
-import de.studeasy.dto.HomeworkListResponse;
-import de.studeasy.dto.LessonByIDResponse;
-import de.studeasy.dto.LessonListResponse;
-import de.studeasy.dto.ReturncodeResponse;
-import de.studeasy.dto.UserLoginResponse;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
 import de.studeasy.systeminterfaces.ICourse;
@@ -35,7 +30,11 @@ import de.studeasy.systeminterfaces.StudeasyException;
 import de.studeasy.util.DtoAssembler;
 
 /**
- * 
+ * Der StudeasyScheduleService stellt eine Statless Session Bean dar,
+ * die den eigentlichen Kern des Server-Systems darstellt.
+ * Hier ist die Hauptlogik implementiert und somit greift der Client
+ * auf die Methoden dieses Services zu, um an seine gewünschten Daten zu kommen.
+ * TODO
  * @author Tobias Riegel & Andreas Prischep
  *
  */
@@ -63,10 +62,10 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	}
 //-----------------------------------------------Login-------------------------------------------------	
 	@Override
-	public IUserLoginResponse login(int personID, String password){
+	public UserLoginResponse login(int personID, String password){
 		
 		
-			IUserLoginResponse response = new UserLoginResponse();
+			UserLoginResponse response = new UserLoginResponse();
 		
 		try{
 			IPerson user = this.dao.findPersonByID(personID);
@@ -91,9 +90,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 //--------------------------------------------LogOut------------------------------------------------
 	@Override
 	@Remove
-	public IReturncodeResponse logout(int sessionID){
+	public ReturncodeResponse logout(int sessionID){
 		dao.closeSession(sessionID);
-		IReturncodeResponse response = new ReturncodeResponse();
+		ReturncodeResponse response = new ReturncodeResponse();
 		logger.info("Logout erfolgreich.");
 		return response;
 	}
@@ -101,29 +100,43 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	
 	
 	//---------------------------CREATE HOMEWORK------------------------------------------------------------
-	//TODO Muss noch richtig implementiert werden.
 	@Override
-	public IBooleanResponse createHomework(int sessionID, int lessonID, String description)  {
+	public BooleanResponse createHomework(int sessionID, int lessonID, String description)  {
 		
-		IBooleanResponse response = new BooleanResponse();
+		BooleanResponse response = new BooleanResponse();
+		IPerson user = dao.findPersonByID(dao.findSessionByID(sessionID).getUserID());
 		
-	//TODO mit sessionID noch auf Berechtigung prüfen
+		if(user instanceof ITeacher) {
 			ILesson lesson = dao.findLessonByID(lessonID);
 			IHomework homework = new Homework(description, lesson);
 			lesson.addNewHomework(homework);
 			response.setSuccessfull(true);
+		}
+		else {
+			response.setSuccessfull(false);
+			response.setMessage("Der angemeldete User ist keine Lehrer und darf somit keine Hausaufgaben anlegen.");
+			//TODO Neuen Fehlercode definieren?
+			//response.setReturnCode(returnCode);
+		}
 		return response;
 	}
 	//---------------------------REMOVE HOMEWORK------------------------------------------------------------
 	@Override
-	public IBooleanResponse removeHomework(int sessionID, int homeworkID)  {
+	public BooleanResponse removeHomework(int sessionID, int homeworkID)  {
+		BooleanResponse response = new BooleanResponse();
+		boolean successfull = false;
+		IPerson user = dao.findPersonByID(dao.findSessionByID(sessionID).getUserID());
 		
-			boolean successfull = dao.removeHomeworkByID(homeworkID);
+		if(user instanceof ITeacher) {
+			successfull = dao.removeHomeworkByID(homeworkID);
+		}
+		else {
+			response.setMessage("Der angemeldete User ist keine Lehrer und darf somit keine Hausaufgaben anlegen.");
+			//TODO Neuen Fehlercode definieren?
+			//response.setReturnCode(returnCode);
+		}
 			
-			IBooleanResponse response = new BooleanResponse();
-			
-			response.setSuccessfull(successfull);
-		
+		response.setSuccessfull(successfull);
 		return response;
 	}
 	
@@ -132,11 +145,10 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * Gibt eine Liste der Unterrichtsstunden an einem bestimmten Tag
 	 * für eine bestimmte Person zurück.
 	 * Die Liste ist leer, wenn an dem Tag kein für die Person kein Unterricht ist.
-	 * Wenn null zurückgeben wird, waren die Parameter falsch.
 	 */
 	
 	@Override
-	public ILessonListResponse getLessonsByDate(int sessionID, Date date)  {
+	public LessonListResponse getLessonsByDate(int sessionID, Date date)  {
 		
 		LessonListResponse response = new LessonListResponse();	
 		
@@ -146,6 +158,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		try {
 			StudeasySession session = getSession(sessionID);
 			IPerson person = dao.findPersonByID(session.getUserID());
+			
 			if(person instanceof IPupil) {
 				IPupil pupil = (IPupil) person;
 				lessons = pupil.getCourse().getLessons();	
@@ -178,9 +191,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 //-----------------------------------Lesson By ID --------------------------------------------------
 	
 	@Override
-	public ILessonByIDResponse findLessonById(int lessonID){
+	public LessonByIDResponse findLessonById(int lessonID){
 		
-		ILessonByIDResponse response = new LessonByIDResponse(); 
+		LessonByIDResponse response = new LessonByIDResponse(); 
 	
 		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
 
@@ -194,8 +207,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	/** 
 	 * Gibt eine Liste der Unterrichtsstunden in einem bestimmten Zeitraum
 	 * für eine bestimmte Schulklasse in einem bestimmten Fach zurück.
-	 * Die Liste ist leer, wenn in dem Zeitruam kein für die Schulklasse in dem Fach kein Unterricht ist.
-	 * Wenn null zurückgeben wird, waren die Parameter falsch.
+	 * Die Liste ist leer, wenn in dem Zeitraum für die Schulklasse in dem Fach kein Unterricht ist.
 	 * Das startDate und endDate sind inklusive. Also Unterrichtsstunden die am 
 	 * start- oder endDate stattfinden befinden sich in der zurückgegebenen Liste.
 	 */
@@ -242,10 +254,10 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	/**
 	 * Gibt eine Liste von Hausaufgaben für einen bestimmten Schüler zu einem bestimmten Zeitraum zurück.
 	 * Die Liste ist leer, wenn dieser Schüler zu diesem Zeitraum keine Hausaufgaben hat.
-	 * Es wird null zurückgegeben, wenn die personID nicht zu einem Schüler gehört.
+	 * Es Liste ist null, wenn die personID nicht zu einem Schüler gehört.
 	 */
 	@Override
-	public IHomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
+	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
 			Date endDate)   {
 		
 		HomeworkListResponse response = new HomeworkListResponse();
@@ -270,13 +282,16 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 				
 				response.setHomeworkList(dto.makeHomeworkDTO(homeworks));
 				}
-			else
-				response.setHomeworkList( null);
-			
+			else {
+				response.setHomeworkList(null);
+				response.setMessage("Der angemeldete User ist keine Schüler.");
+				//TODO Neuen Fehlercode definieren?
+				//response.setReturnCode(returnCode);
+			}
 			
 		}
 		catch (StudeasyException e) {
-			response.setHomeworkList( null);
+			response.setHomeworkList(null);
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}

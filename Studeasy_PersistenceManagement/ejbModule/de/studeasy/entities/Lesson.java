@@ -2,7 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;
 import de.studeasy.systeminterfaces.ILesson;
@@ -16,6 +16,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * Lesson-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 public class Lesson implements Serializable, ILesson {
 	
@@ -112,7 +117,7 @@ public class Lesson implements Serializable, ILesson {
 	public List<IHomework> getHomeworks() {
 		return homeworks;
 	}
-	public void setHomeworks(ArrayList<IHomework> homeworks) {
+	public void setHomeworks(List<IHomework> homeworks) {
 		this.homeworks = homeworks;
 	}
 	public ICourse getCourse() {

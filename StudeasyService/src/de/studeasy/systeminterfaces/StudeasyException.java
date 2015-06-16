@@ -1,5 +1,10 @@
 package de.studeasy.systeminterfaces;
 
+/**
+ * Superklasse für die InvalidLoginException und die NoSessionException
+ * @author Andreas Prischep
+ *
+ */
 public class StudeasyException extends Exception {
 
 	private static final long serialVersionUID = -1658425297634781761L;

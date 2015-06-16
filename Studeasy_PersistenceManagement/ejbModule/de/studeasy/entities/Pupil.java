@@ -2,10 +2,15 @@ package de.studeasy.entities;
 
 import javax.persistence.*;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IPupil;
 
+/**
+ * Pupil-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 @PrimaryKeyJoinColumn(referencedColumnName="personID")
 public class Pupil extends Person implements IPupil {

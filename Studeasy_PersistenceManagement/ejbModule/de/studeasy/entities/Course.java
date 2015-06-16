@@ -1,17 +1,21 @@
 package de.studeasy.entities;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
-
-import de.studeasy.common.*;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.IPupil;
 import de.studeasy.systeminterfaces.ITeacher;
 
+/**
+ * Course-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 public class Course implements Serializable, ICourse {
 	
@@ -82,13 +86,13 @@ public class Course implements Serializable, ICourse {
 	public List<IPupil> getPupils() {
 		return pupils;
 	}
-	public void setPupils(ArrayList<IPupil> pupils) {
+	public void setPupils(List<IPupil> pupils) {
 		this.pupils = pupils;
 	}
 	public List<ILesson> getLessons() {
 		return lessons;
 	}
-	public void setLessons(ArrayList<ILesson> lessons) {
+	public void setLessons(List<ILesson> lessons) {
 		this.lessons = lessons;
 	}
 

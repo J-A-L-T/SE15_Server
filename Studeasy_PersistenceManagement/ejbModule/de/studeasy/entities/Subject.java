@@ -2,12 +2,16 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
-import de.studeasy.common.*;
+
 import de.studeasy.systeminterfaces.ISubject;
 
 import javax.persistence.*;
 
-
+/**
+ * Subject-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
+ * @author Tobias Riegel
+ *
+ */
 @Entity
 public class Subject implements Serializable, ISubject {
 

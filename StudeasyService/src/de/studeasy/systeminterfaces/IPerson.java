@@ -2,6 +2,11 @@ package de.studeasy.systeminterfaces;
 
 import java.io.Serializable;
 
+/**
+ * Interface für die Person-Entity
+ * @author Andreas Prischep
+ *
+ */
 public interface IPerson extends Serializable {
 	
 	public int getPersonID();
