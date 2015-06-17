@@ -1,7 +1,6 @@
 package de.studeasy.schedulemanager;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +33,7 @@ import de.studeasy.util.DtoAssembler;
  * die den eigentlichen Kern des Server-Systems darstellt.
  * Hier ist die Hauptlogik implementiert und somit greift der Client
  * auf die Methoden dieses Services zu, um an seine gewünschten Daten zu kommen.
- * TODO
+ * 
  * @author Tobias Riegel & Andreas Prischep
  *
  */
@@ -299,6 +298,31 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		}
 		catch (StudeasyException e) {
 			response.setHomeworkList(null);
+			response.setReturnCode(e.getErrorCode());
+			response.setMessage(e.getMessage());
+		}
+		return response;
+	}
+	
+//---------------------------------IS USER TEACHER-----------------------------------------------------
+	
+	public BooleanResponse isUserTeacher(int sessionID) {
+		
+		BooleanResponse response = new BooleanResponse();
+		
+		try{
+			StudeasySession session = getSession(sessionID);
+			IPerson person = dao.findPersonByID(session.getUserID());
+			
+			if(person instanceof ITeacher) {
+				response.setSuccessfull(true);
+			}
+			else {
+				response.setSuccessfull(false);
+			}
+		}
+		catch (StudeasyException e) {
+			response.setSuccessfull(false);
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}
