@@ -40,4 +40,6 @@ public interface IStudeasyScheduleService {
 	
 	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
 	
+	public BooleanResponse isUserTeacher(int sessionID);
+	
 }
