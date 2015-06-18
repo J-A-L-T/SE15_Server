@@ -92,7 +92,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	public ReturncodeResponse logout(int sessionID){
 		dao.closeSession(sessionID);
 		ReturncodeResponse response = new ReturncodeResponse();
-		logger.info("Logout erfolgreich.");
+		logger.info("Session=" + sessionID +" Logout erfolgreich.");
 		return response;
 	}
 
