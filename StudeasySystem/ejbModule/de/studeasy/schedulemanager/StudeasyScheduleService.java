@@ -16,12 +16,10 @@ import de.studeasy.common.*;
 import de.studeasy.dao.IStudeasyDAO;
 import de.studeasy.entities.Homework;
 import de.studeasy.entities.StudeasySession;
-import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.IPupil;
-import de.studeasy.systeminterfaces.ISubject;
 import de.studeasy.systeminterfaces.ITeacher;
 import de.studeasy.systeminterfaces.InvalidLoginException;
 import de.studeasy.systeminterfaces.NoSessionException;
@@ -155,11 +153,13 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 */
 	
 	@Override
-	public LessonListResponse getLessonsByDate(int sessionID, Date date)  {
+	public LessonResponse getLessonByDate(int sessionID, String date, int hour)  {
 		
-		LessonListResponse response = new LessonListResponse();	
+		Date d = makeStringToDate(date);
 		
-		List<ILesson> dateLessons = new ArrayList<ILesson>();
+		LessonResponse response = new LessonResponse();	
+		
+		ILesson dateLesson = null;
 		List<ILesson> lessons = null;
 
 		try {
@@ -177,19 +177,19 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			
 			if(lessons!=null) {
 				for(int i = 0; i < lessons.size(); i++) {
-					if(lessons.get(i).getDate().equals(date))
-						dateLessons.add(lessons.get(i));
+					if(lessons.get(i).getDate().equals(d) && (lessons.get(i).getLessonHour() == hour))
+						dateLesson = lessons.get(i);
 				}
 			}
 			else 
-				dateLessons=null;
+				dateLesson=null;
 				
 		}
 		catch (StudeasyException e) {
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}
-		response.setLessonList(dto.makeLessonDTO(dateLessons));
+		response.setLesson(dto.makeLessonDTO(dateLesson));
 		return response;
 	}
 	
@@ -217,7 +217,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * Die Liste ist leer, wenn in dem Zeitraum für die Schulklasse in dem Fach kein Unterricht ist.
 	 * Das startDate und endDate sind inklusive. Also Unterrichtsstunden die am 
 	 * start- oder endDate stattfinden befinden sich in der zurückgegebenen Liste.
-	 */
+	 * 
+	 * NOCH NICHT REALISIERT
+	 *
 	@Override
 	public LessonListResponse getLessonsBySubject(int subjectID, int courseID,
 			Date startDate, Date endDate)   {
@@ -253,7 +255,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			
 			return response;
 		
-	}
+	}*/
 	
 
 	
@@ -336,6 +338,17 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		}
 		else
 			return false;
+	}
+	
+//-------------------------------MAKE STRING TO DATE---------------------------------------------------	
+	@SuppressWarnings("deprecation")
+	private Date makeStringToDate(String date) {
+		int day = Integer.parseInt(date.substring(0, 2));
+		int month = Integer.parseInt(date.substring(2, 4));
+		int year = Integer.parseInt(date.substring(4));
+		
+		Date d = new Date(year, month, day);
+		return d;
 	}
 
 }
