@@ -198,9 +198,9 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 //-----------------------------------Lesson By ID --------------------------------------------------
 	
 	@Override
-	public LessonByIDResponse findLessonById(int lessonID){
+	public LessonResponse findLessonById(int lessonID){
 		
-		LessonByIDResponse response = new LessonByIDResponse(); 
+		LessonResponse response = new LessonResponse(); 
 	
 		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
 

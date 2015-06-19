@@ -2,21 +2,19 @@ package de.studeasy.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 import javax.ejb.Stateless;
 
 import de.studeasy.common.*;
-import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.IHomework;
 import de.studeasy.systeminterfaces.ILesson;
-import de.studeasy.systeminterfaces.IPupil;
-import de.studeasy.systeminterfaces.IRoom;
+import de.studeasy.systeminterfaces.IPerson;
 import de.studeasy.systeminterfaces.ISubject;
-import de.studeasy.systeminterfaces.ITeacher;
 
 /**
  * DTOAssembler wird zum füllt die TO Objekte jeweils mit den notwendigen Daten.
- * @author Andreas Prischep
+ * @author Andreas Prischep, Tobias Riegel
  *
  */
 @Stateless
@@ -29,12 +27,11 @@ public class DtoAssembler {
 			
 			dto.setLessonID(lesson.getLessonID());
 			dto.setLessonHour(lesson.getLessonHour());
-			dto.setDate(lesson.getDate());
-			dto.setTeacher(makeTeacherDTO(lesson.getTeacher()));
+			dto.setDate(makeDateToString(lesson.getDate()));
+			dto.setTeacher(makePersonDTO(lesson.getTeacher()));
 			dto.setSubject(makeSubjectDTO(lesson.getSubject()));
-			dto.setRoom(makeRoomDTO(lesson.getRoom()));
+			dto.setRoom(lesson.getRoom().getRoomID());
 			dto.setHomeworks(makeHomeworkDTO(lesson.getHomeworks())); //Arraylist
-			dto.setCourse(makeCourseDTO(lesson.getCourse()));
 		  
 		  return dto;
 	  }
@@ -44,22 +41,17 @@ public class DtoAssembler {
 		
 		dto.setDescription(homework.getDescription());
 		dto.setHomeworkID(homework.getHomeworkID());
-		dto.setLesson(makeLessonDTO(homework.getLesson()));
 		
 		return dto;
 		
 	}
 	
-	public TeacherTO makeTeacherDTO(ITeacher teacher) {
-		TeacherTO dto = new TeacherTO();
+	public PersonTO makePersonDTO(IPerson person) {
+		PersonTO dto = new PersonTO();
 		
-		dto.setCourse(makeCourseDTO(teacher.getCourse()));
-		dto.setFirstname(teacher.getFirstname());
-		dto.setGender(teacher.getGender());
-		dto.setLessons(makeLessonDTO(teacher.getLessons()));
-		dto.setName(teacher.getName());
-		dto.setPassword(teacher.getPassword());
-		dto.setPersonID(teacher.getPersonID());
+		dto.setFirstname(person.getFirstname());
+		dto.setGender(person.getGender());
+		dto.setName(person.getName());
 		
 		return dto;
 	}
@@ -72,60 +64,6 @@ public class DtoAssembler {
 		
 		return dto;
 	}
-	
-	public RoomTO makeRoomDTO(IRoom room) {
-		RoomTO dto = new RoomTO();
-		
-		dto.setLessons(makeLessonDTO(room.getLessons()));
-		dto.setRoomID(room.getRoomID());
-		
-		return dto;
-	}
-	
-	public CourseTO makeCourseDTO(ICourse course) {
-		CourseTO dto = new CourseTO();
-		
-		dto.setClassTeacher(makeTeacherDTO(course.getClassTeacher()));
-		dto.setCourseID(course.getCourseID());
-		dto.setDescriptor(course.getDescriptor());
-		dto.setGrade(course.getGrade());
-		dto.setLessons(makeLessonDTO(course.getLessons()));
-		dto.setPupils(makePupilDTO(course.getPupils()));
-		
-		return dto;
-	}
-	
-	public PupilTO makePupilDTO(IPupil pupil) {
-		PupilTO dto = new PupilTO();
-		
-		dto.setCourse(makeCourseDTO(pupil.getCourse()));
-		dto.setFirstname(pupil.getFirstname());
-		dto.setGender(pupil.getGender());
-		dto.setName(pupil.getName());
-		dto.setPassword(pupil.getPassword());
-		dto.setPersonID(pupil.getPersonID());
-		
-		return dto;
-	}
-	
-	public List<PupilTO> makePupilDTO(List<IPupil> pupils) {
-		List<PupilTO> dtoList = new ArrayList<PupilTO>();
-		  for (IPupil a : pupils) {
-			  dtoList.add(makePupilDTO(a));
-		  }
-		  return dtoList;
-	}
-
-	/**
-	 * Macht aus einer ILesson Liste eien LessonTO Liste
-	 */
- 	public List<LessonTO> makeLessonDTO(List<ILesson> lessons) {
-		  List<LessonTO> dtoList = new ArrayList<LessonTO>();
-		  for (ILesson a : lessons) {
-			  dtoList.add(makeLessonDTO(a));
-		  }
-		  return dtoList;
- 	}
  	
  	public List<HomeworkTO> makeHomeworkDTO(List<IHomework> homeworks) {
 		  List<HomeworkTO> dtoList = new ArrayList<HomeworkTO>();
@@ -134,5 +72,12 @@ public class DtoAssembler {
 		  }
 		  return dtoList;
 	}
+ 	
+ 	//String dann "ttmmjjjj"
+ 	@SuppressWarnings("deprecation")
+ 	private String makeDateToString(Date date) {
+		String d = "" + date.getDay() + date.getMonth() + date.getYear();
+		return d;
+ 	}
  	
 }

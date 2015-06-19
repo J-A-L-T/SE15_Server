@@ -34,7 +34,7 @@ public interface IStudeasyScheduleService {
 	
 	public LessonListResponse getLessonsByDate(int sessionID, Date date);
 	
-	public LessonByIDResponse findLessonById(int lessonID);
+	public LessonResponse findLessonById(int lessonID);
 	
 	public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
 	
