@@ -22,7 +22,7 @@ public class Teacher extends Person implements ITeacher {
 	private static final long serialVersionUID = 2405076137604996925L;
 
 	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
-	@JoinColumn(name="classTeacher_FK")
+	@JoinColumn(name="classTeacher_FK",nullable=true)
 	private ICourse course;
 	
 	@OneToMany(cascade=CascadeType.PERSIST,
