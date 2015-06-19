@@ -29,7 +29,7 @@ import de.studeasy.systeminterfaces.ITeacher;
  * Der DataBuilder ist eine Singelton Session Bean und wird bei dem Start des
  * Servers aufgerufen, um Testdaten zu erzeugen.
  * 
- * @author Tobias Riegel
+ * @author Tobias Riegel & Andreas Prischep
  *
  */
 @Startup
@@ -45,40 +45,40 @@ public class DataBuilder {
 
 	@PostConstruct
 	private void init() {
-		ICourse klasse = em.find(Course.class, CourseID);
-		if(klasse==null) {
+		ICourse klasse1 = em.find(Course.class, CourseID);
+		if(klasse1==null) {
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
 			ITeacher albus = new Teacher("Dumbledore", "Albus", "ad", 'm', new Course());
-			klasse = new Course(1, 'a', albus);
-			this.CourseID = klasse.getCourseID();
-			albus.setCourse(klasse);			
+			klasse1 = new Course(1, 'a', albus);
+			this.CourseID = klasse1.getCourseID();
+			albus.setCourse(klasse1);			
 			
 						
-			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w', null);
+			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w', new Course());
 			
 			
-			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm', null);
+			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm', new Course());
 			
 			
 			
-			IPupil harry = new Pupil("Potter","Harry", "Hedwig", 'm', klasse);
-			IPupil ron = new Pupil("Wesley", "Ron", "rw", 'm', klasse);
-			IPupil lavander = new Pupil("Brown", "Lavender", "lb", 'w', klasse);
-			IPupil hermine = new Pupil( "Granger", "Hermine","hg", 'w', klasse);
-			IPupil parvati = new Pupil("Patil", "Parvati", "pp", 'm', klasse);
-			IPupil seamus = new Pupil("Finnigan", "Seamus", "sf", 'm', klasse);
-			IPupil neville = new Pupil("Longbottom", "Neville", "nl", 'm', klasse);
-			IPupil dean = new Pupil("Thomas", "Dean", "dt", 'm', klasse);
+			IPupil harry = new Pupil("Potter","Harry", "Hedwig", 'm', klasse1);
+			IPupil ron = new Pupil("Wesley", "Ron", "rw", 'm', klasse1);
+			IPupil lavander = new Pupil("Brown", "Lavender", "lb", 'w', klasse1);
+			IPupil hermine = new Pupil( "Granger", "Hermine","hg", 'w', klasse1);
+			IPupil parvati = new Pupil("Patil", "Parvati", "pp", 'm', klasse1);
+			IPupil seamus = new Pupil("Finnigan", "Seamus", "sf", 'm', klasse1);
+			IPupil neville = new Pupil("Longbottom", "Neville", "nl", 'm', klasse1);
+			IPupil dean = new Pupil("Thomas", "Dean", "dt", 'm', klasse1);
 			
-			klasse.addNewPupil(harry);
-			klasse.addNewPupil(ron);
-			klasse.addNewPupil(lavander);
-			klasse.addNewPupil(hermine);
-			klasse.addNewPupil(parvati);
-			klasse.addNewPupil(seamus);
-			klasse.addNewPupil(neville);
-			klasse.addNewPupil(dean);		
+			klasse1.addNewPupil(harry);
+			klasse1.addNewPupil(ron);
+			klasse1.addNewPupil(lavander);
+			klasse1.addNewPupil(hermine);
+			klasse1.addNewPupil(parvati);
+			klasse1.addNewPupil(seamus);
+			klasse1.addNewPupil(neville);
+			klasse1.addNewPupil(dean);		
 					
 			IRoom room1 = new Room("D101");
 			IRoom room2 = new Room("D102");
@@ -97,133 +97,133 @@ public class DataBuilder {
 
 			//---------------------------------DAY1----------------------------------------------
 			
-			ILesson lesson11 = new Lesson(1, new Date(2015,06,22), klasse, albus, mathe, room1);
-			klasse.addNewLesson(lesson11);
+			ILesson lesson11 = new Lesson(1, new Date(2015,06,22), klasse1, albus, mathe, room1);
+			klasse1.addNewLesson(lesson11);
 			albus.addNewLesson(lesson11);
 			room1.addNewLesson(lesson11);
 			
-			ILesson lesson12 = new Lesson(2, new Date(2015,06,22), klasse, albus, deutsch, room1);
-			klasse.addNewLesson(lesson12);
+			ILesson lesson12 = new Lesson(2, new Date(2015,06,22), klasse1, albus, deutsch, room1);
+			klasse1.addNewLesson(lesson12);
 			albus.addNewLesson(lesson12);
 			room1.addNewLesson(lesson12);
 			
-			ILesson lesson14 = new Lesson(4, new Date(2015,06,22), klasse, mcgonagall, spanisch, room1);
-			klasse.addNewLesson(lesson14);
+			ILesson lesson14 = new Lesson(4, new Date(2015,06,22), klasse1, mcgonagall, spanisch, room1);
+			klasse1.addNewLesson(lesson14);
 			mcgonagall.addNewLesson(lesson14);
 			room1.addNewLesson(lesson14);
 			
-			ILesson lesson15 = new Lesson(5, new Date(2015,06,22), klasse, mcgonagall, biologie, room2);
-			klasse.addNewLesson(lesson15);
+			ILesson lesson15 = new Lesson(5, new Date(2015,06,22), klasse1, mcgonagall, biologie, room2);
+			klasse1.addNewLesson(lesson15);
 			mcgonagall.addNewLesson(lesson15);
 			room2.addNewLesson(lesson15);
 			
-			ILesson lesson16 = new Lesson(6, new Date(2015,06,22), klasse, mcgonagall, biologie, room2);
-			klasse.addNewLesson(lesson16);
+			ILesson lesson16 = new Lesson(6, new Date(2015,06,22), klasse1, mcgonagall, biologie, room2);
+			klasse1.addNewLesson(lesson16);
 			mcgonagall.addNewLesson(lesson16);
 			room2.addNewLesson(lesson16);
 			
 
 			//---------------------------------DAY2----------------------------------------------
-			ILesson lesson21 = new Lesson(1, new Date(2015,06,23), klasse, mcgonagall, englisch, room1);
-			klasse.addNewLesson(lesson21);
+			ILesson lesson21 = new Lesson(1, new Date(2015,06,23), klasse1, mcgonagall, englisch, room1);
+			klasse1.addNewLesson(lesson21);
 			mcgonagall.addNewLesson(lesson21);
 			room1.addNewLesson(lesson21);
 			
-			ILesson lesson22 = new Lesson(2, new Date(2015,06,23), klasse, albus, mathe, room1);
-			klasse.addNewLesson(lesson22);
+			ILesson lesson22 = new Lesson(2, new Date(2015,06,23), klasse1, albus, mathe, room1);
+			klasse1.addNewLesson(lesson22);
 			albus.addNewLesson(lesson22);
 			room1.addNewLesson(lesson22);
 			
-			ILesson lesson23 = new Lesson(3, new Date(2015,06,23), klasse, mcgonagall, chemie, room2);
-			klasse.addNewLesson(lesson23);
+			ILesson lesson23 = new Lesson(3, new Date(2015,06,23), klasse1, mcgonagall, chemie, room2);
+			klasse1.addNewLesson(lesson23);
 			mcgonagall.addNewLesson(lesson23);
 			room2.addNewLesson(lesson23);
 			
-			ILesson lesson25 = new Lesson(5, new Date(2015,06,23), klasse, albus, physik, room2);
-			klasse.addNewLesson(lesson25);
+			ILesson lesson25 = new Lesson(5, new Date(2015,06,23), klasse1, albus, physik, room2);
+			klasse1.addNewLesson(lesson25);
 			albus.addNewLesson(lesson25);
 			room2.addNewLesson(lesson25);
 			
-			ILesson lesson26 = new Lesson(6, new Date(2015,06,23), klasse, snape, info, room1);
-			klasse.addNewLesson(lesson26);
+			ILesson lesson26 = new Lesson(6, new Date(2015,06,23), klasse1, snape, info, room1);
+			klasse1.addNewLesson(lesson26);
 			snape.addNewLesson(lesson26);
 			room1.addNewLesson(lesson26);
 			
 			//---------------------------------DAY3----------------------------------------------
-			ILesson lesson31 = new Lesson(1, new Date(2015,06,24), klasse, mcgonagall, chemie, room2);
-			klasse.addNewLesson(lesson31);
+			ILesson lesson31 = new Lesson(1, new Date(2015,06,24), klasse1, mcgonagall, chemie, room2);
+			klasse1.addNewLesson(lesson31);
 			mcgonagall.addNewLesson(lesson31);
 			room1.addNewLesson(lesson31);
 			
-			ILesson lesson32 = new Lesson(2, new Date(2015,06,24), klasse, albus, deutsch, room1);
-			klasse.addNewLesson(lesson32);
+			ILesson lesson32 = new Lesson(2, new Date(2015,06,24), klasse1, albus, deutsch, room1);
+			klasse1.addNewLesson(lesson32);
 			albus.addNewLesson(lesson32);
 			room1.addNewLesson(lesson32);
 			
-			ILesson lesson33 = new Lesson(3, new Date(2015,06,24), klasse, mcgonagall, biologie, room2);
-			klasse.addNewLesson(lesson33);
+			ILesson lesson33 = new Lesson(3, new Date(2015,06,24), klasse1, mcgonagall, biologie, room2);
+			klasse1.addNewLesson(lesson33);
 			mcgonagall.addNewLesson(lesson33);
 			room2.addNewLesson(lesson33);
 			
-			ILesson lesson34 = new Lesson(4, new Date(2015,06,24), klasse, snape, sport, room3);
-			klasse.addNewLesson(lesson34);
+			ILesson lesson34 = new Lesson(4, new Date(2015,06,24), klasse1, snape, sport, room3);
+			klasse1.addNewLesson(lesson34);
 			snape.addNewLesson(lesson34);
 			room3.addNewLesson(lesson34);
 			
-			ILesson lesson35 = new Lesson(5, new Date(2015,06,24), klasse, mcgonagall, englisch, room1);
-			klasse.addNewLesson(lesson35);
+			ILesson lesson35 = new Lesson(5, new Date(2015,06,24), klasse1, mcgonagall, englisch, room1);
+			klasse1.addNewLesson(lesson35);
 			mcgonagall.addNewLesson(lesson35);
 			room1.addNewLesson(lesson35);
 			
-			ILesson lesson36 = new Lesson(6, new Date(2015,06,24), klasse, snape, religion, room1);
-			klasse.addNewLesson(lesson36);
+			ILesson lesson36 = new Lesson(6, new Date(2015,06,24), klasse1, snape, religion, room1);
+			klasse1.addNewLesson(lesson36);
 			snape.addNewLesson(lesson36);
 			room1.addNewLesson(lesson36);
 			//---------------------------------DAY4----------------------------------------------
 			
-			ILesson lesson43 = new Lesson(3, new Date(2015,06,25), klasse, mcgonagall, englisch, room1);
-			klasse.addNewLesson(lesson43);
+			ILesson lesson43 = new Lesson(3, new Date(2015,06,25), klasse1, mcgonagall, englisch, room1);
+			klasse1.addNewLesson(lesson43);
 			mcgonagall.addNewLesson(lesson43);
 			room1.addNewLesson(lesson43);
 			
-			ILesson lesson44 = new Lesson(4, new Date(2015,06,23), klasse, snape, info, room1);
-			klasse.addNewLesson(lesson44);
+			ILesson lesson44 = new Lesson(4, new Date(2015,06,23), klasse1, snape, info, room1);
+			klasse1.addNewLesson(lesson44);
 			snape.addNewLesson(lesson44);
 			room1.addNewLesson(lesson44);
 			
-			ILesson lesson45 = new Lesson(5, new Date(2015,06,22), klasse, mcgonagall, spanisch, room1);
-			klasse.addNewLesson(lesson45);
+			ILesson lesson45 = new Lesson(5, new Date(2015,06,22), klasse1, mcgonagall, spanisch, room1);
+			klasse1.addNewLesson(lesson45);
 			mcgonagall.addNewLesson(lesson45);
 			room1.addNewLesson(lesson45);
 			
-			ILesson lesson46 = new Lesson(6, new Date(2015,06,23), klasse, albus, physik, room2);
-			klasse.addNewLesson(lesson46);
+			ILesson lesson46 = new Lesson(6, new Date(2015,06,23), klasse1, albus, physik, room2);
+			klasse1.addNewLesson(lesson46);
 			albus.addNewLesson(lesson46);
 			room2.addNewLesson(lesson46);
 			
 			//---------------------------------DAY5----------------------------------------------
-			ILesson lesson51 = new Lesson(1, new Date(2015,06,24), klasse, mcgonagall, biologie, room2);
-			klasse.addNewLesson(lesson51);
+			ILesson lesson51 = new Lesson(1, new Date(2015,06,24), klasse1, mcgonagall, biologie, room2);
+			klasse1.addNewLesson(lesson51);
 			mcgonagall.addNewLesson(lesson51);
 			room2.addNewLesson(lesson51);
 			
-			ILesson lesson52 = new Lesson(2, new Date(2015,06,23), klasse, albus, mathe, room1);
-			klasse.addNewLesson(lesson52);
+			ILesson lesson52 = new Lesson(2, new Date(2015,06,23), klasse1, albus, mathe, room1);
+			klasse1.addNewLesson(lesson52);
 			albus.addNewLesson(lesson52);
 			room1.addNewLesson(lesson52);
 			
-			ILesson lesson53 = new Lesson(3, new Date(2015,06,24), klasse, albus, deutsch, room1);
-			klasse.addNewLesson(lesson53);
+			ILesson lesson53 = new Lesson(3, new Date(2015,06,24), klasse1, albus, deutsch, room1);
+			klasse1.addNewLesson(lesson53);
 			albus.addNewLesson(lesson53);
 			room1.addNewLesson(lesson53);
 			
-			ILesson lesson54 = new Lesson(4, new Date(2015,06,24), klasse, snape, sport, room3);
-			klasse.addNewLesson(lesson54);
+			ILesson lesson54 = new Lesson(4, new Date(2015,06,24), klasse1, snape, sport, room3);
+			klasse1.addNewLesson(lesson54);
 			snape.addNewLesson(lesson54);
 			room3.addNewLesson(lesson54);
 			
-			ILesson lesson55 = new Lesson(5, new Date(2015,06,24), klasse, snape, religion, room1);
-			klasse.addNewLesson(lesson55);
+			ILesson lesson55 = new Lesson(5, new Date(2015,06,24), klasse1, snape, religion, room1);
+			klasse1.addNewLesson(lesson55);
 			snape.addNewLesson(lesson55);
 			room1.addNewLesson(lesson55);
 			
@@ -239,10 +239,10 @@ public class DataBuilder {
 			logger.info("Neu angelegt " + albus);
 			em.persist(seamus);
 			logger.info("Neu angelegt " + seamus);
-			//-----KLASSE-----
-			logger.info("KLASSE wird angelegt ----------------------");
-			em.persist(klasse);
-			logger.info("Neu angelegt " + klasse);
+			//-----klasse1-----
+			logger.info("klasse1 wird angelegt ----------------------");
+			em.persist(klasse1);
+			logger.info("Neu angelegt " + klasse1);
 			
 			//-----PUPIL-----
 			logger.info("PUPIL werden angelegt ----------------------");
