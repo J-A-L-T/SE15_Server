@@ -52,13 +52,14 @@ public class DataBuilder {
 			ITeacher albus = new Teacher("Dumbledore", "Albus", "ad", 'm', new Course());
 			klasse1 = new Course(1, 'a', albus);
 			this.CourseID = klasse1.getCourseID();
-			albus.setCourse(klasse1);			
+			albus.setCourse(klasse1);
+			klasse1.setClassTeacher(albus);
 			
 						
-			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w', new Course());
+			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w', null);
 			
 			
-			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm', new Course());
+			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm', null);
 			
 			
 			
