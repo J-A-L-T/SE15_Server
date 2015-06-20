@@ -48,20 +48,13 @@ public class DataBuilder {
 		ICourse klasse1 = em.find(Course.class, CourseID);
 		if(klasse1==null) {
 			
-			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher albus = new Teacher("Dumbledore", "Albus", "ad", 'm', new Course());
-			klasse1 = new Course(1, 'a', albus);
+			klasse1 = new Course(1, 'a');
 			this.CourseID = klasse1.getCourseID();
-			albus.setCourse(klasse1);
-			klasse1.setClassTeacher(albus);
 			
-						
-			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w', null);
-			
-			
-			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm', null);
-			
-			
+			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
+			ITeacher albus = new Teacher("Dumbledore", "Albus", "ad", 'm');	
+			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w');			
+			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm');
 			
 			IPupil harry = new Pupil("Potter","Harry", "Hedwig", 'm', klasse1);
 			IPupil ron = new Pupil("Wesley", "Ron", "rw", 'm', klasse1);

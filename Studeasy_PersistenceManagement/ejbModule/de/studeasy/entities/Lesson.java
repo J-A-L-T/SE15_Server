@@ -32,24 +32,24 @@ public class Lesson implements Serializable, ILesson {
 	private int lessonHour;
 	private Date date;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Course.class)
 	@JoinColumn(name="course_FK")
 	private ICourse course;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Teacher.class)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Teacher.class)
 	@JoinColumn(name="teacher_FK")
 	private ITeacher teacher;
 	
-	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Subject.class)
+	@OneToOne(cascade=CascadeType.ALL, targetEntity=Subject.class)
 	@JoinColumn(name="subject_FK",
 				unique=false)
 	private ISubject subject;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Room.class)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Room.class)
 	@JoinColumn(name="room_FK")
 	private IRoom room;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, 
+	@OneToMany(cascade=CascadeType.ALL, 
 			   targetEntity=Homework.class,
 			   mappedBy="lesson")
 	private List<IHomework> homeworks;

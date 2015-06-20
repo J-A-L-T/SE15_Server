@@ -2,6 +2,7 @@ package de.studeasy.entities;
 
 import java.io.Serializable;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import javax.persistence.*;
 import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.IPupil;
-import de.studeasy.systeminterfaces.ITeacher;
 
 /**
  * Course-Entityklasse aus der mit JPA eine Datenbanktabelle erzeugt wird.
@@ -28,17 +28,18 @@ public class Course implements Serializable, ICourse {
 	//e.g. 5'B'
 	private char descriptor;
 	
-	@OneToOne(cascade=CascadeType.PERSIST,
+	/*Nicht relevant für die Anwendung
+	@OneToOne(cascade=CascadeType.ALL,
 			  mappedBy="course",
 			  targetEntity=Teacher.class)
-	private ITeacher classTeacher;
+	private ITeacher classTeacher;*/
 	
-	@OneToMany(cascade=CascadeType.PERSIST,
+	@OneToMany(cascade=CascadeType.ALL,
 			   mappedBy="course",
 			   targetEntity=Pupil.class)
 	private List<IPupil> pupils;
 	
-	@OneToMany(cascade=CascadeType.PERSIST,
+	@OneToMany(cascade=CascadeType.ALL,
 			   mappedBy="course",
 			   targetEntity=Lesson.class)
 	private List<ILesson> lessons;
@@ -48,16 +49,13 @@ public class Course implements Serializable, ICourse {
 	}
 	
 	
-	public Course(int grade, char descriptor, ITeacher classTeacher) {
+	public Course(int grade, char descriptor) {
 		super();
 		this.grade = grade;
 		this.descriptor = descriptor;
-		this.classTeacher = classTeacher;
-		this.classTeacher.setCourse(this);
 		this.pupils = new ArrayList<IPupil>();
 		this.lessons = new ArrayList<ILesson>();
 	}
-
 
 	public int getCourseID() {
 		return courseID;
@@ -76,12 +74,6 @@ public class Course implements Serializable, ICourse {
 	}
 	public void setDescriptor(char descriptor) {
 		this.descriptor = descriptor;
-	}
-	public ITeacher getClassTeacher() {
-		return classTeacher;
-	}
-	public void setClassTeacher(ITeacher classTeacher) {
-		this.classTeacher = classTeacher;
 	}
 	public List<IPupil> getPupils() {
 		return pupils;

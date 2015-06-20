@@ -23,7 +23,7 @@ public class Homework implements Serializable, IHomework {
 	private int homeworkID;
 	private String description;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Lesson.class)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Lesson.class)
 	@JoinColumn(name="lesson_FK")
 	private ILesson lesson;
 	

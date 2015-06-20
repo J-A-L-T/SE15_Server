@@ -24,7 +24,7 @@ public class Room implements Serializable, IRoom {
 	@Id
 	private String roomID;
 	
-	@OneToMany(cascade=CascadeType.PERSIST,
+	@OneToMany(cascade=CascadeType.ALL,
 			   mappedBy="room",
 			   targetEntity=Lesson.class)
 	private List<ILesson> lessons;
