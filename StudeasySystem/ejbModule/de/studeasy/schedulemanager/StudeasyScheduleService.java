@@ -32,7 +32,7 @@ import de.studeasy.util.DtoAssembler;
  * Hier ist die Hauptlogik implementiert und somit greift der Client
  * auf die Methoden dieses Services zu, um an seine gewünschten Daten zu kommen.
  * 
- * @author Tobias Riegel & Andreas Prischep
+ * @author Tobias Riegel, Andreas Prischep
  *
  */
 
@@ -71,6 +71,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 				sessionID = dao.createSession(user);
 				logger.info("Login erfolgreich. Session=" + sessionID);
 				response.setSessionID(sessionID);
+				response.setName(user.getName());
+				response.setFirstname(user.getFirstname());
 			}
 			else {
 				logger.info("Login fehlgeschlagen, da Person unbekannt oder Passwort falsch. personID="+personID);
