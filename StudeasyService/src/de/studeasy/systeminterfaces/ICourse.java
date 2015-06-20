@@ -22,10 +22,6 @@ public interface ICourse extends Serializable {
 	
 	public void setDescriptor(char descriptor);
 	
-	public ITeacher getClassTeacher();
-	
-	public void setClassTeacher(ITeacher classTeacher);
-	
 	public List<IPupil> getPupils();
 	
 	public void setPupils(List<IPupil> pupils);

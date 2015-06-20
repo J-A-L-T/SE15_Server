@@ -3,8 +3,6 @@ package de.studeasy.entities;
 import java.util.ArrayList;
 
 import java.util.List;
-
-import de.studeasy.systeminterfaces.ICourse;
 import de.studeasy.systeminterfaces.ILesson;
 import de.studeasy.systeminterfaces.ITeacher;
 
@@ -21,11 +19,12 @@ public class Teacher extends Person implements ITeacher {
 	
 	private static final long serialVersionUID = 2405076137604996925L;
 
-	@OneToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
-	@JoinColumn(name="classTeacher_FK",nullable=true)
-	private ICourse course;
+	/*Nicht relevant für die Anwendung
+	@OneToOne(cascade=CascadeType.ALL, targetEntity=Course.class)
+	@JoinColumn(name="course_FK",nullable=true)
+	private ICourse course;*/
 	
-	@OneToMany(cascade=CascadeType.PERSIST,
+	@OneToMany(cascade=CascadeType.ALL,
 			   mappedBy="teacher",
 			   targetEntity=Lesson.class)
 	private List<ILesson> lessons;
@@ -34,19 +33,9 @@ public class Teacher extends Person implements ITeacher {
 		super();
 	}
 	
-	public Teacher(String name, String firstname, String password, char gender, ICourse course) {
+	public Teacher(String name, String firstname, String password, char gender) {
 		super(name, firstname, password, gender);
-		this.course = course;
-		this.course.setClassTeacher(this);
 		this.lessons = new ArrayList<ILesson>();
-	}
-
-	public ICourse getCourse() {
-		return course;
-	}
-
-	public void setCourse(ICourse course) {
-		this.course = course;
 	}
 
 	public List<ILesson> getLessons() {

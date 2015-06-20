@@ -18,7 +18,7 @@ public class Pupil extends Person implements IPupil {
 	
 	private static final long serialVersionUID = 3461606884540372275L;
 	
-	@ManyToOne(cascade=CascadeType.PERSIST, targetEntity=Course.class)
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Course.class)
 	@JoinColumn(name="course_FK")
 	private ICourse course;
 	
