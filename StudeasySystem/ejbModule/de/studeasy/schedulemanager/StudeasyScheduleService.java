@@ -221,7 +221,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	 * start- oder endDate stattfinden befinden sich in der zurückgegebenen Liste.
 	 * 
 	 * NOCH NICHT REALISIERT
-	 *
+	 */
+	/*
 	@Override
 	public LessonListResponse getLessonsBySubject(int subjectID, int courseID,
 			Date startDate, Date endDate)   {
