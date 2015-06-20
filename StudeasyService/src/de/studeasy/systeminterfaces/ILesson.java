@@ -1,6 +1,8 @@
 package de.studeasy.systeminterfaces;
 
 import java.io.Serializable;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public interface ILesson extends Serializable {
 	public void setSubject(ISubject subject);
 	public IRoom getRoom();
 	public void setRoom(IRoom room);
-	public List<IHomework> getHomeworks();
+	public ArrayList<IHomework> getHomeworks();
 	public void setHomeworks(List<IHomework> homework);
 	public ICourse getCourse();
 	public void setCourse(ICourse course);
