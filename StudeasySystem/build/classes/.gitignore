@@ -1,1 +1,4 @@
-/.gitignore
+/META-INF/
+/de/
+/logging.properties
+/security.policy

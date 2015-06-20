@@ -75,9 +75,21 @@ public class DtoAssembler {
  	
  	//String dann "ttmmjjjj"
  	@SuppressWarnings("deprecation")
- 	private String makeDateToString(Date date) {
-		String d = "" + date.getDay() + date.getMonth() + date.getYear();
-		return d;
+ 	private static String makeDateToString(Date date) {
+ 		String day = "" + date.getDate();
+ 		String month = "" + date.getMonth();
+ 		
+ 		if(day.length() < 2 )
+ 			day = "0"+ day;
+ 		
+ 		if(month.equalsIgnoreCase("0"))
+ 				month = "12";
+ 		
+ 		if(month.length() < 2)
+ 			month = "0"+ month;	
+ 			 		
+ 		String d = "" + day + month + date.getYear(); 	
+ 		return d;
  	}
  	
 }
