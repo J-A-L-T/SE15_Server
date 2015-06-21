@@ -29,7 +29,7 @@ import de.studeasy.systeminterfaces.ITeacher;
  * Der DataBuilder ist eine Singelton Session Bean und wird bei dem Start des
  * Servers aufgerufen, um Testdaten zu erzeugen.
  * 
- * @author Tobias Riegel & Andreas Prischep
+ * @author Tobias Riegel, Andreas Prischep
  *
  */
 @Startup
@@ -52,18 +52,18 @@ public class DataBuilder {
 			this.CourseID = klasse1.getCourseID();
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher albus = new Teacher("Dumbledore", "Albus", "ad", 'm');	
-			ITeacher mcgonagall = new Teacher("McGonagall", "Minerva", "mm", 'w');			
-			ITeacher snape = new Teacher("Snape", "Severus", "ss", 'm');
+			ITeacher albus = new Teacher(111111, "Dumbledore", "Albus", "ad", 'm');	
+			ITeacher mcgonagall = new Teacher(158792, "McGonagall", "Minerva", "mm", 'w');			
+			ITeacher snape = new Teacher(136661, "Snape", "Severus", "ss", 'm');
 			
-			IPupil harry = new Pupil("Potter","Harry", "Hedwig", 'm', klasse1);
-			IPupil ron = new Pupil("Wesley", "Ron", "rw", 'm', klasse1);
-			IPupil lavander = new Pupil("Brown", "Lavender", "lb", 'w', klasse1);
-			IPupil hermine = new Pupil( "Granger", "Hermine","hg", 'w', klasse1);
-			IPupil parvati = new Pupil("Patil", "Parvati", "pp", 'm', klasse1);
-			IPupil seamus = new Pupil("Finnigan", "Seamus", "sf", 'm', klasse1);
-			IPupil neville = new Pupil("Longbottom", "Neville", "nl", 'm', klasse1);
-			IPupil dean = new Pupil("Thomas", "Dean", "dt", 'm', klasse1);
+			IPupil harry = new Pupil(259007, "Potter","Harry", "Hedwig", 'm', klasse1);
+			IPupil ron = new Pupil(267891, "Wesley", "Ron", "rw", 'm', klasse1);
+			IPupil lavander = new Pupil(257631,"Brown", "Lavender", "lb", 'w', klasse1);
+			IPupil hermine = new Pupil(276431, "Granger", "Hermine","hg", 'w', klasse1);
+			IPupil parvati = new Pupil(294631, "Patil", "Parvati", "pp", 'm', klasse1);
+			IPupil seamus = new Pupil(289643, "Finnigan", "Seamus", "sf", 'm', klasse1);
+			IPupil neville = new Pupil(246792, "Longbottom", "Neville", "nl", 'm', klasse1);
+			IPupil dean = new Pupil(256791, "Thomas", "Dean", "dt", 'm', klasse1);
 			
 			klasse1.addNewPupil(harry);
 			klasse1.addNewPupil(ron);
