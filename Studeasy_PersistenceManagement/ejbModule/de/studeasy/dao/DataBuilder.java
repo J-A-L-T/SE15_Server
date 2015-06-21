@@ -232,8 +232,11 @@ public class DataBuilder {
 			logger.info("TEACHER werden angelegt ----------------------");
 			em.persist(albus);
 			logger.info("Neu angelegt " + albus);
+			em.persist(mcgonagall);
+			logger.info("Neu angelegt " + mcgonagall);
 			em.persist(seamus);
 			logger.info("Neu angelegt " + seamus);
+			
 			//-----klasse1-----
 			logger.info("klasse1 wird angelegt ----------------------");
 			em.persist(klasse1);
