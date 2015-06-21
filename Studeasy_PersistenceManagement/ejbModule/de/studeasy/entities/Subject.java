@@ -17,8 +17,7 @@ public class Subject implements Serializable, ISubject {
 
 	private static final long serialVersionUID = -1512930899828828250L;
 	
-	@Id 
-	@GeneratedValue
+	@Id
 	private int subjectID;
 	private String description;
 		
@@ -26,8 +25,9 @@ public class Subject implements Serializable, ISubject {
 		super();
 	}
 
-	public Subject(String description) {
+	public Subject(int subjectID, String description) {
 		super();
+		this.subjectID = subjectID;
 		this.description = description;
 	}
 	

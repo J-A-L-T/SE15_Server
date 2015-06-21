@@ -78,17 +78,17 @@ public class DataBuilder {
 			IRoom room2 = new Room("D102");
 			IRoom room3 = new Room("D103");
 			
-			ISubject mathe = new Subject("Mathe");
-			ISubject deutsch = new Subject("Deutsch");
-			ISubject spanisch = new Subject("Spanisch");
-			ISubject biologie = new Subject("Biologie");
-			ISubject info = new Subject("Info");
-			ISubject englisch = new Subject("Englisch");
-			ISubject chemie = new Subject("Chemie");
-			ISubject physik = new Subject("Physik");
-			ISubject sport = new Subject("Sport");
-			ISubject religion = new Subject("Religion");
-
+			ISubject spanisch = new Subject(1, "Spanisch");
+			ISubject deutsch = new Subject(2, "Deutsch");
+			ISubject religion = new Subject(3, "Religion");
+			ISubject mathe = new Subject(4, "Mathe");
+			ISubject physik = new Subject(5, "Physik");
+			ISubject chemie = new Subject(6, "Chemie");
+			ISubject sport = new Subject(7, "Sport");
+			ISubject englisch = new Subject(8, "Englisch");
+			ISubject info = new Subject(9, "Info");
+			ISubject biologie = new Subject(10, "Biologie");	
+			
 			//---------------------------------DAY1----------------------------------------------
 			
 			ILesson lesson11 = new Lesson(1, new Date(2015,06,22), klasse1, albus, mathe, room1);
