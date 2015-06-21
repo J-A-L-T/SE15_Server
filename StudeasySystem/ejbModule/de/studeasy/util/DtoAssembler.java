@@ -2,7 +2,6 @@ package de.studeasy.util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 import javax.ejb.Stateless;
 
@@ -24,15 +23,18 @@ public class DtoAssembler {
 	
 	public LessonTO makeLessonDTO(ILesson lesson) {
 			LessonTO dto = new LessonTO();
+			if(lesson!=null) {
+				dto.setLessonID(lesson.getLessonID());
+				dto.setLessonHour(lesson.getLessonHour());
+				dto.setDate(DateStringConverter.makeDateToString(lesson.getDate()));
+				dto.setTeacher(makePersonDTO(lesson.getTeacher()));
+				dto.setSubject(makeSubjectDTO(lesson.getSubject()));
+				dto.setRoom(lesson.getRoom().getRoomID());
+				dto.setHomeworks(makeHomeworkDTO(lesson.getHomeworks())); //Arraylist
+			}
+			else
+				dto = null;
 			
-			dto.setLessonID(lesson.getLessonID());
-			dto.setLessonHour(lesson.getLessonHour());
-			dto.setDate(makeDateToString(lesson.getDate()));
-			dto.setTeacher(makePersonDTO(lesson.getTeacher()));
-			dto.setSubject(makeSubjectDTO(lesson.getSubject()));
-			dto.setRoom(lesson.getRoom().getRoomID());
-			dto.setHomeworks(makeHomeworkDTO(lesson.getHomeworks())); //Arraylist
-		  
 		  return dto;
 	  }
 	
@@ -72,13 +74,5 @@ public class DtoAssembler {
 			  dtoList.add(makeHomeworkDTO(h));
 		  }
 		  return dtoList;
-	}
- 	
- 	//String dann "ttmmjjjj"
- 	@SuppressWarnings("deprecation")
- 	private String makeDateToString(Date date) {
-		String d = "" + date.getDay() + date.getMonth() + date.getYear();
-		return d;
- 	}
- 	
+	} 	
 }

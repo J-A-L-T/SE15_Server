@@ -24,6 +24,7 @@ import de.studeasy.systeminterfaces.ITeacher;
 import de.studeasy.systeminterfaces.InvalidLoginException;
 import de.studeasy.systeminterfaces.NoSessionException;
 import de.studeasy.systeminterfaces.StudeasyException;
+import de.studeasy.util.DateStringConverter;
 import de.studeasy.util.DtoAssembler;
 
 /**
@@ -156,9 +157,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 	
 	@Override
 	public LessonResponse getLessonByDate(int sessionID, String date, int hour)  {
-		
-		Date d = makeStringToDate(date);
-		
+				
 		LessonResponse response = new LessonResponse();	
 		
 		ILesson dateLesson = null;
@@ -179,7 +178,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			
 			if(lessons!=null) {
 				for(int i = 0; i < lessons.size(); i++) {
-					if(lessons.get(i).getDate().equals(d) && (lessons.get(i).getLessonHour() == hour))
+					if(DateStringConverter.makeDateToString(lessons.get(i).getDate()).equals(date) && (lessons.get(i).getLessonHour() == hour))
 						dateLesson = lessons.get(i);
 				}
 			}
@@ -341,17 +340,6 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		}
 		else
 			return false;
-	}
-	
-//-------------------------------MAKE STRING TO DATE---------------------------------------------------	
-	@SuppressWarnings("deprecation")
-	private Date makeStringToDate(String date) {
-		int day = Integer.parseInt(date.substring(0, 2));
-		int month = Integer.parseInt(date.substring(2, 4));
-		int year = Integer.parseInt(date.substring(4));
-		
-		Date d = new Date(year, month, day);
-		return d;
 	}
 
 }
