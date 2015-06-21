@@ -33,8 +33,8 @@ public class Teacher extends Person implements ITeacher {
 		super();
 	}
 	
-	public Teacher(String name, String firstname, String password, char gender) {
-		super(name, firstname, password, gender);
+	public Teacher(int personID, String name, String firstname, String password, char gender) {
+		super(personID, name, firstname, password, gender);
 		this.lessons = new ArrayList<ILesson>();
 	}
 

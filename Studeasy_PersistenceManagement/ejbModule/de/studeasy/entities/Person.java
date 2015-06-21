@@ -19,7 +19,6 @@ public abstract class Person implements Serializable, IPerson {
 	private static final long serialVersionUID = 849222223534910538L;
 	
 	@Id
-	@GeneratedValue
 	private int personID;
 	private String name;
 	private String firstname;
@@ -31,8 +30,9 @@ public abstract class Person implements Serializable, IPerson {
 		super();
 	}
 	
-	public Person(String name, String firstname, String password, char gender) {
+	public Person(int personID, String name, String firstname, String password, char gender) {
 		super();
+		this.personID = personID;
 		this.name = name;
 		this.firstname = firstname;
 		this.password = password;
