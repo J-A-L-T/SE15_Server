@@ -177,43 +177,43 @@ public class DataBuilder {
 			mcgonagall.addNewLesson(lesson43);
 			room1.addNewLesson(lesson43);
 			
-			ILesson lesson44 = new Lesson(4, new Date(2015-1900,5,23), klasse1, snape, info, room1);
+			ILesson lesson44 = new Lesson(4, new Date(2015-1900,5,25), klasse1, snape, info, room1);
 			klasse1.addNewLesson(lesson44);
 			snape.addNewLesson(lesson44);
 			room1.addNewLesson(lesson44);
 			
-			ILesson lesson45 = new Lesson(5, new Date(2015-1900,5,22), klasse1, mcgonagall, spanisch, room1);
+			ILesson lesson45 = new Lesson(5, new Date(2015-1900,5,25), klasse1, mcgonagall, spanisch, room1);
 			klasse1.addNewLesson(lesson45);
 			mcgonagall.addNewLesson(lesson45);
 			room1.addNewLesson(lesson45);
 			
-			ILesson lesson46 = new Lesson(6, new Date(2015-1900,5,23), klasse1, albus, physik, room2);
+			ILesson lesson46 = new Lesson(6, new Date(2015-1900,5,25), klasse1, albus, physik, room2);
 			klasse1.addNewLesson(lesson46);
 			albus.addNewLesson(lesson46);
 			room2.addNewLesson(lesson46);
 			
 			//---------------------------------DAY5----------------------------------------------
-			ILesson lesson51 = new Lesson(1, new Date(2015-1900,5,24), klasse1, mcgonagall, biologie, room2);
+			ILesson lesson51 = new Lesson(1, new Date(2015-1900,5,26), klasse1, mcgonagall, biologie, room2);
 			klasse1.addNewLesson(lesson51);
 			mcgonagall.addNewLesson(lesson51);
 			room2.addNewLesson(lesson51);
 			
-			ILesson lesson52 = new Lesson(2, new Date(2015-1900,5,23), klasse1, albus, mathe, room1);
+			ILesson lesson52 = new Lesson(2, new Date(2015-1900,5,26), klasse1, albus, mathe, room1);
 			klasse1.addNewLesson(lesson52);
 			albus.addNewLesson(lesson52);
 			room1.addNewLesson(lesson52);
 			
-			ILesson lesson53 = new Lesson(3, new Date(2015-1900,5,24), klasse1, albus, deutsch, room1);
+			ILesson lesson53 = new Lesson(3, new Date(2015-1900,5,26), klasse1, albus, deutsch, room1);
 			klasse1.addNewLesson(lesson53);
 			albus.addNewLesson(lesson53);
 			room1.addNewLesson(lesson53);
 			
-			ILesson lesson54 = new Lesson(4, new Date(2015-1900,5,24), klasse1, snape, sport, room3);
+			ILesson lesson54 = new Lesson(4, new Date(2015-1900,5,26), klasse1, snape, sport, room3);
 			klasse1.addNewLesson(lesson54);
 			snape.addNewLesson(lesson54);
 			room3.addNewLesson(lesson54);
 			
-			ILesson lesson55 = new Lesson(5, new Date(2015-1900,5,24), klasse1, snape, religion, room1);
+			ILesson lesson55 = new Lesson(5, new Date(2015-1900,5,26), klasse1, snape, religion, room1);
 			klasse1.addNewLesson(lesson55);
 			snape.addNewLesson(lesson55);
 			room1.addNewLesson(lesson55);
