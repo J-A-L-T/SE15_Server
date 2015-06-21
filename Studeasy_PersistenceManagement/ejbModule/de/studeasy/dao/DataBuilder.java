@@ -252,15 +252,16 @@ public class DataBuilder {
 			logger.info("Neu angelegt " + neville);
 			em.persist(dean);
 			logger.info("Neu angelegt " + dean);
-			em.persist(room1);
+			
 			
 			//-----ROOM-----
 			logger.info("ROOM werden angelegt ----------------------");
+			em.persist(room1);
 			logger.info("Neu angelegt " + room1);
 			em.persist(room2);
 			logger.info("Neu angelegt " + room2);
-			em.persist(room2);
-			logger.info("Neu angelegt " + room2);
+			em.persist(room3);
+			logger.info("Neu angelegt " + room3);
 			
 			//-----SUBJEKT-----
 			logger.info("SUBJEKT werden angelegt ----------------------");
