@@ -37,19 +37,16 @@ import de.studeasy.systeminterfaces.ITeacher;
 public class DataBuilder {
 
 	private static final Logger logger = Logger.getLogger(DataBuilder.class);
-
-	private static int CourseID;
-
+	
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("deprecation")
 	@PostConstruct
 	private void init() {
-		ICourse klasse1 = em.find(Course.class, CourseID);
-		if(klasse1==null) {
+		if(em.find(Teacher.class, 111111)==null) {
 			
-			klasse1 = new Course(1, 'a');
-			this.CourseID = klasse1.getCourseID();
+			ICourse klasse1 = new Course(1, 'a');
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
 			ITeacher albus = new Teacher(111111, "Dumbledore", "Albus", "ad", 'm');	
