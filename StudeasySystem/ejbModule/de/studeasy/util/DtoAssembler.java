@@ -74,5 +74,5 @@ public class DtoAssembler {
 			  dtoList.add(makeHomeworkDTO(h));
 		  }
 		  return dtoList;
-	} 	
+ 	}
 }
