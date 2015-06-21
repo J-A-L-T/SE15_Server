@@ -49,6 +49,7 @@ public class DtoAssembler {
 	public PersonTO makePersonDTO(IPerson person) {
 		PersonTO dto = new PersonTO();
 		
+		dto.setPersonID(person.getPersonID());
 		dto.setFirstname(person.getFirstname());
 		dto.setGender(person.getGender());
 		dto.setName(person.getName());
