@@ -221,6 +221,10 @@ public class DataBuilder {
 			//--------------------------------------Homework----------------------------------------
 			IHomework homework1 = new Homework("Arbeitsheft S.30 Aufgabe 4,5,6", lesson11);
 			lesson11.addNewHomework(homework1);
+			IHomework homework2 = new Homework("Arbeitsheft S.40 Nr.1", lesson11);
+			lesson11.addNewHomework(homework2);
+			IHomework homework3 = new Homework("Arbetiszettel 4", lesson11);
+			lesson11.addNewHomework(homework3);
 			
 			//LOGDATEN
 			
@@ -355,6 +359,11 @@ public class DataBuilder {
 			logger.info("HOMEWORK werden angelegt ----------------------");
 			em.persist(homework1);
 			logger.info("Neu angelegt " + homework1);
+			em.persist(homework2);
+			logger.info("Neu angelegt " + homework2);
+			em.persist(homework3);
+			logger.info("Neu angelegt " + homework3);
+			
 		}
 		
 		
