@@ -192,7 +192,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setMessage(e.getMessage());
 		}
 		response.setLesson(dto.makeLessonDTO(dateLesson));
-		logger.info("Lesson am " + dateLesson.getDate().toString() + " in Stunde " + dateLesson.getLessonHour() + " wurde abgefragt.");
+		logger.info("Lesson am " + date + " in Stunde " + hour + " wurde abgefragt.");
 		return response;
 	}
 	
