@@ -1,9 +1,5 @@
 package de.studeasy.common;
 
-import java.util.Date;
-
-
-
 /**
  * Dieses Interface definiert die Schnittstelle zwischen der Java app und dem Server.
  * Es wird von Remote abgeleitet, um Remote-Aufrufe vom Client zum Server zu ermoeglichen.
@@ -29,7 +25,7 @@ public interface IStudeasyScheduleService {
 	
 	//public LessonListResponse getLessonsBySubject(int subjectID,int courseID, Date startDate, Date endDate) ;
 	
-	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
+	//public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate, Date endDate) ;	
 	
 	public BooleanResponse isUserTeacher(int sessionID);
 	

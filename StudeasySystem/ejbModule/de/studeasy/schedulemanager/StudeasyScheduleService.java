@@ -1,6 +1,5 @@
 package de.studeasy.schedulemanager;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -116,6 +115,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			IHomework homework = new Homework(description, lesson);
 			lesson.addNewHomework(homework);
 			response.setSuccessfull(true);
+			logger.info("Homework für Lesson " + lessonID + " wurde angelegt.");
 		}
 		else {
 			response.setSuccessfull(false);
@@ -138,6 +138,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		
 		if(user instanceof ITeacher) {
 			successfull = dao.removeHomeworkByID(homeworkID);
+			logger.info("Homework " + homeworkID + " wurde gelöscht.");
 		}
 		else {
 			response.setMessage("Der angemeldete User ist keine Lehrer und darf somit keine Hausaufgaben anlegen.");
@@ -191,6 +192,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setMessage(e.getMessage());
 		}
 		response.setLesson(dto.makeLessonDTO(dateLesson));
+		logger.info("Lesson am " + dateLesson.getDate().toString() + " in Stunde " + dateLesson.getLessonHour() + " wurde abgefragt.");
 		return response;
 	}
 	
@@ -204,6 +206,8 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 		LessonResponse response = new LessonResponse(); 
 	
 		response.setLesson(dto.makeLessonDTO(dao.findLessonByID(lessonID)));
+		
+		logger.info("Lesson " + lessonID + " wurde abgefragt.");
 
 		return response;
 	}
@@ -262,12 +266,15 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 
 	
 //------------------------------------------GET HOMEWORK FOR PUPIL------------------------------------------
-	/**
+	/*/**
 	 * Gibt eine Liste von Hausaufgaben für einen bestimmten Schüler zu einem bestimmten Zeitraum zurück.
 	 * Die Liste ist leer, wenn dieser Schüler zu diesem Zeitraum keine Hausaufgaben hat.
 	 * Wenn der angemeldete User kein Schüler ist wird im HomeworkListResponse der Error-Code auf 30 gesetzt.
 	 */
-	@Override
+	/*@Override
+	 * 
+	 * Geplante Listenansicht der Hausaufgaben nicht realisiert.
+	 * 
 	public HomeworkListResponse getHomeworksForPupil(int sessionID, Date startDate,
 			Date endDate)   {
 		
@@ -306,7 +313,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setMessage(e.getMessage());
 		}
 		return response;
-	}
+	}*/
 	
 //---------------------------------IS USER TEACHER-----------------------------------------------------
 	
@@ -330,6 +337,7 @@ public class StudeasyScheduleService implements IStudeasyScheduleService {
 			response.setReturnCode(e.getErrorCode());
 			response.setMessage(e.getMessage());
 		}
+		logger.info("Anfrage, ob User in Session" + sessionID + " ein Lehrer ist.");
 		return response;
 	}
 	
