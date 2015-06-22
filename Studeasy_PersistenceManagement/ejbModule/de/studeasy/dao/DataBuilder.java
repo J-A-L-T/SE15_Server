@@ -3,6 +3,7 @@ package de.studeasy.dao;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
@@ -40,6 +41,30 @@ public class DataBuilder {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Resource
+	private int t1ID, t2ID, t3ID, //Teacher
+				p1ID, p2ID, p3ID, p4ID, p5ID, p6ID, p7ID, p8ID; //Pupil
+	@Resource
+	private String t1name, t1firstname, t1password, //Teacher
+				   t2name, t2firstname, t2password,
+				   t3name, t3firstname, t3password,
+				   //Pupil
+				   p1name, p1firstname, p1password,
+				   p2name, p2firstname, p2password,
+				   p3name, p3firstname, p3password,
+				   p4name, p4firstname, p4password,
+				   p5name, p5firstname, p5password,
+				   p6name, p6firstname, p6password,
+				   p7name, p7firstname, p7password,
+				   p8name, p8firstname, p8password,
+				   //Room
+				   r1, r2, r3,
+				   //Subject
+				   s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
+	
+	@Resource
+	private char gender1, gender2;
 
 	@SuppressWarnings("deprecation")
 	@PostConstruct
@@ -49,18 +74,18 @@ public class DataBuilder {
 			ICourse klasse1 = new Course(1, 'a');
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher albus = new Teacher(111111, "Dumbledore", "Albus", "ad", 'm');	
-			ITeacher mcgonagall = new Teacher(158792, "McGonagall", "Minerva", "mm", 'w');			
-			ITeacher snape = new Teacher(136661, "Snape", "Severus", "ss", 'm');
+			ITeacher albus = new Teacher(t1ID, t1name, t1firstname, t1password, gender1);	
+			ITeacher mcgonagall = new Teacher(t2ID, t2name, t2firstname, t2password, gender2);			
+			ITeacher snape = new Teacher(t3ID, t3name, t3firstname, t3password, gender1);
 			
-			IPupil harry = new Pupil(259007, "Potter","Harry", "Hedwig", 'm', klasse1);
-			IPupil ron = new Pupil(267891, "Wesley", "Ron", "rw", 'm', klasse1);
-			IPupil lavander = new Pupil(257631,"Brown", "Lavender", "lb", 'w', klasse1);
-			IPupil hermine = new Pupil(276431, "Granger", "Hermine","hg", 'w', klasse1);
-			IPupil parvati = new Pupil(294631, "Patil", "Parvati", "pp", 'm', klasse1);
-			IPupil seamus = new Pupil(289643, "Finnigan", "Seamus", "sf", 'm', klasse1);
-			IPupil neville = new Pupil(246792, "Longbottom", "Neville", "nl", 'm', klasse1);
-			IPupil dean = new Pupil(256791, "Thomas", "Dean", "dt", 'm', klasse1);
+			IPupil harry = new Pupil(p1ID, p1name, p1firstname, p1password, gender1, klasse1);
+			IPupil ron = new Pupil(p2ID, p2name, p2firstname, p2password, gender1, klasse1);
+			IPupil lavander = new Pupil(p3ID, p3name, p3firstname, p3password, gender2, klasse1);
+			IPupil hermine = new Pupil(p4ID, p4name, p4firstname, p4password, gender2, klasse1);
+			IPupil parvati = new Pupil(p5ID, p5name, p5firstname, p5password, gender2, klasse1);
+			IPupil seamus = new Pupil(p6ID, p6name, p6firstname, p6password, gender1, klasse1);
+			IPupil neville = new Pupil(p7ID, p7name, p7firstname, p7password, gender1, klasse1);
+			IPupil dean = new Pupil(p8ID, p8name, p8firstname, p8password, gender1, klasse1);
 			
 			klasse1.addNewPupil(harry);
 			klasse1.addNewPupil(ron);
@@ -71,162 +96,20 @@ public class DataBuilder {
 			klasse1.addNewPupil(neville);
 			klasse1.addNewPupil(dean);		
 					
-			IRoom room1 = new Room("D101");
-			IRoom room2 = new Room("D102");
-			IRoom room3 = new Room("D103");
+			IRoom room1 = new Room(r1);
+			IRoom room2 = new Room(r2);
+			IRoom room3 = new Room(r3);
 			
-			ISubject spanisch = new Subject(1, "Spanisch");
-			ISubject deutsch = new Subject(2, "Deutsch");
-			ISubject religion = new Subject(3, "Religion");
-			ISubject mathe = new Subject(4, "Mathe");
-			ISubject physik = new Subject(5, "Physik");
-			ISubject chemie = new Subject(6, "Chemie");
-			ISubject sport = new Subject(7, "Sport");
-			ISubject englisch = new Subject(8, "Englisch");
-			ISubject info = new Subject(9, "Info");
-			ISubject biologie = new Subject(10, "Biologie");	
-			
-			//---------------------------------DAY1----------------------------------------------
-			
-			ILesson lesson11 = new Lesson(1, new Date(2015-1900,5,22), klasse1, albus, mathe, room1);
-			klasse1.addNewLesson(lesson11);
-			albus.addNewLesson(lesson11);
-			room1.addNewLesson(lesson11);
-			
-			ILesson lesson12 = new Lesson(2, new Date(2015-1900,5,22), klasse1, albus, deutsch, room1);
-			klasse1.addNewLesson(lesson12);
-			albus.addNewLesson(lesson12);
-			room1.addNewLesson(lesson12);
-			
-			ILesson lesson14 = new Lesson(4, new Date(2015-1900,5,22), klasse1, mcgonagall, spanisch, room1);
-			klasse1.addNewLesson(lesson14);
-			mcgonagall.addNewLesson(lesson14);
-			room1.addNewLesson(lesson14);
-			
-			ILesson lesson15 = new Lesson(5, new Date(2015-1900,5,22), klasse1, mcgonagall, biologie, room2);
-			klasse1.addNewLesson(lesson15);
-			mcgonagall.addNewLesson(lesson15);
-			room2.addNewLesson(lesson15);
-			
-			ILesson lesson16 = new Lesson(6, new Date(2015-1900,5,22), klasse1, mcgonagall, biologie, room2);
-			klasse1.addNewLesson(lesson16);
-			mcgonagall.addNewLesson(lesson16);
-			room2.addNewLesson(lesson16);
-			
-
-			//---------------------------------DAY2----------------------------------------------
-			ILesson lesson21 = new Lesson(1, new Date(2015-1900,5,23), klasse1, mcgonagall, englisch, room1);
-			klasse1.addNewLesson(lesson21);
-			mcgonagall.addNewLesson(lesson21);
-			room1.addNewLesson(lesson21);
-			
-			ILesson lesson22 = new Lesson(2, new Date(2015-1900,5,23), klasse1, albus, mathe, room1);
-			klasse1.addNewLesson(lesson22);
-			albus.addNewLesson(lesson22);
-			room1.addNewLesson(lesson22);
-			
-			ILesson lesson23 = new Lesson(3, new Date(2015-1900,5,23), klasse1, mcgonagall, chemie, room2);
-			klasse1.addNewLesson(lesson23);
-			mcgonagall.addNewLesson(lesson23);
-			room2.addNewLesson(lesson23);
-			
-			ILesson lesson25 = new Lesson(5, new Date(2015-1900,5,23), klasse1, albus, physik, room2);
-			klasse1.addNewLesson(lesson25);
-			albus.addNewLesson(lesson25);
-			room2.addNewLesson(lesson25);
-			
-			ILesson lesson26 = new Lesson(6, new Date(2015-1900,5,23), klasse1, snape, info, room1);
-			klasse1.addNewLesson(lesson26);
-			snape.addNewLesson(lesson26);
-			room1.addNewLesson(lesson26);
-			
-			//---------------------------------DAY3----------------------------------------------
-			ILesson lesson31 = new Lesson(1, new Date(2015-1900,5,24), klasse1, mcgonagall, chemie, room2);
-			klasse1.addNewLesson(lesson31);
-			mcgonagall.addNewLesson(lesson31);
-			room1.addNewLesson(lesson31);
-			
-			ILesson lesson32 = new Lesson(2, new Date(2015-1900,5,24), klasse1, albus, deutsch, room1);
-			klasse1.addNewLesson(lesson32);
-			albus.addNewLesson(lesson32);
-			room1.addNewLesson(lesson32);
-			
-			ILesson lesson33 = new Lesson(3, new Date(2015-1900,5,24), klasse1, mcgonagall, biologie, room2);
-			klasse1.addNewLesson(lesson33);
-			mcgonagall.addNewLesson(lesson33);
-			room2.addNewLesson(lesson33);
-			
-			ILesson lesson34 = new Lesson(4, new Date(2015-1900,5,24), klasse1, snape, sport, room3);
-			klasse1.addNewLesson(lesson34);
-			snape.addNewLesson(lesson34);
-			room3.addNewLesson(lesson34);
-			
-			ILesson lesson35 = new Lesson(5, new Date(2015-1900,5,24), klasse1, mcgonagall, englisch, room1);
-			klasse1.addNewLesson(lesson35);
-			mcgonagall.addNewLesson(lesson35);
-			room1.addNewLesson(lesson35);
-			
-			ILesson lesson36 = new Lesson(6, new Date(2015-1900,5,24), klasse1, snape, religion, room1);
-			klasse1.addNewLesson(lesson36);
-			snape.addNewLesson(lesson36);
-			room1.addNewLesson(lesson36);
-			//---------------------------------DAY4----------------------------------------------
-			
-			ILesson lesson43 = new Lesson(3, new Date(2015-1900,5,25), klasse1, mcgonagall, englisch, room1);
-			klasse1.addNewLesson(lesson43);
-			mcgonagall.addNewLesson(lesson43);
-			room1.addNewLesson(lesson43);
-			
-			ILesson lesson44 = new Lesson(4, new Date(2015-1900,5,25), klasse1, snape, info, room1);
-			klasse1.addNewLesson(lesson44);
-			snape.addNewLesson(lesson44);
-			room1.addNewLesson(lesson44);
-			
-			ILesson lesson45 = new Lesson(5, new Date(2015-1900,5,25), klasse1, mcgonagall, spanisch, room1);
-			klasse1.addNewLesson(lesson45);
-			mcgonagall.addNewLesson(lesson45);
-			room1.addNewLesson(lesson45);
-			
-			ILesson lesson46 = new Lesson(6, new Date(2015-1900,5,25), klasse1, albus, physik, room2);
-			klasse1.addNewLesson(lesson46);
-			albus.addNewLesson(lesson46);
-			room2.addNewLesson(lesson46);
-			
-			//---------------------------------DAY5----------------------------------------------
-			ILesson lesson51 = new Lesson(1, new Date(2015-1900,5,26), klasse1, mcgonagall, biologie, room2);
-			klasse1.addNewLesson(lesson51);
-			mcgonagall.addNewLesson(lesson51);
-			room2.addNewLesson(lesson51);
-			
-			ILesson lesson52 = new Lesson(2, new Date(2015-1900,5,26), klasse1, albus, mathe, room1);
-			klasse1.addNewLesson(lesson52);
-			albus.addNewLesson(lesson52);
-			room1.addNewLesson(lesson52);
-			
-			ILesson lesson53 = new Lesson(3, new Date(2015-1900,5,26), klasse1, albus, deutsch, room1);
-			klasse1.addNewLesson(lesson53);
-			albus.addNewLesson(lesson53);
-			room1.addNewLesson(lesson53);
-			
-			ILesson lesson54 = new Lesson(4, new Date(2015-1900,5,26), klasse1, snape, sport, room3);
-			klasse1.addNewLesson(lesson54);
-			snape.addNewLesson(lesson54);
-			room3.addNewLesson(lesson54);
-			
-			ILesson lesson55 = new Lesson(5, new Date(2015-1900,5,26), klasse1, snape, religion, room1);
-			klasse1.addNewLesson(lesson55);
-			snape.addNewLesson(lesson55);
-			room1.addNewLesson(lesson55);
-			
-			//--------------------------------------Homework----------------------------------------
-			IHomework homework1 = new Homework("Arbeitsheft S.30 Aufgabe 4,5,6", lesson11);
-			lesson11.addNewHomework(homework1);
-			IHomework homework2 = new Homework("Arbeitsheft S.40 Nr.1", lesson11);
-			lesson11.addNewHomework(homework2);
-			IHomework homework3 = new Homework("Arbetiszettel 4", lesson11);
-			lesson11.addNewHomework(homework3);
-			
-			//LOGDATEN
+			ISubject spanisch = new Subject(1, s1);
+			ISubject deutsch = new Subject(2, s2);
+			ISubject religion = new Subject(3, s3);
+			ISubject mathe = new Subject(4, s4);
+			ISubject physik = new Subject(5, s5);
+			ISubject chemie = new Subject(6, s6);
+			ISubject sport = new Subject(7, s7);
+			ISubject englisch = new Subject(8, s8);
+			ISubject info = new Subject(9, s9);
+			ISubject biologie = new Subject(10, s10);	
 			
 			//-----TEACHER-----
 			logger.info("TEACHER werden angelegt ----------------------");
@@ -234,9 +117,8 @@ public class DataBuilder {
 			logger.info("Neu angelegt " + albus);
 			em.persist(mcgonagall);
 			logger.info("Neu angelegt " + mcgonagall);
-			em.persist(seamus);
-			logger.info("Neu angelegt " + seamus);
-			
+			em.persist(snape);
+			logger.info("Neu angelegt " + snape);
 			//-----klasse1-----
 			logger.info("klasse1 wird angelegt ----------------------");
 			em.persist(klasse1);
@@ -292,84 +174,269 @@ public class DataBuilder {
 			logger.info("Neu angelegt " + sport);
 			em.persist(religion);
 			logger.info("Neu angelegt " + religion);
-			//-----LESSON-DAY1-----
-			logger.info("LESSON DAY1 werden angelegt ----------------------");
-			em.persist(lesson11);
-			logger.info("Neu angelegt " + lesson11);
 			
-			em.persist(lesson12);
-			logger.info("Neu angelegt " + lesson12);
-			em.persist(lesson14);
-			logger.info("Neu angelegt " + lesson14);
-			em.persist(lesson15);
-			logger.info("Neu angelegt " + lesson15);
-			em.persist(lesson16);
-			logger.info("Neu angelegt " + lesson16);
+			//Stundenplan für 10 Wochen anlegen
+			for(int i=0;i<10;i++) {
+				//---------------------------------DAY1----------------------------------------------
+				
+				ILesson lesson11 = new Lesson(1, new Date(2015-1900,5,22), klasse1, albus, mathe, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson11.getDate().setDate(lesson11.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson11);
+				albus.addNewLesson(lesson11);
+				room1.addNewLesson(lesson11);
+				
+				ILesson lesson12 = new Lesson(2, new Date(2015-1900,5,22), klasse1, albus, deutsch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson12.getDate().setDate(lesson12.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson12);
+				albus.addNewLesson(lesson12);
+				room1.addNewLesson(lesson12);
+				
+				ILesson lesson14 = new Lesson(4, new Date(2015-1900,5,22), klasse1, mcgonagall, spanisch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson14.getDate().setDate(lesson14.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson14);
+				mcgonagall.addNewLesson(lesson14);
+				room1.addNewLesson(lesson14);
+				
+				ILesson lesson15 = new Lesson(5, new Date(2015-1900,5,22), klasse1, mcgonagall, biologie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson15.getDate().setDate(lesson15.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson15);
+				mcgonagall.addNewLesson(lesson15);
+				room2.addNewLesson(lesson15);
+				
+				ILesson lesson16 = new Lesson(6, new Date(2015-1900,5,22), klasse1, mcgonagall, biologie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson16.getDate().setDate(lesson16.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson16);
+				mcgonagall.addNewLesson(lesson16);
+				room2.addNewLesson(lesson16);
+				
+	
+				//---------------------------------DAY2----------------------------------------------
+				ILesson lesson21 = new Lesson(1, new Date(2015-1900,5,23), klasse1, mcgonagall, englisch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson21.getDate().setDate(lesson21.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson21);
+				mcgonagall.addNewLesson(lesson21);
+				room1.addNewLesson(lesson21);
+				
+				ILesson lesson22 = new Lesson(2, new Date(2015-1900,5,23), klasse1, albus, mathe, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson22.getDate().setDate(lesson22.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson22);
+				albus.addNewLesson(lesson22);
+				room1.addNewLesson(lesson22);
+				
+				ILesson lesson23 = new Lesson(3, new Date(2015-1900,5,23), klasse1, mcgonagall, chemie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson23.getDate().setDate(lesson23.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson23);
+				mcgonagall.addNewLesson(lesson23);
+				room2.addNewLesson(lesson23);
+				
+				ILesson lesson25 = new Lesson(5, new Date(2015-1900,5,23), klasse1, albus, physik, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson25.getDate().setDate(lesson25.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson25);
+				albus.addNewLesson(lesson25);
+				room2.addNewLesson(lesson25);
+				
+				ILesson lesson26 = new Lesson(6, new Date(2015-1900,5,23), klasse1, snape, info, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson26.getDate().setDate(lesson26.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson26);
+				snape.addNewLesson(lesson26);
+				room1.addNewLesson(lesson26);
+				
+				//---------------------------------DAY3----------------------------------------------
+				ILesson lesson31 = new Lesson(1, new Date(2015-1900,5,24), klasse1, mcgonagall, chemie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson31.getDate().setDate(lesson31.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson31);
+				mcgonagall.addNewLesson(lesson31);
+				room1.addNewLesson(lesson31);
+				
+				ILesson lesson32 = new Lesson(2, new Date(2015-1900,5,24), klasse1, albus, deutsch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson32.getDate().setDate(lesson32.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson32);
+				albus.addNewLesson(lesson32);
+				room1.addNewLesson(lesson32);
+				
+				ILesson lesson33 = new Lesson(3, new Date(2015-1900,5,24), klasse1, mcgonagall, biologie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson33.getDate().setDate(lesson33.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson33);
+				mcgonagall.addNewLesson(lesson33);
+				room2.addNewLesson(lesson33);
+				
+				ILesson lesson34 = new Lesson(4, new Date(2015-1900,5,24), klasse1, snape, sport, room3);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson34.getDate().setDate(lesson34.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson34);
+				snape.addNewLesson(lesson34);
+				room3.addNewLesson(lesson34);
+				
+				ILesson lesson35 = new Lesson(5, new Date(2015-1900,5,24), klasse1, mcgonagall, englisch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson35.getDate().setDate(lesson35.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson35);
+				mcgonagall.addNewLesson(lesson35);
+				room1.addNewLesson(lesson35);
+				
+				ILesson lesson36 = new Lesson(6, new Date(2015-1900,5,24), klasse1, snape, religion, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson36.getDate().setDate(lesson36.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson36);
+				snape.addNewLesson(lesson36);
+				room1.addNewLesson(lesson36);
+				//---------------------------------DAY4----------------------------------------------
+				
+				ILesson lesson43 = new Lesson(3, new Date(2015-1900,5,25), klasse1, mcgonagall, englisch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson43.getDate().setDate(lesson43.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson43);
+				mcgonagall.addNewLesson(lesson43);
+				room1.addNewLesson(lesson43);
+				
+				ILesson lesson44 = new Lesson(4, new Date(2015-1900,5,25), klasse1, snape, info, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson44.getDate().setDate(lesson44.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson44);
+				snape.addNewLesson(lesson44);
+				room1.addNewLesson(lesson44);
+				
+				ILesson lesson45 = new Lesson(5, new Date(2015-1900,5,25), klasse1, mcgonagall, spanisch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson45.getDate().setDate(lesson45.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson45);
+				mcgonagall.addNewLesson(lesson45);
+				room1.addNewLesson(lesson45);
+				
+				ILesson lesson46 = new Lesson(6, new Date(2015-1900,5,25), klasse1, albus, physik, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson46.getDate().setDate(lesson46.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson46);
+				albus.addNewLesson(lesson46);
+				room2.addNewLesson(lesson46);
+				
+				//---------------------------------DAY5----------------------------------------------
+				ILesson lesson51 = new Lesson(1, new Date(2015-1900,5,26), klasse1, mcgonagall, biologie, room2);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson51.getDate().setDate(lesson51.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson51);
+				mcgonagall.addNewLesson(lesson51);
+				room2.addNewLesson(lesson51);
+				
+				ILesson lesson52 = new Lesson(2, new Date(2015-1900,5,26), klasse1, albus, mathe, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson52.getDate().setDate(lesson52.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson52);
+				albus.addNewLesson(lesson52);
+				room1.addNewLesson(lesson52);
+				
+				ILesson lesson53 = new Lesson(3, new Date(2015-1900,5,26), klasse1, albus, deutsch, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson53.getDate().setDate(lesson53.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson53);
+				albus.addNewLesson(lesson53);
+				room1.addNewLesson(lesson53);
+				
+				ILesson lesson54 = new Lesson(4, new Date(2015-1900,5,26), klasse1, snape, sport, room3);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson54.getDate().setDate(lesson54.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson54);
+				snape.addNewLesson(lesson54);
+				room3.addNewLesson(lesson54);
+				
+				ILesson lesson55 = new Lesson(5, new Date(2015-1900,5,26), klasse1, snape, religion, room1);
+				//Repräsentiet die Wiederholung dieser Stunde jede Woche
+				lesson55.getDate().setDate(lesson55.getDate().getDate()+(i*7));
+				klasse1.addNewLesson(lesson55);
+				snape.addNewLesson(lesson55);
+				room1.addNewLesson(lesson55);
+				
+				//-----LESSON-DAY1-----
+				logger.info("LESSON DAY1 werden angelegt ----------------------");
+				em.persist(lesson11);
+				logger.info("Neu angelegt " + lesson11);
+				
+				em.persist(lesson12);
+				logger.info("Neu angelegt " + lesson12);
+				em.persist(lesson14);
+				logger.info("Neu angelegt " + lesson14);
+				em.persist(lesson15);
+				logger.info("Neu angelegt " + lesson15);
+				em.persist(lesson16);
+				logger.info("Neu angelegt " + lesson16);
+				
+				//-----LESSON-DAY2-----
+				logger.info("LESSON DAY2 werden angelegt ----------------------");
+				em.persist(lesson21);
+				logger.info("Neu angelegt " + lesson21);
+				em.persist(lesson22);
+				logger.info("Neu angelegt " + lesson22);
+				em.persist(lesson23);
+				logger.info("Neu angelegt " + lesson23);
+				em.persist(lesson25);
+				logger.info("Neu angelegt " + lesson25);
+				em.persist(lesson26);
+				logger.info("Neu angelegt " + lesson26);
+				
+				//-----LESSON-DAY3-----
+				logger.info("LESSON DAY3 werden angelegt ----------------------");
+				em.persist(lesson31);
+				logger.info("Neu angelegt " + lesson31);
+				em.persist(lesson32);
+				logger.info("Neu angelegt " + lesson32);
+				em.persist(lesson33);
+				logger.info("Neu angelegt " + lesson33);
+				em.persist(lesson34);
+				logger.info("Neu angelegt " + lesson34);
+				em.persist(lesson35);
+				logger.info("Neu angelegt " + lesson35);
+				em.persist(lesson36);
+				logger.info("Neu angelegt " + lesson36);
+				
+				//-----LESSON-DAY4-----
+				logger.info("LESSON DAY4 werden angelegt ----------------------");
+				em.persist(lesson43);
+				logger.info("Neu angelegt " + lesson43);
+				em.persist(lesson44);
+				logger.info("Neu angelegt " + lesson44);
+				em.persist(lesson45);
+				logger.info("Neu angelegt " + lesson45);
+				em.persist(lesson46);
+				logger.info("Neu angelegt " + lesson46);
+				
+				//-----LESSON-DAY5-----
+				logger.info("LESSON DAY5 werden angelegt ----------------------");
+				em.persist(lesson51);
+				logger.info("Neu angelegt " + lesson51);
+				em.persist(lesson52);
+				logger.info("Neu angelegt " + lesson52);
+				em.persist(lesson53);
+				logger.info("Neu angelegt " + lesson53);
+				em.persist(lesson54);
+				logger.info("Neu angelegt " + lesson54);
+				em.persist(lesson55);
+				logger.info("Neu angelegt " + lesson55);
 			
-			//-----LESSON-DAY2-----
-			logger.info("LESSON DAY2 werden angelegt ----------------------");
-			em.persist(lesson21);
-			logger.info("Neu angelegt " + lesson21);
-			em.persist(lesson22);
-			logger.info("Neu angelegt " + lesson22);
-			em.persist(lesson23);
-			logger.info("Neu angelegt " + lesson23);
-			em.persist(lesson25);
-			logger.info("Neu angelegt " + lesson25);
-			em.persist(lesson26);
-			logger.info("Neu angelegt " + lesson26);
-			
-			//-----LESSON-DAY3-----
-			logger.info("LESSON DAY3 werden angelegt ----------------------");
-			em.persist(lesson31);
-			logger.info("Neu angelegt " + lesson31);
-			em.persist(lesson32);
-			logger.info("Neu angelegt " + lesson32);
-			em.persist(lesson33);
-			logger.info("Neu angelegt " + lesson33);
-			em.persist(lesson34);
-			logger.info("Neu angelegt " + lesson34);
-			em.persist(lesson35);
-			logger.info("Neu angelegt " + lesson35);
-			em.persist(lesson36);
-			logger.info("Neu angelegt " + lesson36);
-			
-			//-----LESSON-DAY4-----
-			logger.info("LESSON DAY4 werden angelegt ----------------------");
-			em.persist(lesson43);
-			logger.info("Neu angelegt " + lesson43);
-			em.persist(lesson44);
-			logger.info("Neu angelegt " + lesson44);
-			em.persist(lesson45);
-			logger.info("Neu angelegt " + lesson45);
-			em.persist(lesson46);
-			logger.info("Neu angelegt " + lesson46);
-			
-			//-----LESSON-DAY5-----
-			logger.info("LESSON DAY5 werden angelegt ----------------------");
-			em.persist(lesson51);
-			logger.info("Neu angelegt " + lesson51);
-			em.persist(lesson52);
-			logger.info("Neu angelegt " + lesson52);
-			em.persist(lesson53);
-			logger.info("Neu angelegt " + lesson53);
-			em.persist(lesson54);
-			logger.info("Neu angelegt " + lesson54);
-			em.persist(lesson55);
-			logger.info("Neu angelegt " + lesson55);
-			
-			//-----HOMEWORK-----
-			logger.info("HOMEWORK werden angelegt ----------------------");
-			em.persist(homework1);
-			logger.info("Neu angelegt " + homework1);
-			em.persist(homework2);
-			logger.info("Neu angelegt " + homework2);
-			em.persist(homework3);
-			logger.info("Neu angelegt " + homework3);
-			
+				//--------------------------------------Homework----------------------------------------
+				if(i==0) {
+					IHomework homework1 = new Homework("Arbeitsheft S.30 Aufgabe 4,5,6", lesson11);
+					lesson11.addNewHomework(homework1);
+					
+					logger.info("HOMEWORK werden angelegt ----------------------");
+					em.persist(homework1);
+					logger.info("Neu angelegt " + homework1);
+				}
+			}
+		
 		}
-		
-		
-		
+	
 	}
 }
