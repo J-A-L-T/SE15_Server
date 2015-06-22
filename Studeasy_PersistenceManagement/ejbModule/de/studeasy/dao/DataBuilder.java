@@ -48,10 +48,20 @@ public class DataBuilder {
 	@Resource
 	private String t1name, t1firstname, t1password, //Teacher
 				   t2name, t2firstname, t2password,
-				   t3name, t3firstname, t3password;
+				   t3name, t3firstname, t3password,
+				   //Pupil
+				   p1name, p1firstname, p1password,
+				   p2name, p2firstname, p2password,
+				   p3name, p3firstname, p3password,
+				   p4name, p4firstname, p4password,
+				   p5name, p5firstname, p5password,
+				   p6name, p6firstname, p6password,
+				   p7name, p7firstname, p7password,
+				   p8name, p8firstname, p8password;
+				   
 	
 	@Resource
-	private char t1gender, t2gender, t3gender; //Teacher
+	private char gender1, gender2;
 
 	@SuppressWarnings("deprecation")
 	@PostConstruct
@@ -61,18 +71,18 @@ public class DataBuilder {
 			ICourse klasse1 = new Course(1, 'a');
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher albus = new Teacher(t1ID, t1name, t1firstname, t1password, t1gender);	
-			ITeacher mcgonagall = new Teacher(t2ID, t2name, t2firstname, t2password, t2gender);			
-			ITeacher snape = new Teacher(t3ID, t3name, t3firstname, t3password, t3gender);
+			ITeacher albus = new Teacher(t1ID, t1name, t1firstname, t1password, gender1);	
+			ITeacher mcgonagall = new Teacher(t2ID, t2name, t2firstname, t2password, gender2);			
+			ITeacher snape = new Teacher(t3ID, t3name, t3firstname, t3password, gender1);
 			
-			IPupil harry = new Pupil(259007, "Potter","Harry", "Hedwig", 'm', klasse1);
-			IPupil ron = new Pupil(267891, "Wesley", "Ron", "rw", 'm', klasse1);
-			IPupil lavander = new Pupil(257631,"Brown", "Lavender", "lb", 'w', klasse1);
-			IPupil hermine = new Pupil(276431, "Granger", "Hermine","hg", 'w', klasse1);
-			IPupil parvati = new Pupil(294631, "Patil", "Parvati", "pp", 'm', klasse1);
-			IPupil seamus = new Pupil(289643, "Finnigan", "Seamus", "sf", 'm', klasse1);
-			IPupil neville = new Pupil(246792, "Longbottom", "Neville", "nl", 'm', klasse1);
-			IPupil dean = new Pupil(256791, "Thomas", "Dean", "dt", 'm', klasse1);
+			IPupil harry = new Pupil(p1ID, p1name, p1firstname, p1password, gender1, klasse1);
+			IPupil ron = new Pupil(p2ID, p2name, p2firstname, p2password, gender1, klasse1);
+			IPupil lavander = new Pupil(p3ID, p3name, p3firstname, p3password, gender2, klasse1);
+			IPupil hermine = new Pupil(p4ID, p4name, p4firstname, p4password, gender2, klasse1);
+			IPupil parvati = new Pupil(p5ID, p5name, p5firstname, p5password, gender2, klasse1);
+			IPupil seamus = new Pupil(p6ID, p6name, p6firstname, p6password, gender1, klasse1);
+			IPupil neville = new Pupil(p7ID, p7name, p7firstname, p7password, gender1, klasse1);
+			IPupil dean = new Pupil(p8ID, p8name, p8firstname, p8password, gender1, klasse1);
 			
 			klasse1.addNewPupil(harry);
 			klasse1.addNewPupil(ron);

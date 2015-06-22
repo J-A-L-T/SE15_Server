@@ -4,6 +4,16 @@
       <session>
           <ejb-name>DataBuilder</ejb-name>
           <ejb-class>de.studeasy.dao.DataBuilder</ejb-class>
+          <env-entry>
+		      <env-entry-name>de.studeasy.dao.DataBuilder/gender1</env-entry-name>
+		         <env-entry-type>java.lang.Character</env-entry-type>
+		         <env-entry-value>m</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/gender2</env-entry-name>
+		         <env-entry-type>java.lang.Character</env-entry-type>
+		         <env-entry-value>w</env-entry-value>
+		      </env-entry>
 		    <!-- Dumbledore -->
 		    <env-entry>
 		         <env-entry-name>de.studeasy.dao.DataBuilder/t1ID</env-entry-name>
@@ -24,11 +34,6 @@
 		         <env-entry-name>de.studeasy.dao.DataBuilder/t1password</env-entry-name>
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>ad</env-entry-value>
-		      </env-entry>
-		      <env-entry>
-		         <env-entry-name>de.studeasy.dao.DataBuilder/t1gender</env-entry-name>
-		         <env-entry-type>java.lang.Character</env-entry-type>
-		         <env-entry-value>m</env-entry-value>
 		      </env-entry>
 		      <!-- McGonagall -->
 		      <env-entry>
@@ -51,11 +56,6 @@
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>mm</env-entry-value>
 		      </env-entry>
-		      <env-entry>
-		         <env-entry-name>de.studeasy.dao.DataBuilder/t2gender</env-entry-name>
-		         <env-entry-type>java.lang.Character</env-entry-type>
-		         <env-entry-value>w</env-entry-value>
-		      </env-entry>
 		      <!-- Snape -->
 		      <env-entry>
 		         <env-entry-name>de.studeasy.dao.DataBuilder/t3ID</env-entry-name>
@@ -77,10 +77,175 @@
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>ss</env-entry-value>
 		      </env-entry>
+		    <!-- Potter -->  
+			<env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p1ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>259007</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p1name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Potter</env-entry-value>
+		      </env-entry>
 		      <env-entry>
-		         <env-entry-name>de.studeasy.dao.DataBuilder/t3gender</env-entry-name>
-		         <env-entry-type>java.lang.Character</env-entry-type>
-		         <env-entry-value>m</env-entry-value>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p1firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Harry</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p1password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Hedwig</env-entry-value>
+		      </env-entry>
+		      <!-- Wesley -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p2ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>267891</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p2name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Wesley</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p2firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Ron</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p2password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>rw</env-entry-value>
+		      </env-entry>
+		      <!-- Brown -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p3ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>257631</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p3name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Brown</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p3firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Lavender</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p3password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>lb</env-entry-value>
+		      </env-entry>
+		      <!-- Granger -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p4ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>276431</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p4name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Granger</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p4firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Hermine</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p4password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>hg</env-entry-value>
+		      </env-entry>
+		      <!-- Patil -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p5ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>294631</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p5name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Patil</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p5firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Parvati</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p5password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>pp</env-entry-value>
+		      </env-entry>
+		      <!-- Finnigan -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p6ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>289643</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p6name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Finnigan</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p6firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Seamus</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p6password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>sf</env-entry-value>
+		      </env-entry>
+		      246792, "Longbottom", "Neville", "nl"
+		      <!-- Longbottom -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p7ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>246792</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p7name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Longbottom</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p7firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Neville</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p7password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>nl</env-entry-value>
+		      </env-entry>
+		      256791, "Thomas", "Dean", "dt"
+		      <!-- Thomas -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p8ID</env-entry-name>
+		         <env-entry-type>java.lang.Integer</env-entry-type>
+		         <env-entry-value>256791</env-entry-value>
+		      </env-entry>
+		    <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p8name</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Thomas</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p8firstname</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Dean</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/p8password</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>dt</env-entry-value>
 		      </env-entry>
       </session>
    </enterprise-beans>      
