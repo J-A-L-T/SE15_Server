@@ -203,7 +203,6 @@
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>sf</env-entry-value>
 		      </env-entry>
-		      246792, "Longbottom", "Neville", "nl"
 		      <!-- Longbottom -->
 		      <env-entry>
 		         <env-entry-name>de.studeasy.dao.DataBuilder/p7ID</env-entry-name>
@@ -225,7 +224,6 @@
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>nl</env-entry-value>
 		      </env-entry>
-		      256791, "Thomas", "Dean", "dt"
 		      <!-- Thomas -->
 		      <env-entry>
 		         <env-entry-name>de.studeasy.dao.DataBuilder/p8ID</env-entry-name>
