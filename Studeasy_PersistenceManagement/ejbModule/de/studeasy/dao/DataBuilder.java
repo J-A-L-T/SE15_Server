@@ -3,6 +3,7 @@ package de.studeasy.dao;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.persistence.EntityManager;
@@ -40,6 +41,17 @@ public class DataBuilder {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Resource
+	private int t1ID, t2ID, t3ID, //Teacher
+				p1ID, p2ID, p3ID, p4ID, p5ID, p6ID, p7ID, p8ID; //Pupil
+	@Resource
+	private String t1name, t1firstname, t1password, //Teacher
+				   t2name, t2firstname, t2password,
+				   t3name, t3firstname, t3password;
+	
+	@Resource
+	private char t1gender, t2gender, t3gender; //Teacher
 
 	@SuppressWarnings("deprecation")
 	@PostConstruct
@@ -49,9 +61,9 @@ public class DataBuilder {
 			ICourse klasse1 = new Course(1, 'a');
 			
 			//Course noch nicht vorhanden, also neu anlegen mit Schülern, Lehrer, Unterricht, Fach und Hausaufgabe
-			ITeacher albus = new Teacher(111111, "Dumbledore", "Albus", "ad", 'm');	
-			ITeacher mcgonagall = new Teacher(158792, "McGonagall", "Minerva", "mm", 'w');			
-			ITeacher snape = new Teacher(136661, "Snape", "Severus", "ss", 'm');
+			ITeacher albus = new Teacher(t1ID, t1name, t1firstname, t1password, t1gender);	
+			ITeacher mcgonagall = new Teacher(t2ID, t2name, t2firstname, t2password, t2gender);			
+			ITeacher snape = new Teacher(t3ID, t3name, t3firstname, t3password, t3gender);
 			
 			IPupil harry = new Pupil(259007, "Potter","Harry", "Hedwig", 'm', klasse1);
 			IPupil ron = new Pupil(267891, "Wesley", "Ron", "rw", 'm', klasse1);
