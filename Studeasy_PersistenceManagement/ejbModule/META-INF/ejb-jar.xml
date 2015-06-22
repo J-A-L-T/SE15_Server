@@ -245,6 +245,73 @@
 		         <env-entry-type>java.lang.String</env-entry-type>
 		         <env-entry-value>dt</env-entry-value>
 		      </env-entry>
+		      <!-- Rooms -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/r1</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>D101</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/r2</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>D102</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/r3</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>D103</env-entry-value>
+		      </env-entry>
+		      <!-- Subject -->
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s1</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Spanisch</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s2</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Deutsch</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s3</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Religion</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s4</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Mathe</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s5</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Physik</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s6</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Chemie</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s7</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Sport</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s8</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Englisch</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s9</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Info</env-entry-value>
+		      </env-entry>
+		      <env-entry>
+		         <env-entry-name>de.studeasy.dao.DataBuilder/s10</env-entry-name>
+		         <env-entry-type>java.lang.String</env-entry-type>
+		         <env-entry-value>Biologie</env-entry-value>
+		      </env-entry>
       </session>
    </enterprise-beans>      
 </ejb-jar>

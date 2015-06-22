@@ -57,8 +57,11 @@ public class DataBuilder {
 				   p5name, p5firstname, p5password,
 				   p6name, p6firstname, p6password,
 				   p7name, p7firstname, p7password,
-				   p8name, p8firstname, p8password;
-				   
+				   p8name, p8firstname, p8password,
+				   //Room
+				   r1, r2, r3,
+				   //Subject
+				   s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;
 	
 	@Resource
 	private char gender1, gender2;
@@ -93,20 +96,20 @@ public class DataBuilder {
 			klasse1.addNewPupil(neville);
 			klasse1.addNewPupil(dean);		
 					
-			IRoom room1 = new Room("D101");
-			IRoom room2 = new Room("D102");
-			IRoom room3 = new Room("D103");
+			IRoom room1 = new Room(r1);
+			IRoom room2 = new Room(r2);
+			IRoom room3 = new Room(r3);
 			
-			ISubject spanisch = new Subject(1, "Spanisch");
-			ISubject deutsch = new Subject(2, "Deutsch");
-			ISubject religion = new Subject(3, "Religion");
-			ISubject mathe = new Subject(4, "Mathe");
-			ISubject physik = new Subject(5, "Physik");
-			ISubject chemie = new Subject(6, "Chemie");
-			ISubject sport = new Subject(7, "Sport");
-			ISubject englisch = new Subject(8, "Englisch");
-			ISubject info = new Subject(9, "Info");
-			ISubject biologie = new Subject(10, "Biologie");	
+			ISubject spanisch = new Subject(1, s1);
+			ISubject deutsch = new Subject(2, s2);
+			ISubject religion = new Subject(3, s3);
+			ISubject mathe = new Subject(4, s4);
+			ISubject physik = new Subject(5, s5);
+			ISubject chemie = new Subject(6, s6);
+			ISubject sport = new Subject(7, s7);
+			ISubject englisch = new Subject(8, s8);
+			ISubject info = new Subject(9, s9);
+			ISubject biologie = new Subject(10, s10);	
 			
 			//---------------------------------DAY1----------------------------------------------
 			
